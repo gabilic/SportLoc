@@ -1,0 +1,2 @@
+# SportLoc
+The application provides options to search for official and unofficial sport events and activities, to register for those activities and also to check the list of other participants. This means that people who enjoy in some types of sports will now be able to get in contact with other like-minded individuals more easily.
