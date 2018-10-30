@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileActivity">
+
+    <ImageView
+        android:id="@+id/ivProfilePhoto"
+        android:layout_width="135dp"
+        android:layout_height="137dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/ivProfilePhoto"
+        android:src="@drawable/empty_profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.031"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/empty_profile" />
+
+    <ScrollView
+
+        android:id="@+id/scrollView2"
+        android:layout_width="349dp"
+        android:layout_height="307dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivProfilePhoto">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvPersonalInformation"
+                android:layout_width="317dp"
+                android:layout_height="330dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/tvPersonalInformationDescription"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tvCommentCounter"
+        android:layout_width="44dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="108dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/holo_green_dark"
+        android:contentDescription="@string/tvCommentCounter"
+        android:gravity="left|right|fill_vertical|center|clip_vertical|clip_horizontal|start"
+
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintStart_toEndOf="@+id/ivProfilePhoto"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="0" />
+
+    <ImageButton
+        android:id="@+id/ibCommentBubble"
+        android:layout_width="44dp"
+        android:layout_height="42dp"
+
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="108dp"
+
+
+        android:adjustViewBounds="true"
+        android:background="@drawable/comment_bubble"
+        android:contentDescription="@string/ibCommentBubble"
+        android:scaleType="centerCrop"
+        android:scaleX="0.85"
+        android:scaleY="0.85"
+        android:src="@drawable/comment_bubble"
+        app:layout_constraintStart_toEndOf="@+id/tvCommentCounter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:color/holo_blue_dark"
+        tools:srcCompat="@drawable/comment_bubble" />
+
+    <TextView
+        android:id="@+id/tvUserName"
+        android:layout_width="200dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/tvUserName"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/ivProfilePhoto"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvGenderAge"
+        android:layout_width="143dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/tvGenderAge"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/ivProfilePhoto"
+        app:layout_constraintTop_toBottomOf="@+id/tvUserName" />
+
+    <TextView
+        android:id="@+id/tvAlias"
+        android:layout_width="70dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/tvAlias"
+        android:text="@string/tvAlias"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivProfilePhoto"
+        tools:text="@string/tvAlias" />
+
+    <TextView
+        android:id="@+id/tvUserAlias"
+        android:layout_width="258dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/tvUserAlias"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/tvAlias"
+        app:layout_constraintTop_toBottomOf="@+id/ivProfilePhoto" />
+
+    <Button
+        android:id="@+id/btnChangeProfileSettings"
+        android:layout_width="354dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="9dp"
+        android:background="#0066C5"
+        android:text="@string/btnChangeProfileSettings"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+
+
+</android.support.constraint.ConstraintLayout>

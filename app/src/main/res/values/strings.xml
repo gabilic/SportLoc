@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">SportLoc</string>
+    <string name="ivProfilePhoto">Profile Photo</string>
+    <string name="tvCommentCounter">Number of comments on user profile made by other users</string>
+    <string name="tvPersonalInformationDescription">Dodatne informacije o korisniku</string>
+    <string name="tvUserName">Ime i prezime korisnika</string>
+    <string name="ibCommentBubble">Button for opening comment section on user profile</string>
+    <string name="tvGenderAge">Spol i dob</string>
+    <string name="tvAlias">Alias:</string>
+    <string name="tvUserAlias">Alias korisnika</string>
+    <string name="tvProfilePhoto">Slika profila</string>
+    <string name="tvProfilePhotoDescription">Profile photo</string>
+    <string name="tvProfilePhotoTitle">Naziv slike</string>
+    <string name="tvProfilePhotoTitleDescription">Title of user photo</string>
+    <string name="btnChoseProfilePhoto">Odaberi</string>
+    <string name="btnChoseProfilePhotoDescription">Button for choosing profile photo</string>
+    <string name="tvName">Ime</string>
+    <string name="tvNameDescription">Title for name</string>
+    <string name="etvName">Vaše ime</string>
+    <string name="tvSurname">Prezime</string>
+    <string name="etvSurname">Vaše prezime</string>
+    <string name="tvEmail">E-mail</string>
+    <string name="etvEmail">Vaša e-mail adresa</string>
+    <string name="tvPersonalInformatio">Osobne informacije</string>
+    <string name="etvPersonalInformation">Napišite nešto o sebi</string>
+    <string name="btnSave">Spremi</string>
+    <string name="btnCancel">Odustani</string>
+    <string name="btnChangeProfileSettings">Uredi korisničke podatke</string>
 </resources>
