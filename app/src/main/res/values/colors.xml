@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorAccount">#2E2E2E</color>
-    <color name="colorBlue">#0066C5</color>
-    <color name="colorBlueDark">#003266</color>
-    <color name="colorFacebook">#003A7B</color>
-    <color name="colorGoogle">#AA2417</color>
-    <color name="colorGreen">#006F00</color>
-    <color name="colorGrey">#626262</color>
-    <color name="colorRed">#790000</color>
+    <color name="color_blue">#003A7B</color>
+    <color name="color_blue_dark">#032751</color>
+    <color name="color_blue_light">#0066C5</color>
+    <color name="color_green">#006F00</color>
+    <color name="color_grey">#626262</color>
+    <color name="color_grey_dark">#2E2E2E</color>
+    <color name="color_red">#AA2417</color>
+    <color name="color_red_dark">#790000</color>
 </resources>

@@ -4,16 +4,21 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
     </style>
-    <style name="karma">
+    <style name="style_button">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+    <style name="style_karma">
         <item name="android:gravity">center_vertical|center</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>
     </style>
-    <style name="karma_positive" parent="karma">
-        <item name="android:background">@color/colorGreen</item>
+    <style name="style_karma_negative" parent="style_karma">
+        <item name="android:background">@color/color_red</item>
     </style>
-    <style name="karma_negative" parent="karma">
-        <item name="android:background">@color/colorRed</item>
+    <style name="style_karma_positive" parent="style_karma">
+        <item name="android:background">@color/color_green</item>
     </style>
 
 </resources>
