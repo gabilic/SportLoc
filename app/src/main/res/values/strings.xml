@@ -26,4 +26,12 @@
     <string name="btnSave">Spremi</string>
     <string name="btnCancel">Odustani</string>
     <string name="btnChangeProfileSettings">Uredi korisničke podatke</string>
+    <string name="imbThumbsUp">Thumbs up button</string>
+    <string name="imbThumbsDown">Thumbs down button</string>
+    <string name="etvPassword">Lozinka</string>
+    <string name="tvUsername">Korisničko ime korisnika</string>
+    <string name="tvShowPassword">Prikaži lozinku</string>
+    <string name="btnWriteComment">Komentiraj</string>
+    <string name="btnComments">Komentari</string>
+
 </resources>
