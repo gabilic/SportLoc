@@ -4,26 +4,38 @@
 
     <item android:state_pressed="true">
         <shape>
-            <solid android:color="@color/colorBlueDark"/>
+            <solid
+                android:color="@color/color_blue_dark" />
+            <stroke
+                android:width="2dp"
+                android:color="@color/color_blue_dark" />
+            <corners
+                android:radius="0dp" />
+            <padding
+                android:bottom="10dp"
+                android:left="10dp"
+                android:right="10dp"
+                android:top="10dp" />
         </shape>
     </item>
 
     <item android:state_enabled="true">
         <shape>
-            <solid android:color="@color/colorBlue"/>
-            <corners android:radius="0dp"/>
-            <padding
-                android:bottom="10dp"
-                android:left="10dp"
-                android:right="10dp"
-                android:top="10dp"/>
+            <solid
+                android:color="@color/color_blue" />
+            <stroke
+                android:width="2dp"
+                android:color="@color/color_blue" />
         </shape>
     </item>
 
-    <item
-        android:state_enabled="false">
+    <item android:state_enabled="false">
         <shape>
-            <solid android:color="@color/colorGrey"/>
+            <solid
+                android:color="@color/color_grey" />
+            <stroke
+                android:width="2dp"
+                android:color="@color/color_grey" />
         </shape>
     </item>
 
