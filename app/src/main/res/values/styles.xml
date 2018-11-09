@@ -9,6 +9,11 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">30sp</item>
     </style>
+    <style name="style_edit_text">
+        <item name="android:ems">10</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">24sp</item>
+    </style>
     <style name="style_karma">
         <item name="android:gravity">center_vertical|center</item>
         <item name="android:textColor">@android:color/white</item>
@@ -19,6 +24,16 @@
     </style>
     <style name="style_karma_positive" parent="style_karma">
         <item name="android:background">@color/color_green</item>
+    </style>
+    <style name="style_text_view">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+    <style name="style_text_view_large" parent="style_text_view">
+        <item name="android:textSize">30sp</item>
+    </style>
+    <style name="style_text_view_medium" parent="style_text_view">
+        <item name="android:textSize">24sp</item>
     </style>
 
 </resources>
