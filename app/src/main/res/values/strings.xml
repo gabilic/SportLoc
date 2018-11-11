@@ -1,16 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
     <string name="app_logo">Logo aplikacije</string>
     <string name="app_name">SportLoc</string>
+  
+    <string name="btn_cancel_changes">odustani</string>
+    <string name="btn_edit">Uredi</string>
+    <string name="btn_save_changes">Spremi</string>
+
+    <string name="event_details_address">Adresa</string>
+    <string name="event_details_creator">Izradio:</string>
+    <string name="event_details_description">Opis</string>
+    <string name="event_details_end_time">Završetak</string>
+    <string name="event_details_join">Prijavi se</string>
+    <string name="event_details_leave">Odjavi se</string>
+    <string name="event_details_map">Prikaz na karti</string>
+    <string name="event_details_start_time">Početak</string>
+
     <string name="forgotten_password_email">E-mail</string>
     <string name="forgotten_password_info">Unesite vašu e-mail adresu kako bismo vam poslali novu lozinku:</string>
     <string name="forgotten_password_send">POŠALJI</string>
+
     <string name="login_forgotten_password">Zaboravljena lozinka?</string>
     <string name="login_login">PRIJAVA</string>
     <string name="login_password">Lozinka</string>
     <string name="login_register">Registracija</string>
     <string name="login_username">Korisničko ime</string>
+
     <string name="main_account">VAŠ RAČUN</string>
     <string name="main_facebook">FACEBOOK</string>
     <string name="main_google">GOOGLE</string>
     <string name="main_login">PRIJAVA:</string>
+
+    <string name="title_activity_event_details">Događaj</string>
+    <string name="title_activity_event_members">Sudionici</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
