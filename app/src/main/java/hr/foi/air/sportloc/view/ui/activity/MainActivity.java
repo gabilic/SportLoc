@@ -22,19 +22,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @OnClick(R.id.btn_account)
-    public void openActivity(){
-//     Intent intent = new Intent(MainActivity.this, EventDetailsActivity.class);
-//
-//     EventModel event = new EventModel();
-//     event.setCreatorUserName("KRUMPIR");
-//     event.setSport("SPORT");
-//     event.setTitle("NASLOV");
-//     event.setLocation("LOKACIJA");
-//     event.setAddress("Pavlinska 2, Varaždin");
-//     event.setOpenEvent(true);
-//     intent.putExtra(ModelEnum.EventModel.name(), event);
-//
-//     startActivity(intent);
-    }
+    
 }
