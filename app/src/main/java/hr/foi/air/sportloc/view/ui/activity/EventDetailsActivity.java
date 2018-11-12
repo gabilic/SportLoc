@@ -25,9 +25,6 @@ public class EventDetailsActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_event_details);
         ButterKnife.bind(this);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
-        }
         setupTabLayout();
     }
 

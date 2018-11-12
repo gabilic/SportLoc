@@ -8,13 +8,14 @@
     <string name="btn_save_changes">Spremi</string>
 
     <string name="event_details_address">Adresa</string>
+    <string name="event_details_capacity">Kapacitet:</string>
     <string name="event_details_creator">Izradio:</string>
     <string name="event_details_description">Opis</string>
-    <string name="event_details_end_time">Završetak</string>
+    <string name="event_details_end">Završetak</string>
     <string name="event_details_join">Prijavi se</string>
     <string name="event_details_leave">Odjavi se</string>
     <string name="event_details_map">Prikaz na karti</string>
-    <string name="event_details_start_time">Početak</string>
+    <string name="event_details_start">Početak</string>
 
     <string name="forgotten_password_email">E-mail</string>
     <string name="forgotten_password_info">Unesite vašu e-mail adresu kako bismo vam poslali novu lozinku:</string>

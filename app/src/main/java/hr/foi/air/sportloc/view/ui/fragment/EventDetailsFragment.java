@@ -2,6 +2,7 @@ package hr.foi.air.sportloc.view.ui.fragment;
 
 
 import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -14,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -33,8 +33,12 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import hr.foi.air.sportloc.R;
 import hr.foi.air.sportloc.databinding.FragmentEventDetailsBinding;
+import hr.foi.air.sportloc.databinding.FragmentEventDetailsEditBinding;
 import hr.foi.air.sportloc.service.model.EventModel;
 import hr.foi.air.sportloc.service.model.ModelEnum;
+import hr.foi.air.sportloc.view.adapter.LocationArrayAdapter;
+import hr.foi.air.sportloc.view.adapter.SportArrayAdapter;
+import hr.foi.air.sportloc.view.util.DataUtil;
 
 public class EventDetailsFragment extends Fragment implements OnMapReadyCallback {
 
@@ -74,6 +78,7 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
     ScrollView scrollView;
 
     private EventModel event;
+    private boolean editMode = false;
 
     private enum ButtonState {
         JOIN, LEAVE, EDIT
@@ -87,29 +92,53 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        FragmentEventDetailsBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_event_details, container, false);
-        View view = binding.getRoot();
-        unbinder = ButterKnife.bind(this, view);
-
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            event = bundle.getParcelable(ModelEnum.EventModel.name());
-            binding.setEvent(event);
-            resolveEventButton();
-
+        ViewDataBinding binding;
+        Object target = this;
+        if (!editMode) {
+            binding = DataBindingUtil.inflate(inflater, R.layout.fragment_event_details, container, false);
+        } else {
+            binding = DataBindingUtil.inflate(inflater, R.layout.fragment_event_details_edit, container, false);
+            target = new EventDetailsEditFragment(getActivity());
         }
+        View view = binding.getRoot();
+        unbinder = ButterKnife.bind(target, view);
+
+        loadInitialData(binding, getArguments());
 
         return view;
     }
 
+    private void loadInitialData(ViewDataBinding binding, Bundle bundle) {
+        if (bundle != null) {
+            event = bundle.getParcelable(ModelEnum.EventModel.name());
+            if (binding instanceof FragmentEventDetailsBinding) {
+                ((FragmentEventDetailsBinding) binding).setEvent(event);
+            } else if (binding instanceof FragmentEventDetailsEditBinding) {
+                FragmentEventDetailsEditBinding eventBinding = ((FragmentEventDetailsEditBinding) binding);
+                eventBinding.setEvent(event);
+                eventBinding.setLocationAdapter(
+                        new LocationArrayAdapter(getActivity(),
+                        android.R.layout.simple_spinner_item,
+                        DataUtil.getInstance().getAvailableLocations()));
+                eventBinding.setSportAdapter(
+                        new SportArrayAdapter(getActivity(),
+                        android.R.layout.simple_spinner_item,
+                        DataUtil.getInstance().getAvailableSports()));
+            }
+            if (!editMode) {
+                resolveEventButton();
+            }
+        }
+    }
+
     private void resolveEventButton() {
-        //TODO
-        boolean isCreator = false;
+        //TODO check if creator and check if application is already sent
+        boolean isCreator = true;
         boolean isMember = false;
-        if (isCreator){
+        if (isCreator) {
             btnEventOptions.setText(R.string.btn_edit);
             currentState = ButtonState.EDIT;
-        }else if (isMember) {
+        } else if (isMember) {
             btnEventOptions.setText(R.string.event_details_leave);
             currentState = ButtonState.LEAVE;
         }
@@ -137,7 +166,9 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
-        Objects.requireNonNull(mapFragment).getMapAsync(this);
+        if (mapFragment != null) {
+            mapFragment.getMapAsync(this);
+        }
     }
 
     @Override
@@ -145,7 +176,7 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
         LatLng eventLocation = getLocationFromAddress(event.getAddress());
         if (eventLocation != null) {
             map.addMarker(new MarkerOptions().position(eventLocation).title(event.getTitle()));
-            map.moveCamera(CameraUpdateFactory.newLatLngZoom(eventLocation,15.0f));
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(eventLocation, 15.0f));
         }
     }
 
@@ -156,8 +187,8 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
     }
 
     @OnClick(R.id.btn_event_options)
-    public void eventButtonClick(){
-        switch (currentState){
+    public void eventButtonClick() {
+        switch (currentState) {
             case JOIN:
                 currentState = ButtonState.LEAVE;
                 btnEventOptions.setText(R.string.event_details_leave);
@@ -167,11 +198,18 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
                 btnEventOptions.setText(R.string.event_details_join);
                 break;
             case EDIT:
-                Toast.makeText(getActivity(), currentState.name(), Toast.LENGTH_SHORT).show();
+                switchToEditMode();
+//                Toast.makeText(getActivity(), currentState.name(), Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;
         }
 
+    }
+
+    private void switchToEditMode() {
+
+        editMode = true;
+        getFragmentManager().beginTransaction().detach(this).attach(this).commit();
     }
 }

@@ -10,7 +10,9 @@ public class EventModel implements Parcelable {
     private String creatorUserName;
     private String title;
     private String startTime;
+    private String startDate;
     private String endTime;
+    private String endDate;
     private String description;
     private String address;
     private String sport;
@@ -26,7 +28,9 @@ public class EventModel implements Parcelable {
         creatorUserName = in.readString();
         title = in.readString();
         startTime = in.readString();
+        startDate = in.readString();
         endTime = in.readString();
+        endDate = in.readString();
         description = in.readString();
         address = in.readString();
         sport = in.readString();
@@ -121,6 +125,22 @@ public class EventModel implements Parcelable {
         this.location = location;
     }
 
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
     public static final Creator<EventModel> CREATOR = new Creator<EventModel>() {
         @Override
         public EventModel createFromParcel(Parcel in) {
@@ -146,7 +166,9 @@ public class EventModel implements Parcelable {
         dest.writeString(creatorUserName);
         dest.writeString(title);
         dest.writeString(startTime);
+        dest.writeString(startDate);
         dest.writeString(endTime);
+        dest.writeString(endDate);
         dest.writeString(description);
         dest.writeString(address);
         dest.writeString(sport);
