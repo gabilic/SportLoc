@@ -1,14 +1,14 @@
 <resources>
     <string name="app_name">SportLoc</string>
     <string name="btnSend">Pošalji</string>
-    <string name="etvName">Ime</string>
-    <string name="etvSurname">Prezime</string>
-    <string name="etvUsername">Korisničko ime</string>
+    <string name="etvCode">Kod</string>
+    <string name="etvDate">Datum rođenja</string>
     <string name="etvEmail">E-mail</string>
+    <string name="etvName">Ime</string>
+    <string name="etvUsername">Korisničko ime</string>
     <string name="etvPassword">Lozinka</string>
     <string name="etvPasswordRepeat">Ponovite lozinku</string>
-    <string name="etvDate">Datum rođenja</string>
-    <string name="etvCode">Kod</string>
+    <string name="etvSurname">Prezime</string>
     <string name="ivLogo_description">Logo Slika</string>
     <string name="tvGender">Spol</string>
     <string-array name="spnGender">

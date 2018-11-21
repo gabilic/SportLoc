@@ -23,7 +23,7 @@ public class RegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-        mDisplayDate = (TextView) findViewById(R.id.tvDate);
+        mDisplayDate = (TextView) findViewById(R.id.tv_date);
 
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
             @Override
