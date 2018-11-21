@@ -11,25 +11,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!-- Iskomentirana glavna aktivnost kako bi se na pocetnom ekranu pokazivao profil korisnika, samo privremeno rjesenje -->
-        <!--
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        -->
 
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".EditProfileActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".OtherUserActivity"></activity>
+       <!-- <activity android:name=".ProfileActivity" />-->
     </application>
 
 </manifest>
