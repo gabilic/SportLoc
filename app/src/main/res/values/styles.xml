@@ -1,11 +1,63 @@
 <resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="style_button">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+    <style name="style_event_details_button" parent="style_button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    <style name="style_edit_text">
+        <item name="android:ems">10</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+    <style name="style_karma">
+        <item name="android:gravity">center_vertical|center</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="style_karma_negative" parent="style_karma">
+        <item name="android:background">@color/color_red</item>
+    </style>
+    <style name="style_karma_positive" parent="style_karma">
+        <item name="android:background">@color/color_green</item>
+    </style>
+    <style name="style_text_view">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+    <style name="style_text_view_large" parent="style_text_view">
+        <item name="android:textSize">30sp</item>
+    </style>
+    <style name="style_text_view_medium" parent="style_text_view">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="bold_text" parent="AppTheme">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="horizontal_line" parent="AppTheme">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">2dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:background">#888888</item>
+    </style>
+
+    <style name="side_margins" parent="AppTheme">
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
     </style>
 
 </resources>
