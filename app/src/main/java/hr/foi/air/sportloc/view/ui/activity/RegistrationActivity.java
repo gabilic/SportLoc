@@ -1,4 +1,4 @@
-package hr.foi.air.sportloc;
+package hr.foi.air.sportloc.view.ui.activity;
 
 import android.app.DatePickerDialog;
 import android.graphics.Color;
@@ -11,6 +11,8 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 
 import java.util.Calendar;
+
+import hr.foi.air.sportloc.R;
 
 public class RegistrationActivity extends AppCompatActivity {
 

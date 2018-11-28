@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".RegistrationActivity" />
+        <activity android:name=".view.ui.activity.RegistrationActivity" />
         <activity android:name=".view.ui.activity.ForgottenPasswordActivity" />
         <activity android:name=".view.ui.activity.LoginActivity" />
         <activity android:name=".view.ui.activity.EventDetailsActivity" />
