@@ -51,7 +51,7 @@
         <item>Žensko</item>
     </string-array>
   
-    <string name="btn_cancel_changes">odustani</string>
+    <string name="btn_cancel_changes">Odustani</string>
     <string name="btn_edit">Uredi</string>
     <string name="btn_save_changes">Spremi</string>
     <string name="event_details_address">Adresa</string>
@@ -67,11 +67,17 @@
     <string name="forgotten_password_info">Unesite vašu e-mail adresu kako bismo vam poslali novu lozinku:</string>
     <string name="forgotten_password_send">POŠALJI</string>
 
+    <string name="login_fail">Unijeli ste pogrešno korisničko ime ili lozinku!</string>
     <string name="login_forgotten_password">Zaboravljena lozinka?</string>
     <string name="login_login">PRIJAVA</string>
     <string name="login_password">Lozinka</string>
+    <string name="login_password_empty_error">Polje za unos lozinke ne smije biti prazno!</string>
+    <string name="login_password_length_error">Polje za unos lozinke mora sadržavati minimalno %1$d znakova!</string>
     <string name="login_register">Registracija</string>
+    <string name="login_success">Prijava uspješna</string>
     <string name="login_username">Korisničko ime</string>
+    <string name="login_username_empty_error">Polje za unos korisničkog imena ne smije biti prazno!</string>
+    <string name="login_username_length_error">Polje za unos korisničkog imena mora sadržavati minimalno %1$d znakova!</string>
 
     <string name="main_account">VAŠ RAČUN</string>
     <string name="main_facebook">FACEBOOK</string>
