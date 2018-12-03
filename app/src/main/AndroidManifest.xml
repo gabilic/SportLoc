@@ -30,6 +30,7 @@
         <activity android:name=".view.ui.activity.ForgottenPasswordActivity" />
         <activity android:name=".view.ui.activity.LoginActivity" />
         <activity android:name=".view.ui.activity.EventDetailsActivity" />
+        <activity android:name=".view.ui.activity.AboutActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

@@ -2,6 +2,23 @@
 <resources>
     <string name="app_logo">Logo aplikacije</string>
     <string name="app_name">SportLoc</string>
+
+    <string name="about_about">
+        Aplikacija SportLoc služi za lakše pronalaženje i sudjelovanje u sportskim događajima u vašoj okolini.
+        Trenutno postoji određeni broj sportova koji se mogu staviti pod događaj. Ukoliko vaš sport nije na
+        popisu stavite Ostalo. Za sve ostale upite, pohvale i kritike kontaktirajte nas e-mailom klikom na gumb
+        ispod. Treba napomenuti da je ovo studentski projekt namijenjen isključivo u svrhe učenja na kolegiju.
+    </string>
+    <string name="about_authors">
+        Autori ove aplikacije su članovi malog tima na kolegiju Analiza i razvoj programa:\n
+        - Ivan \"Bogi\" Bogović\n
+        - Filip \"Fićo\" Crnko\n
+        - Vedran \"Veki\" Gložinić\n
+        - Gabriel \"Ilić\" Ilić\n
+        - Zlatko \"Meho\" Mehanović\nSvi članovi studiraju na Fakultetu Organizacije i Informatike u Varaždinu.
+    </string>
+    <string name="about_contact">KONTAKTIRAJTE NAS</string>
+
     <string name="btnChoseProfilePhoto">Odaberi</string>
     <string name="btnChoseProfilePhotoDescription">Button for choosing profile photo</string>
     <string name="btnSave">Spremi</string>
@@ -50,8 +67,8 @@
         <item>Muško</item>
         <item>Žensko</item>
     </string-array>
-  
-    <string name="btn_cancel_changes">odustani</string>
+
+    <string name="btn_cancel_changes">Odustani</string>
     <string name="btn_edit">Uredi</string>
     <string name="btn_save_changes">Spremi</string>
     <string name="event_details_address">Adresa</string>
@@ -67,11 +84,17 @@
     <string name="forgotten_password_info">Unesite vašu e-mail adresu kako bismo vam poslali novu lozinku:</string>
     <string name="forgotten_password_send">POŠALJI</string>
 
+    <string name="login_fail">Unijeli ste pogrešno korisničko ime ili lozinku!</string>
     <string name="login_forgotten_password">Zaboravljena lozinka?</string>
     <string name="login_login">PRIJAVA</string>
     <string name="login_password">Lozinka</string>
+    <string name="login_password_empty_error">Polje za unos lozinke ne smije biti prazno!</string>
+    <string name="login_password_length_error">Polje za unos lozinke mora sadržavati minimalno %1$d znakova!</string>
     <string name="login_register">Registracija</string>
+    <string name="login_success">Prijava uspješna</string>
     <string name="login_username">Korisničko ime</string>
+    <string name="login_username_empty_error">Polje za unos korisničkog imena ne smije biti prazno!</string>
+    <string name="login_username_length_error">Polje za unos korisničkog imena mora sadržavati minimalno %1$d znakova!</string>
 
     <string name="main_account">VAŠ RAČUN</string>
     <string name="main_facebook">FACEBOOK</string>
