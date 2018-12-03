@@ -17,7 +17,9 @@
         - Gabriel \"Ilić\" Ilić\n
         - Zlatko \"Meho\" Mehanović\nSvi članovi studiraju na Fakultetu Organizacije i Informatike u Varaždinu.
     </string>
+    <string name="about_choose">"Izaberite aplikaciju za slanje e-maila:"</string>
     <string name="about_contact">KONTAKTIRAJTE NAS</string>
+    <string name="about_email">sportloc@heroku.com</string>
 
     <string name="btnChoseProfilePhoto">Odaberi</string>
     <string name="btnChoseProfilePhotoDescription">Button for choosing profile photo</string>
