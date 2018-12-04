@@ -3,6 +3,20 @@
     <string name="app_logo">Logo aplikacije</string>
     <string name="app_name">SportLoc</string>
 
+    <string name="profile_comment">Komentiraj</string>
+    <string name="profile_comments">Komentari</string>
+    <string name="profile_change_settings">Uredi korisničke podatke</string>
+    <string name="profile_description">Osobne informacije</string>
+    <string name="profile_description_edit">Napišite nešto o sebi</string>
+    <string name="profile_email_edit">Vaša e-mail adresa</string>
+    <string name="profile_gender_age">Spol i dob</string>
+    <string name="profile_name_edit">Vaše ime</string>
+    <string name="profile_name_surname">Ime i prezime korisnika</string>
+    <string name="profile_password_edit">Lozinka</string>
+    <string name="profile_show_password">Prikaži lozinku</string>
+    <string name="profile_surname_edit">Vaše prezime</string>
+    <string name="profile_username">Korisničko ime</string>
+
     <string name="btn_cancel_changes">Odustani</string>
     <string name="btn_edit">Uredi</string>
     <string name="btn_save_changes">Spremi</string>
@@ -20,11 +34,17 @@
     <string name="forgotten_password_info">Unesite vašu e-mail adresu kako bismo vam poslali novu lozinku:</string>
     <string name="forgotten_password_send">POŠALJI</string>
 
+    <string name="login_fail">Unijeli ste pogrešno korisničko ime ili lozinku!</string>
     <string name="login_forgotten_password">Zaboravljena lozinka?</string>
     <string name="login_login">PRIJAVA</string>
     <string name="login_password">Lozinka</string>
+    <string name="login_password_empty_error">Polje za unos lozinke ne smije biti prazno!</string>
+    <string name="login_password_length_error">Polje za unos lozinke mora sadržavati minimalno %1$d znakova!</string>
     <string name="login_register">Registracija</string>
+    <string name="login_success">Prijava uspješna</string>
     <string name="login_username">Korisničko ime</string>
+    <string name="login_username_empty_error">Polje za unos korisničkog imena ne smije biti prazno!</string>
+    <string name="login_username_length_error">Polje za unos korisničkog imena mora sadržavati minimalno %1$d znakova!</string>
 
     <string name="main_account">VAŠ RAČUN</string>
     <string name="main_facebook">FACEBOOK</string>

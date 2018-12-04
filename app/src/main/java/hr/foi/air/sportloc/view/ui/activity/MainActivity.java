@@ -1,6 +1,5 @@
 package hr.foi.air.sportloc.view.ui.activity;
 
-
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -8,7 +7,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import hr.foi.air.sportloc.R;
 import hr.foi.air.sportloc.view.util.IntentManager;
-
 
 public class MainActivity extends AppCompatActivity {
 

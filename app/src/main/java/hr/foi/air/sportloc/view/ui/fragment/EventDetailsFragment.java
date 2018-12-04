@@ -1,6 +1,5 @@
 package hr.foi.air.sportloc.view.ui.fragment;
 
-
 import android.databinding.DataBindingUtil;
 import android.location.Address;
 import android.location.Geocoder;
@@ -37,41 +36,24 @@ import hr.foi.air.sportloc.service.model.EventModel;
 import hr.foi.air.sportloc.service.model.ModelEnum;
 
 public class EventDetailsFragment extends Fragment implements OnMapReadyCallback {
-
     private Unbinder unbinder;
 
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.tv_sport_location_capacity)
-    TextView tvSportLocationCapacity;
-    @BindView(R.id.dvd_horizontal)
-    View dvdHorizontal;
-    @BindView(R.id.tv_creator)
-    TextView lblCreator;
-    @BindView(R.id.tv_creator_username)
-    TextView tvCreatorUsername;
-    @BindView(R.id.tv_lbl_address)
-    TextView lblAddress;
-    @BindView(R.id.tv_address)
-    TextView tvAddress;
-    @BindView(R.id.tv_lbl_start_time)
-    TextView lblStartTime;
-    @BindView(R.id.tv_start_time)
-    TextView tvStartTime;
-    @BindView(R.id.tv_lbl_end_time)
-    TextView lblEndTime;
-    @BindView(R.id.tv_end_time)
-    TextView tvEndTime;
-    @BindView(R.id.tv_lbl_description)
-    TextView lblDescription;
-    @BindView(R.id.tv_description)
-    TextView tvDescription;
-    @BindView(R.id.btn_event_options)
-    Button btnEventOptions;
-    @BindView(R.id.tv_lbl_map)
-    TextView lblMap;
-    @BindView(R.id.sv_event_details)
-    ScrollView scrollView;
+    @BindView(R.id.tv_title) TextView tvTitle;
+    @BindView(R.id.tv_sport_location_capacity) TextView tvSportLocationCapacity;
+    @BindView(R.id.dvd_horizontal) View dvdHorizontal;
+    @BindView(R.id.tv_creator) TextView lblCreator;
+    @BindView(R.id.tv_creator_username) TextView tvCreatorUsername;
+    @BindView(R.id.tv_lbl_address) TextView lblAddress;
+    @BindView(R.id.tv_address) TextView tvAddress;
+    @BindView(R.id.tv_lbl_start_time) TextView lblStartTime;
+    @BindView(R.id.tv_start_time) TextView tvStartTime;
+    @BindView(R.id.tv_lbl_end_time) TextView lblEndTime;
+    @BindView(R.id.tv_end_time) TextView tvEndTime;
+    @BindView(R.id.tv_lbl_description) TextView lblDescription;
+    @BindView(R.id.tv_description) TextView tvDescription;
+    @BindView(R.id.btn_event_options) Button btnEventOptions;
+    @BindView(R.id.tv_lbl_map) TextView lblMap;
+    @BindView(R.id.sv_event_details) ScrollView scrollView;
 
     private EventModel event;
 
@@ -85,8 +67,7 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentEventDetailsBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_event_details, container, false);
         View view = binding.getRoot();
         unbinder = ButterKnife.bind(this, view);
@@ -96,7 +77,6 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
             event = bundle.getParcelable(ModelEnum.EventModel.name());
             binding.setEvent(event);
             resolveEventButton();
-
         }
 
         return view;
@@ -109,12 +89,12 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
         if (isCreator){
             btnEventOptions.setText(R.string.btn_edit);
             currentState = ButtonState.EDIT;
-        }else if (isMember) {
+        }
+        else if (isMember) {
             btnEventOptions.setText(R.string.event_details_leave);
             currentState = ButtonState.LEAVE;
         }
     }
-
 
     private LatLng getLocationFromAddress(String strAddress) {
         Geocoder coder = new Geocoder(Objects.requireNonNull(getActivity()).getApplicationContext());
@@ -126,7 +106,8 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
                 Address location = address.get(0);
                 result = new LatLng(location.getLatitude(), location.getLongitude());
             }
-        } catch (IOException ex) {
+        }
+        catch (IOException ex) {
             ex.printStackTrace();
         }
 
@@ -172,6 +153,5 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
             default:
                 break;
         }
-
     }
 }
