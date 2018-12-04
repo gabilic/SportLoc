@@ -51,6 +51,21 @@
     <string name="main_google">GOOGLE</string>
     <string name="main_login">PRIJAVA:</string>
 
+    <string name="registration_dob">Datum rođenja</string>
+    <string name="registration_email">E-mail</string>
+    <string name="registration_gender">Spol</string>
+    <string name="registration_name">Ime</string>
+    <string name="registration_password">Lozinka</string>
+    <string name="registration_send">Registriraj se</string>
+    <string-array name="registration_spinner">
+        <item>Muško</item>
+        <item>Žensko</item>
+    </string-array>
+    <string name="registration_surname">Prezime</string>
+    <string name="registration_username">Korisničko ime</string>
+    <string name="registration_user_exists">Ovakvo korisničko ime već postoji!</string>
+    <string name="registration_email_exists">Ovaj e-mail je već zauzet!</string>
+
     <string name="title_activity_event_details">Događaj</string>
     <string name="title_activity_event_members">Sudionici</string>
     <string name="title_activity_maps">Map</string>

@@ -25,4 +25,5 @@ public class MainActivity extends AppCompatActivity {
     public void openLoginActivity() {
         IntentManager.startActivity(getApplicationContext(), LoginActivity.class);
     }
+
 }
