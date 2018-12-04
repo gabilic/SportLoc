@@ -2,23 +2,8 @@
 <resources>
     <string name="app_logo">Logo aplikacije</string>
     <string name="app_name">SportLoc</string>
-    <string name="btnSend">Pošalji</string>
-    <string name="etvCode">Kod</string>
-    <string name="etvDate">Datum rođenja</string>
-    <string name="etvEmail">E-mail</string>
-    <string name="etvName">Ime</string>
-    <string name="etvUsername">Korisničko ime</string>
-    <string name="etvPassword">Lozinka</string>
-    <string name="etvPasswordRepeat">Ponovite lozinku</string>
-    <string name="etvSurname">Prezime</string>
-    <string name="ivLogo_description">Logo Slika</string>
-    <string name="tvGender">Spol</string>
-    <string-array name="spnGender">
-        <item>Muško</item>
-        <item>Žensko</item>
-    </string-array>
-  
-    <string name="btn_cancel_changes">odustani</string>
+
+    <string name="btn_cancel_changes">Odustani</string>
     <string name="btn_edit">Uredi</string>
     <string name="btn_save_changes">Spremi</string>
 
@@ -46,7 +31,23 @@
     <string name="main_google">GOOGLE</string>
     <string name="main_login">PRIJAVA:</string>
 
+    <string name="registration_dob">Datum rođenja</string>
+    <string name="registration_email">E-mail</string>
+    <string name="registration_gender">Spol</string>
+    <string name="registration_name">Ime</string>
+    <string name="registration_password">Lozinka</string>
+    <string name="registration_send">Registriraj se</string>
+    <string-array name="registration_spinner">
+        <item>Muško</item>
+        <item>Žensko</item>
+    </string-array>
+    <string name="registration_surname">Prezime</string>
+    <string name="registration_username">Korisničko ime</string>
+    <string name="registration_user_exists">Ovakvo korisničko ime već postoji!</string>
+    <string name="registration_email_exists">Ovaj e-mail je već zauzet!</string>
+
     <string name="title_activity_event_details">Događaj</string>
     <string name="title_activity_event_members">Sudionici</string>
     <string name="title_activity_maps">Map</string>
+
 </resources>
