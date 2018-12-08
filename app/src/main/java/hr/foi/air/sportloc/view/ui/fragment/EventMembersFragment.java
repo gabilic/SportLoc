@@ -14,18 +14,14 @@ import butterknife.Unbinder;
 import hr.foi.air.sportloc.R;
 
 public class EventMembersFragment extends Fragment {
-
-    @BindView(R.id.sv_event_members)
-    ScrollView scrollView;
+    @BindView(R.id.sv_event_members) ScrollView scrollView;
 
     private Unbinder unbinder;
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_event_members, container, false);
         unbinder = ButterKnife.bind(this, view);
-
         return view;
     }
 

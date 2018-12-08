@@ -1,6 +1,5 @@
 package hr.foi.air.sportloc.view.ui.fragment;
 
-
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.location.Address;
@@ -41,41 +40,24 @@ import hr.foi.air.sportloc.view.adapter.SportArrayAdapter;
 import hr.foi.air.sportloc.view.util.DataUtil;
 
 public class EventDetailsFragment extends Fragment implements OnMapReadyCallback {
-
     private Unbinder unbinder;
 
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.tv_sport_location_capacity)
-    TextView tvSportLocationCapacity;
-    @BindView(R.id.dvd_horizontal)
-    View dvdHorizontal;
-    @BindView(R.id.tv_creator)
-    TextView lblCreator;
-    @BindView(R.id.tv_creator_username)
-    TextView tvCreatorUsername;
-    @BindView(R.id.tv_lbl_address)
-    TextView lblAddress;
-    @BindView(R.id.tv_address)
-    TextView tvAddress;
-    @BindView(R.id.tv_lbl_start_time)
-    TextView lblStartTime;
-    @BindView(R.id.tv_start_time)
-    TextView tvStartTime;
-    @BindView(R.id.tv_lbl_end_time)
-    TextView lblEndTime;
-    @BindView(R.id.tv_end_time)
-    TextView tvEndTime;
-    @BindView(R.id.tv_lbl_description)
-    TextView lblDescription;
-    @BindView(R.id.tv_description)
-    TextView tvDescription;
-    @BindView(R.id.btn_event_options)
-    Button btnEventOptions;
-    @BindView(R.id.tv_lbl_map)
-    TextView lblMap;
-    @BindView(R.id.sv_event_details)
-    ScrollView scrollView;
+    @BindView(R.id.tv_title) TextView tvTitle;
+    @BindView(R.id.tv_sport_location_capacity) TextView tvSportLocationCapacity;
+    @BindView(R.id.dvd_horizontal) View dvdHorizontal;
+    @BindView(R.id.tv_creator) TextView lblCreator;
+    @BindView(R.id.tv_creator_username) TextView tvCreatorUsername;
+    @BindView(R.id.tv_lbl_address) TextView lblAddress;
+    @BindView(R.id.tv_address) TextView tvAddress;
+    @BindView(R.id.tv_lbl_start_time) TextView lblStartTime;
+    @BindView(R.id.tv_start_time) TextView tvStartTime;
+    @BindView(R.id.tv_lbl_end_time) TextView lblEndTime;
+    @BindView(R.id.tv_end_time) TextView tvEndTime;
+    @BindView(R.id.tv_lbl_description) TextView lblDescription;
+    @BindView(R.id.tv_description) TextView tvDescription;
+    @BindView(R.id.btn_event_options) Button btnEventOptions;
+    @BindView(R.id.tv_lbl_map) TextView lblMap;
+    @BindView(R.id.sv_event_details) ScrollView scrollView;
 
     private EventModel event;
     private boolean editMode = false;
@@ -100,6 +82,7 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_event_details_edit, container, false);
             target = new EventDetailsEditFragment(getActivity());
         }
+
         View view = binding.getRoot();
         unbinder = ButterKnife.bind(target, view);
 
@@ -128,6 +111,8 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
             if (!editMode) {
                 resolveEventButton();
             }
+            binding.setEvent(event);
+            resolveEventButton();
         }
     }
 
@@ -143,7 +128,6 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
             currentState = ButtonState.LEAVE;
         }
     }
-
 
     private LatLng getLocationFromAddress(String strAddress) {
         Geocoder coder = new Geocoder(Objects.requireNonNull(getActivity()).getApplicationContext());
@@ -204,7 +188,6 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
             default:
                 break;
         }
-
     }
 
     private void switchToEditMode() {

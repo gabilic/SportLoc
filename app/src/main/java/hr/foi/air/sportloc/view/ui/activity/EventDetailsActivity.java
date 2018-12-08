@@ -13,16 +13,12 @@ import hr.foi.air.sportloc.view.ui.fragment.EventDetailsFragment;
 import hr.foi.air.sportloc.view.ui.fragment.EventMembersFragment;
 
 public class EventDetailsActivity extends AppCompatActivity {
-
-    @BindView(R.id.container)
-    ViewPager viewPager;
-    @BindView(R.id.tab_layout_event_details)
-    TabLayout tabLayout;
+    @BindView(R.id.container) ViewPager viewPager;
+    @BindView(R.id.tab_layout_event_details) TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_event_details);
         ButterKnife.bind(this);
         setupTabLayout();
@@ -39,5 +35,4 @@ public class EventDetailsActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
     }
-
 }
