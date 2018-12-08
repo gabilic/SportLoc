@@ -12,7 +12,6 @@
     <string name="etvName">Vaše ime</string>
     <string name="etvEmail">Vaša e-mail adresa</string>
     <string name="etvPersonalInformation">Napišite nešto o sebi</string>
-    <string name="etvPassword">Lozinka</string>
     <string name="etvSurname">Vaše prezime</string>
     <string name="imbThumbsUp">Thumbs up button</string>
     <string name="imbThumbsDown">Thumbs down button</string>
@@ -38,12 +37,9 @@
     <string name="btnSend">Pošalji</string>
     <string name="etvCode">Kod</string>
     <string name="etvDate">Datum rođenja</string>
-    <string name="etvEmail">E-mail</string>
-    <string name="etvName">Ime</string>
     <string name="etvUsername">Korisničko ime</string>
     <string name="etvPassword">Lozinka</string>
     <string name="etvPasswordRepeat">Ponovite lozinku</string>
-    <string name="etvSurname">Prezime</string>
     <string name="ivLogo_description">Logo Slika</string>
     <string name="tvGender">Spol</string>
     <string-array name="spnGender">
@@ -66,6 +62,8 @@
     <string name="forgotten_password_email">E-mail</string>
     <string name="forgotten_password_info">Unesite vašu e-mail adresu kako bismo vam poslali novu lozinku:</string>
     <string name="forgotten_password_send">POŠALJI</string>
+
+    <string name="general_connection_error">Pojavila se pogreška! Provjerite internetsku vezu i pokušajte ponovo.</string>
 
     <string name="login_fail">Unijeli ste pogrešno korisničko ime ili lozinku!</string>
     <string name="login_forgotten_password">Zaboravljena lozinka?</string>
