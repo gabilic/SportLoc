@@ -3,7 +3,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="hr.foi.air.sportloc">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <permission
         android:name="com.vallabh.googlemapspractice.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
@@ -24,6 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".view.ui.activity.ProfileActivity" />
         <activity android:name=".view.ui.activity.RegistrationActivity" />
         <activity android:name=".view.ui.activity.ForgottenPasswordActivity" />
@@ -37,5 +40,6 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
     </application>
 </manifest>

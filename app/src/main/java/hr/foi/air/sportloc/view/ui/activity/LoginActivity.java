@@ -3,12 +3,9 @@ package hr.foi.air.sportloc.view.ui.activity;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -17,6 +14,7 @@ import hr.foi.air.sportloc.databinding.ActivityLoginBinding;
 import hr.foi.air.sportloc.view.util.Constants;
 import hr.foi.air.sportloc.view.util.DataInputValidator;
 import hr.foi.air.sportloc.view.util.IntentManager;
+import hr.foi.air.sportloc.view.util.MessageSender;
 import hr.foi.air.sportloc.viewmodel.LoginInfoViewModel;
 
 public class LoginActivity extends AppCompatActivity {
@@ -34,23 +32,20 @@ public class LoginActivity extends AppCompatActivity {
         viewModel = ViewModelProviders.of(this).get(LoginInfoViewModel.class);
     }
 
-    private void showMessage(String text, int color) {
-        Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
-        toast.getView().getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
-        toast.show();
-    }
-
     private void observeViewModel(LoginInfoViewModel viewModel) {
         viewModel.getLoginInfoObservable().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(@Nullable Integer loginInfo) {
                 if (loginInfo != null) {
                     if (loginInfo != 0) {
-                        showMessage(getResources().getString(R.string.login_success), Color.GREEN);
+                        MessageSender.sendMessage(getApplicationContext(), getResources().getString(R.string.login_success));
                     }
                     else {
-                        showMessage(getResources().getString(R.string.login_fail), Color.RED);
+                        MessageSender.sendError(getApplicationContext(), getResources().getString(R.string.login_fail));
                     }
+                }
+                else {
+                    MessageSender.sendError(getApplicationContext(), getResources().getString(R.string.general_connection_error));
                 }
             }
         });
@@ -78,5 +73,10 @@ public class LoginActivity extends AppCompatActivity {
     @OnClick(R.id.tv_forgotten_password)
     public void openForgottenPasswordActivity() {
         IntentManager.startActivity(getApplicationContext(), ForgottenPasswordActivity.class);
+    }
+
+    @OnClick(R.id.tv_register)
+    public void openRegistrationActivity() {
+        IntentManager.startActivity(getApplicationContext(), RegistrationActivity.class);
     }
 }
