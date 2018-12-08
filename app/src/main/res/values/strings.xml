@@ -17,8 +17,11 @@
     <string name="event_details_start_time">Početak</string>
 
     <string name="forgotten_password_email">E-mail</string>
+    <string name="forgotten_password_empty_error">Polje za unos e-mail adrese ne smije biti prazno!</string>
+    <string name="forgotten_password_fail">Unijeli ste pogrešnu e-mail adresu!</string>
     <string name="forgotten_password_info">Unesite vašu e-mail adresu kako bismo vam poslali novu lozinku:</string>
     <string name="forgotten_password_send">POŠALJI</string>
+    <string name="forgotten_password_success">Obnavljanje lozinke uspješno</string>
 
     <string name="general_connection_error">Pojavila se pogreška! Provjerite internetsku vezu i pokušajte ponovo.</string>
 

@@ -15,11 +15,11 @@ import hr.foi.air.sportloc.view.util.Constants;
 import hr.foi.air.sportloc.view.util.DataInputValidator;
 import hr.foi.air.sportloc.view.util.IntentManager;
 import hr.foi.air.sportloc.view.util.MessageSender;
-import hr.foi.air.sportloc.viewmodel.LoginInfoViewModel;
+import hr.foi.air.sportloc.viewmodel.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
-    private LoginInfoViewModel viewModel;
+    private LoginViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,26 +29,7 @@ public class LoginActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
         ButterKnife.bind(this);
-        viewModel = ViewModelProviders.of(this).get(LoginInfoViewModel.class);
-    }
-
-    private void observeViewModel(LoginInfoViewModel viewModel) {
-        viewModel.getLoginInfoObservable().observe(this, new Observer<Integer>() {
-            @Override
-            public void onChanged(@Nullable Integer loginInfo) {
-                if (loginInfo != null) {
-                    if (loginInfo != 0) {
-                        MessageSender.sendMessage(getApplicationContext(), getResources().getString(R.string.login_success));
-                    }
-                    else {
-                        MessageSender.sendError(getApplicationContext(), getResources().getString(R.string.login_fail));
-                    }
-                }
-                else {
-                    MessageSender.sendError(getApplicationContext(), getResources().getString(R.string.general_connection_error));
-                }
-            }
-        });
+        viewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
     }
 
     @OnClick(R.id.btn_login)
@@ -78,5 +59,24 @@ public class LoginActivity extends AppCompatActivity {
     @OnClick(R.id.tv_register)
     public void openRegistrationActivity() {
         IntentManager.startActivity(getApplicationContext(), RegistrationActivity.class);
+    }
+
+    private void observeViewModel(LoginViewModel viewModel) {
+        viewModel.getLoginInfoObservable().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(@Nullable Integer loginInfo) {
+                if (loginInfo != null) {
+                    if (loginInfo != 0) {
+                        MessageSender.sendMessage(getApplicationContext(), getResources().getString(R.string.login_success));
+                    }
+                    else {
+                        MessageSender.sendError(getApplicationContext(), getResources().getString(R.string.login_fail));
+                    }
+                }
+                else {
+                    MessageSender.sendError(getApplicationContext(), getResources().getString(R.string.general_connection_error));
+                }
+            }
+        });
     }
 }

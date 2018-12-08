@@ -47,4 +47,21 @@ public class WebServiceCaller {
 
         return data;
     }
+
+    public LiveData<Boolean> getResetPasswordInfo(String email) {
+        final MutableLiveData<Boolean> data = new MutableLiveData<>();
+        api.getResetPasswordInfo(email).enqueue(new Callback<PrimitiveWrapperModel>() {
+            @Override
+            public void onResponse(Call<PrimitiveWrapperModel> call, Response<PrimitiveWrapperModel> response) {
+                data.setValue(response.body().isSuccess());
+            }
+
+            @Override
+            public void onFailure(Call<PrimitiveWrapperModel> call, Throwable t) {
+                data.setValue(null);
+            }
+        });
+
+        return data;
+    }
 }

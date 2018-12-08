@@ -5,7 +5,7 @@ import android.arch.lifecycle.ViewModel;
 
 import hr.foi.air.sportloc.service.caller.WebServiceCaller;
 
-public class LoginInfoViewModel extends ViewModel {
+public class LoginViewModel extends ViewModel {
     private LiveData<Integer> loginInfoObservable;
 
     public void login(String username, String password) {

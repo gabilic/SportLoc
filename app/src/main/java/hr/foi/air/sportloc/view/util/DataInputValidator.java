@@ -6,7 +6,7 @@ public final class DataInputValidator {
     private DataInputValidator() {
     }
 
-    private static Boolean validateEmptyField(EditText editText, String emptyFieldErrorMessage) {
+    public static Boolean validateEmptyField(EditText editText, String emptyFieldErrorMessage) {
         if (editText.getText().toString().isEmpty()) {
             editText.setError(emptyFieldErrorMessage);
             return false;
