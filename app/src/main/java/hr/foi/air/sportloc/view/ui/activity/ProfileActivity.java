@@ -2,7 +2,6 @@ package hr.foi.air.sportloc.view.ui.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
 import hr.foi.air.sportloc.R;
 
 public class ProfileActivity extends AppCompatActivity {
