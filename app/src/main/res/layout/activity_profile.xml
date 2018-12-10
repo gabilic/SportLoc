@@ -138,7 +138,7 @@
 
     <Button
         android:id="@+id/btn_save"
-        style="@style/style_button"
+        style="@style/style_button_large"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -151,7 +151,7 @@
 
     <Button
         android:id="@+id/btn_cancel"
-        style="@style/style_button"
+        style="@style/style_button_large"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -262,7 +262,7 @@
 
     <Button
         android:id="@+id/btn_change_settings"
-        style="@style/style_button"
+        style="@style/style_button_large"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -307,7 +307,7 @@
 
     <Button
         android:id="@+id/btn_comment"
-        style="@style/style_button"
+        style="@style/style_button_large"
         android:layout_width="0dp"
         android:layout_height="42dp"
         android:layout_marginStart="16dp"
@@ -324,7 +324,7 @@
 
     <Button
         android:id="@+id/btn_comments"
-        style="@style/style_button"
+        style="@style/style_button_large"
         android:layout_width="0dp"
         android:layout_height="42dp"
         android:layout_marginStart="16dp"
