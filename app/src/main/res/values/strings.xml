@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
+    <string name="registration_choose">Odaberite</string>
     <string name="app_logo">Logo aplikacije</string>
     <string name="app_name">SportLoc</string>
 

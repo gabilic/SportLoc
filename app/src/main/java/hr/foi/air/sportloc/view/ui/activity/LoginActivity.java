@@ -79,4 +79,10 @@ public class LoginActivity extends AppCompatActivity {
     public void openForgottenPasswordActivity() {
         IntentManager.startActivity(getApplicationContext(), ForgottenPasswordActivity.class);
     }
+
+    @OnClick(R.id.tv_register)
+    public void openRegistrationActivity() {
+        IntentManager.startActivity(getApplicationContext(), RegistrationActivity.class);
+    }
+
 }

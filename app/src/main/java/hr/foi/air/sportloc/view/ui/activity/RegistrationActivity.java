@@ -18,22 +18,24 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import hr.foi.air.sportloc.R;
+import hr.foi.air.sportloc.view.util.Constants;
+import hr.foi.air.sportloc.view.util.DataInputValidator;
 
 public class RegistrationActivity extends AppCompatActivity {
 
-    @BindView(R.id.etv_name)
+    @BindView(R.id.et_name)
     EditText etvName;
 
-    @BindView(R.id.etv_surname)
+    @BindView(R.id.et_surname)
     EditText etvSurname;
 
-    @BindView(R.id.etv_username)
+    @BindView(R.id.et_username)
     EditText etvUsername;
 
-    @BindView(R.id.etv_email)
+    @BindView(R.id.et_email)
     EditText etvEmail;
 
-    @BindView(R.id.etv_password)
+    @BindView(R.id.et_password)
     EditText etvPassword;
 
     @BindView(R.id.spn_gender)
