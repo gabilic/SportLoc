@@ -1,12 +1,11 @@
 package hr.foi.air.sportloc.viewmodel;
 
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
 import hr.foi.air.sportloc.service.caller.WebServiceCaller;
 
-public class LoginInfoViewModel extends ViewModel {
+public class LoginViewModel extends ViewModel {
     private LiveData<Integer> loginInfoObservable;
 
     public void login(String username, String password) {
@@ -14,9 +13,6 @@ public class LoginInfoViewModel extends ViewModel {
     }
 
     public LiveData<Integer> getLoginInfoObservable() {
-        if (loginInfoObservable == null) {
-            loginInfoObservable = new MutableLiveData<>();
-        }
         return loginInfoObservable;
     }
 }
