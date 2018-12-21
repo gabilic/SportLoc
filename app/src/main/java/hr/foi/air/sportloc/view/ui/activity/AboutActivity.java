@@ -23,7 +23,7 @@ public class AboutActivity extends AppCompatActivity {
     @OnClick(R.id.btn_contact_us)
     public void sendEmail() {
         Intent email = new Intent(Intent.ACTION_SEND);
-        email.putExtra(Intent.EXTRA_EMAIL, getResources().getString(R.string.about_email));
+        email.putExtra(Intent.EXTRA_EMAIL, new String[]{getResources().getString(R.string.about_email)});
         email.setType("message/rfc822");
         startActivity(Intent.createChooser(email, getResources().getString(R.string.about_choose)));
     }

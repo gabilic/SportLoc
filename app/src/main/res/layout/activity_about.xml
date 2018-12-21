@@ -40,34 +40,32 @@
 
             <TextView
                 android:id="@+id/tv_about"
+                style="@style/style_text_view_small"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/about_about"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_authors"
+                style="@style/style_text_view_small"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/about_authors"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_about" />
 
             <Button
                 android:id="@+id/btn_contact_us"
-                style="@style/style_button"
+                style="@style/style_button_small"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -75,7 +73,7 @@
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/btn_general"
                 android:text="@string/about_contact"
-                android:textSize="20sp"
+                android:textAllCaps="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_authors" />
