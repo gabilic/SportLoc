@@ -31,6 +31,7 @@
         <activity android:name=".view.ui.activity.ForgottenPasswordActivity" />
         <activity android:name=".view.ui.activity.LoginActivity" />
         <activity android:name=".view.ui.activity.EventDetailsActivity" />
+        <activity android:name=".view.ui.activity.AboutActivity" />
         <activity android:name=".view.ui.activity.EventListActivity" />
 
         <meta-data
