@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Parcelable;
 import android.util.Log;
 
+import java.io.Serializable;
 import java.util.Map;
 
 public final class IntentManager {
@@ -40,8 +41,8 @@ public final class IntentManager {
             intent.putExtra(key, (Boolean) value);
         } else if (value instanceof Parcelable) {
             intent.putExtra(key, (Parcelable) value);
-        } else if (value instanceof Parcelable) {
-            intent.putExtra(key, (Parcelable) value);
+        } else if (value instanceof Serializable) {
+            intent.putExtra(key, (Serializable) value);
         } else {
             Log.w(IntentManager.class.getName(), "Intent extra was not set for all requested values");
         }
