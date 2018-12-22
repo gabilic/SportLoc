@@ -1,7 +1,11 @@
 package hr.foi.air.sportloc.view.ui.fragment;
 
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.LifecycleRegistry;
 import android.content.Context;
 import android.databinding.InverseMethod;
+import android.support.annotation.NonNull;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -13,16 +17,20 @@ import butterknife.OnItemSelected;
 import butterknife.OnTextChanged;
 import hr.foi.air.sportloc.R;
 import hr.foi.air.sportloc.service.model.EventModel;
+import hr.foi.air.sportloc.service.model.LocationModel;
+import hr.foi.air.sportloc.service.model.SportModel;
 import hr.foi.air.sportloc.view.util.DateTimeHelper;
+import hr.foi.air.sportloc.view.util.MessageSender;
+import hr.foi.air.sportloc.viewmodel.EventViewModel;
 
-public class EventDetailsEditFragment {
+public class EventDetailsEditFragment implements LifecycleOwner {
 
     @BindView(R.id.tv_start_date)
     TextView tvStartDate;
     @BindView(R.id.tv_end_date)
     TextView tvEndDate;
-    @BindView(R.id.et_title)
-    EditText etTitle;
+    @BindView(R.id.et_name)
+    EditText etName;
     @BindView(R.id.et_description)
     EditText etDescription;
     @BindView(R.id.et_capacity)
@@ -41,12 +49,14 @@ public class EventDetailsEditFragment {
     private EventDetailsFragment rootFragment;
     private EventModel newEvent;
     private boolean isNewEvent = false;
+    private LifecycleRegistry lifecycleRegistry;
 
     public EventDetailsEditFragment(EventDetailsFragment rootFragment) {
         this.context = rootFragment.getActivity();
         this.rootFragment = rootFragment;
         newEvent = new EventModel();
-
+        lifecycleRegistry = new LifecycleRegistry(this);
+        lifecycleRegistry.markState(Lifecycle.State.CREATED);
     }
 
     @OnClick(R.id.btn_cancel_edit)
@@ -58,11 +68,33 @@ public class EventDetailsEditFragment {
     public void saveEvent() {
         //TODO check if data is valid
         if (isNewEvent) {
-            //TODO save event...
+            createEvent();
         } else {
-            rootFragment.setEvent(newEvent);
-            rootFragment.switchMode(false);
+            //TODO update
+            switchToViewMode();
         }
+    }
+
+    private void switchToViewMode() {
+        rootFragment.setEvent(newEvent);
+        rootFragment.switchMode(false);
+    }
+
+    private void createEvent() {
+        //TODO replace with logged user
+        newEvent.setUserId(23);
+        lifecycleRegistry.markState(Lifecycle.State.STARTED);
+        EventViewModel vm = new EventViewModel();
+        vm.createEvent(newEvent);
+        vm.getEventObservable().observe(this, result -> {
+
+            if (Boolean.TRUE.equals(result)) {
+                lifecycleRegistry.markState(Lifecycle.State.DESTROYED);
+                switchToViewMode();
+            } else {
+                MessageSender.sendError(context, context.getResources().getString(R.string.general_connection_error));
+            }
+        });
     }
 
     @OnClick(R.id.tv_start_date)
@@ -77,17 +109,17 @@ public class EventDetailsEditFragment {
 
     @OnTextChanged(R.id.tv_end_date)
     public void setEndDate() {
-        newEvent.setEndDate(tvEndDate.getText().toString());
+        newEvent.setEnd(tvEndDate.getText().toString());
     }
 
     @OnTextChanged(R.id.tv_start_date)
     public void setStartDate() {
-        newEvent.setStartDate(tvStartDate.getText().toString());
+        newEvent.setStart(tvStartDate.getText().toString());
     }
 
-    @OnTextChanged(R.id.et_title)
-    public void setTitle() {
-        newEvent.setTitle(etTitle.getText().toString());
+    @OnTextChanged(R.id.et_name)
+    public void setName() {
+        newEvent.setName(etName.getText().toString());
     }
 
     @OnTextChanged(R.id.et_description)
@@ -104,23 +136,27 @@ public class EventDetailsEditFragment {
     public void setCapacity() {
         int capacity = etCapacity.getText() != null && !etCapacity.getText().toString().isEmpty() ?
                 Integer.valueOf(etCapacity.getText().toString()) : 0;
-        newEvent.setMaxCapacity(capacity);
+        newEvent.setCapacity(capacity);
     }
 
     @OnItemSelected(R.id.spn_sport)
     public void setSport() {
-        newEvent.setSport(spinnerSport.getSelectedItem().toString());
+        SportModel sport = (SportModel)spinnerSport.getSelectedItem();
+        newEvent.setSport(sport.getName());
+        newEvent.setSportId(sport.getId());
     }
 
     @OnItemSelected(R.id.spn_location)
     public void setLocation() {
-        newEvent.setLocation(spinnerLocation.getSelectedItem().toString());
+        LocationModel location = (LocationModel)spinnerLocation.getSelectedItem();
+        newEvent.setCity(location.getName());
+        newEvent.setCityId(location.getId());
     }
 
 
     @OnClick(R.id.sw_is_open)
     public void changeEventStatus() {
-        newEvent.setOpenEvent(!newEvent.isOpenEvent());
+        newEvent.setOpen(!newEvent.isOpen());
     }
 
     @InverseMethod("resolveStartText")
@@ -140,11 +176,16 @@ public class EventDetailsEditFragment {
     }
 
     public void setNewEvent(EventModel newEvent) {
-        if (newEvent == null) {
+        if (newEvent != null) {
             isNewEvent = true;
         } else {
             this.newEvent = newEvent;
         }
     }
 
+    @NonNull
+    @Override
+    public Lifecycle getLifecycle() {
+        return lifecycleRegistry;
+    }
 }

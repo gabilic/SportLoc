@@ -42,7 +42,7 @@
             android:scrollbars="vertical">
 
             <EditText
-                android:id="@+id/et_title"
+                android:id="@+id/et_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -51,7 +51,7 @@
                 android:gravity="start"
                 android:hint="@string/event_details_title"
                 android:inputType="text"
-                android:text="@{event.title}"
+                android:text="@{event.name}"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -66,9 +66,9 @@
                 android:layout_marginTop="8dp"
                 android:background="@android:drawable/btn_dropdown"
                 android:spinnerMode="dropdown"
-                app:adapter="@{locationAdapter}"
+                app:adapter="@{sportAdapter}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_title" />
+                app:layout_constraintTop_toBottomOf="@+id/et_name" />
 
 
             <Spinner
@@ -78,7 +78,7 @@
                 android:layout_marginTop="8dp"
                 android:background="@android:drawable/btn_dropdown"
                 android:spinnerMode="dropdown"
-                app:adapter="@{sportAdapter}"
+                app:adapter="@{locationAdapter}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spn_sport" />
 
@@ -103,7 +103,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:inputType="number"
-                android:text="@={``+event.maxCapacity}"
+                android:text="@={``+event.capacity}"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -127,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
-                android:text="@={EventDetailsEditFragment.resolveStartText(event.startDate)}"
+                android:text="@={EventDetailsEditFragment.resolveStartText(event.start)}"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -153,7 +153,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
-                android:text="@={EventDetailsEditFragment.resolveEndText(event.endDate)}"
+                android:text="@={EventDetailsEditFragment.resolveEndText(event.end)}"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -194,7 +194,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:checked="@={event.openEvent}"
+                android:checked="@={event.open}"
                 android:text="@string/event_details_select_open"
                 android:textOff="@string/event_details_select_private"
                 android:textOn="@string/event_details_select_open"

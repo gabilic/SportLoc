@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <data>
+
         <variable
             name="event"
             type="hr.foi.air.sportloc.service.model.EventModel" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -20,8 +21,8 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
-            android:drawableStart="@{!event.openEvent ? @drawable/ic_event_closed : null}"
-            android:text='@{(!event.openEvent ? " " : "") + event.title}'
+            android:drawableStart="@{!event.open ? @drawable/ic_event_closed : null}"
+            android:text='@{(!event.open ? " " : "") + event.name}'
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -34,7 +35,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
-            android:text='@{event.sport + ", " + event.location + " (" + event.currentCapacity + "/" + event.maxCapacity + ")"}'
+            android:text='@{event.sport + ", " + event.city + " (" + event.current+ "/" + event.capacity + ")"}'
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_title" />
@@ -47,7 +48,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
-            android:text='@{event.startTime + " - " + event.endTime}'
+            android:text='@{event.start + " - " + event.end}'
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_info" />
@@ -60,7 +61,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
-            android:text='@{@string/event_details_creator + " " + event.creatorUserName}'
+            android:text='@{@string/event_details_creator + " " + event.username}'
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_date_time" />

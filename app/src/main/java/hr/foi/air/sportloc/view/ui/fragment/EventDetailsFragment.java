@@ -86,7 +86,7 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
 
     private boolean isNewEvent() {
         newEvent = getArguments().getBoolean(Constants.CREATE_NEW_EVENT);
-        editMode = true;
+        editMode = newEvent;
         return newEvent;
     }
 
@@ -184,7 +184,7 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
         if (event.getAddress() != null && !event.getAddress().trim().isEmpty()) {
             LatLng eventLocation = getLocationFromAddress(event.getAddress());
             if (eventLocation != null) {
-                map.addMarker(new MarkerOptions().position(eventLocation).title(event.getTitle()));
+                map.addMarker(new MarkerOptions().position(eventLocation).title(event.getName()));
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(eventLocation, 15.0f));
             }
         }
