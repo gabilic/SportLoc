@@ -3,8 +3,16 @@ package hr.foi.air.sportloc.service.caller;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 
+import java.util.List;
+
+import hr.foi.air.sportloc.service.model.EventModel;
+import hr.foi.air.sportloc.service.model.LocationModel;
 import hr.foi.air.sportloc.service.model.PrimitiveWrapperModel;
+import hr.foi.air.sportloc.service.model.SportModel;
 import hr.foi.air.sportloc.service.rest.ApiInterface;
+import hr.foi.air.sportloc.service.serviceUtil.BooleanCallback;
+import hr.foi.air.sportloc.service.serviceUtil.DataUtil;
+import hr.foi.air.sportloc.service.serviceUtil.WebServiceResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -48,6 +56,50 @@ public class WebServiceCaller {
         return data;
     }
 
+    //TODO make a more generic method for picklists
+    public LiveData<SportModel[]> getSports() {
+        final MutableLiveData<SportModel[]> data = new MutableLiveData<>();
+        if (DataUtil.getInstance().getSports() != null && DataUtil.getInstance().getSports().length > 0) {
+            data.setValue(DataUtil.getInstance().getSports());
+        } else {
+            api.getSports().enqueue(new Callback<List<SportModel>>() {
+                @Override
+                public void onResponse(Call<List<SportModel>> call, Response<List<SportModel>> response) {
+                    data.setValue(response.body().toArray(new SportModel[response.body().size()]));
+                    DataUtil.getInstance().setSports(data.getValue());
+                }
+
+                @Override
+                public void onFailure(Call<List<SportModel>> call, Throwable t) {
+                    data.setValue(null);
+                }
+            });
+        }
+        return data;
+    }
+
+    public LiveData<LocationModel[]> getLocations() {
+        final MutableLiveData<LocationModel[]> data = new MutableLiveData<>();
+        if (DataUtil.getInstance().getLocations() != null && DataUtil.getInstance().getLocations().length > 0) {
+            data.setValue(DataUtil.getInstance().getLocations());
+        } else {
+            api.getCities().enqueue(new Callback<List<LocationModel>>() {
+                @Override
+                public void onResponse(Call<List<LocationModel>> call, Response<List<LocationModel>> response) {
+                    data.setValue(response.body().toArray(new LocationModel[response.body().size()]));
+                    DataUtil.getInstance().setLocations(data.getValue());
+                }
+
+                @Override
+                public void onFailure(Call<List<LocationModel>> call, Throwable t) {
+                    data.setValue(null);
+                }
+            });
+        }
+
+        return data;
+    }
+
     public LiveData<Boolean> getResetPasswordInfo(String email) {
         final MutableLiveData<Boolean> data = new MutableLiveData<>();
         api.getResetPasswordInfo(email).enqueue(new Callback<PrimitiveWrapperModel>() {
@@ -61,7 +113,13 @@ public class WebServiceCaller {
                 data.setValue(null);
             }
         });
-
         return data;
     }
+
+    public LiveData<Boolean> createEvent(EventModel event) {
+        final MutableLiveData<Boolean> data = new MutableLiveData<>();
+        api.createEvent(event).enqueue(new BooleanCallback(data));
+        return data;
+    }
+
 }
