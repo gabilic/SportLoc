@@ -18,25 +18,30 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import hr.foi.air.sportloc.R;
+import hr.foi.air.sportloc.service.model.UserModel;
 import hr.foi.air.sportloc.view.util.Constants;
 import hr.foi.air.sportloc.view.util.DataInputValidator;
+import hr.foi.air.sportloc.view.util.DateTimeHelper;
+import hr.foi.air.sportloc.view.util.IntentManager;
+import hr.foi.air.sportloc.view.util.MessageSender;
+import hr.foi.air.sportloc.viewmodel.RegistrationViewModel;
 
 public class RegistrationActivity extends AppCompatActivity {
 
     @BindView(R.id.et_name)
-    EditText etvName;
+    EditText etName;
 
     @BindView(R.id.et_surname)
-    EditText etvSurname;
+    EditText etSurname;
 
     @BindView(R.id.et_username)
-    EditText etvUsername;
+    EditText etUsername;
 
     @BindView(R.id.et_email)
-    EditText etvEmail;
+    EditText etEmail;
 
     @BindView(R.id.et_password)
-    EditText etvPassword;
+    EditText etPassword;
 
     @BindView(R.id.spn_gender)
     Spinner spnGender;
@@ -44,9 +49,6 @@ public class RegistrationActivity extends AppCompatActivity {
     @BindView(R.id.tv_date)
     TextView tvDate;
 
-
-    private static final String TAG = "RegistrationActivity";
-    private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,33 +58,44 @@ public class RegistrationActivity extends AppCompatActivity {
         }
         setContentView(R.layout.activity_registration);
         ButterKnife.bind(this);
-        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                month = month + 1;
-                Log.d(TAG, "onDateSet: dd/mm/yyy: " + day + "/" + month + "/" + year);
-
-                String date = day + "/" + month + "/" + year;
-                tvDate.setText(date);
-            }
-        };
     }
 
     @OnClick(R.id.tv_date)
-    public void dateClick()
-    {
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        int day = cal.get(Calendar.DAY_OF_MONTH);
+    public void dateClick() {
+        new DateTimeHelper().showDateDialog(this, tvDate);
+    }
 
-        DatePickerDialog dialog = new DatePickerDialog(
-                RegistrationActivity.this,
-                android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                mDateSetListener,
-                year,month,day);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.show();
+    @OnClick(R.id.btn_send)
+    public void registerClick() {
+        UserModel user = new UserModel();
+        user.setName(etName.getText().toString());
+        user.setSurname(etSurname.getText().toString());
+        user.setUsername(etUsername.getText().toString());
+        user.setEmail(etEmail.getText().toString());
+        user.setPassword(etPassword.getText().toString());
+        user.setGender(resolveGender());
+        user.setDob(tvDate.getText().toString());
+        observeRegistration(user);
+    }
+
+    private void observeRegistration(UserModel user) {
+        RegistrationViewModel registrationViewModel = new RegistrationViewModel();
+        registrationViewModel.register(user);
+        registrationViewModel.getRegistrationObservable().observe(this, result -> {
+            if (result) {
+                MessageSender.sendMessage(this, "Uspješno ste se registrirali!");
+                IntentManager.startActivity(getApplicationContext(), LoginActivity.class);
+            } else {
+                MessageSender.sendError(this, "Niste se registrirali");s
+            }
+        });
+    }
+
+    private boolean resolveGender() {
+        if (spnGender.getSelectedItem().toString().equalsIgnoreCase(getResources().getString(R.string.registration_male))) {
+            return true;
+        }
+        return false;
     }
 
 }
