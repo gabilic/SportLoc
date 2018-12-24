@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
+    <string name="registration_choose">Odaberite</string>
     <string name="about_about">
         Aplikacija SportLoc služi za lakše pronalaženje i sudjelovanje u sportskim događajima u vašoj okolini.
         Trenutno postoji određeni broj sportova koji se mogu staviti pod događaj. Ukoliko vaš sport nije na
@@ -97,6 +98,7 @@
         <item>Muško</item>
         <item>Žensko</item>
     </string-array>
+    <string name="registration_male">Muško</string>
     <string name="registration_surname">Prezime</string>
     <string name="registration_user_exists">Ovakvo korisničko ime već postoji!</string>
     <string name="registration_username">Korisničko ime</string>

@@ -9,6 +9,7 @@ import hr.foi.air.sportloc.service.model.EventModel;
 import hr.foi.air.sportloc.service.model.LocationModel;
 import hr.foi.air.sportloc.service.model.PrimitiveWrapperModel;
 import hr.foi.air.sportloc.service.model.SportModel;
+import hr.foi.air.sportloc.service.model.UserModel;
 import hr.foi.air.sportloc.service.rest.ApiInterface;
 import hr.foi.air.sportloc.service.serviceUtil.BooleanCallback;
 import hr.foi.air.sportloc.service.serviceUtil.DataUtil;
@@ -119,6 +120,12 @@ public class WebServiceCaller {
     public LiveData<Boolean> createEvent(EventModel event) {
         final MutableLiveData<Boolean> data = new MutableLiveData<>();
         api.createEvent(event).enqueue(new BooleanCallback(data));
+        return data;
+    }
+
+    public LiveData<Boolean> registerUser(UserModel user) {
+        final MutableLiveData<Boolean> data = new MutableLiveData<>();
+        api.registerUser(user).enqueue(new BooleanCallback(data));
         return data;
     }
 
