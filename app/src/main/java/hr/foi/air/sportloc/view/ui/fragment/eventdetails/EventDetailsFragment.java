@@ -1,4 +1,4 @@
-package hr.foi.air.sportloc.view.ui.fragment;
+package hr.foi.air.sportloc.view.ui.fragment.eventdetails;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
@@ -34,10 +34,12 @@ import hr.foi.air.sportloc.databinding.FragmentEventDetailsBinding;
 import hr.foi.air.sportloc.databinding.FragmentEventDetailsEditBinding;
 import hr.foi.air.sportloc.service.model.EventModel;
 import hr.foi.air.sportloc.service.model.ModelEnum;
+import hr.foi.air.sportloc.service.model.ParticipantModel;
 import hr.foi.air.sportloc.view.adapter.LocationArrayAdapter;
 import hr.foi.air.sportloc.view.adapter.SportArrayAdapter;
 import hr.foi.air.sportloc.view.util.Constants;
 import hr.foi.air.sportloc.view.util.MessageSender;
+import hr.foi.air.sportloc.viewmodel.EventViewModel;
 import hr.foi.air.sportloc.viewmodel.PicklistViewModel;
 
 public class EventDetailsFragment extends Fragment implements OnMapReadyCallback {
@@ -58,10 +60,6 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
         JOIN, LEAVE, EDIT
     }
 
-
-    public EventDetailsFragment() {
-    }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -69,6 +67,7 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
             return null;
         }
         ViewDataBinding binding;
+
         target = this;
         if (!editMode && !isNewEvent()) {
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_event_details, container, false);
@@ -85,8 +84,10 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
     }
 
     private boolean isNewEvent() {
-        newEvent = getArguments().getBoolean(Constants.CREATE_NEW_EVENT);
-        editMode = newEvent;
+        if (getArguments() != null) {
+            newEvent = getArguments().getBoolean(Constants.CREATE_NEW_EVENT);
+            editMode = newEvent;
+        }
         return newEvent;
     }
 
@@ -142,7 +143,7 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
 
     private void resolveEventButton() {
         //TODO check if creator and check if application is already sent
-        boolean isCreator = true;
+        boolean isCreator = false;
         boolean isMember = false;
         if (isCreator) {
             btnEventOptions.setText(R.string.btn_edit);
@@ -200,32 +201,76 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
     public void eventButtonClick() {
         switch (currentState) {
             case JOIN:
-                currentState = ButtonState.LEAVE;
-                btnEventOptions.setText(R.string.event_details_leave);
+                joinEvent();
                 break;
             case LEAVE:
-                currentState = ButtonState.JOIN;
-                btnEventOptions.setText(R.string.event_details_join);
+                leaveEvent();
                 break;
             case EDIT:
-                switchMode(false);
+                switchMode();
                 break;
             default:
                 break;
         }
     }
 
-    public void switchMode(boolean cancel) {
-        if (cancel && isNewEvent()) {
+    private void leaveEvent() {
+        EventViewModel vm = new EventViewModel();
+        vm.leaveEvent(getParticipant());
+        vm.getEventObservable().observe(this, result -> {
+            if (result) {
+                MessageSender.sendError(getActivity(), getResources().getString(R.string.event_details_leave_event));
+            } else {
+                MessageSender.sendError(getActivity(), getResources().getString(R.string.general_connection_error));
+            }
+        });
+
+        currentState = ButtonState.JOIN;
+        btnEventOptions.setText(R.string.event_details_join);
+    }
+
+    private ParticipantModel getParticipant() {
+        ParticipantModel participant = new ParticipantModel();
+        participant.setEventId(event.getEventId());
+        //TODO loggedUser
+        participant.setUserId(event.getUserId());
+        return participant;
+    }
+
+    private void joinEvent() {
+        EventViewModel vm = new EventViewModel();
+        vm.joinEvent(getParticipant());
+        vm.getEventObservable().observe(this, result -> {
+            if (result) {
+                MessageSender.sendError(getActivity(), getResources().getString(R.string.event_details_request_sent));
+            } else {
+                MessageSender.sendError(getActivity(), getResources().getString(R.string.general_connection_error));
+            }
+        });
+        currentState = ButtonState.LEAVE;
+        btnEventOptions.setText(R.string.event_details_leave);
+    }
+
+    public void switchMode(boolean cancel, boolean save) {
+        if (cancel && newEvent) {
             getFragmentManager().popBackStack();
+            getActivity().finish();
         } else {
+            if(save) {
+                getArguments().clear();
+                getArguments().putParcelable(ModelEnum.EventModel.name(),event);
+            }
             editMode = !editMode;
             getFragmentManager().beginTransaction().detach(this).attach(this).commit();
         }
     }
 
-    public EventModel getEvent() {
-        return event;
+    public void switchMode() {
+        switchMode(false, false);
+    }
+
+    public void switchMode(boolean cancel) {
+        switchMode(cancel, false);
     }
 
     public void setEvent(EventModel event) {

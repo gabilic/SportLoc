@@ -2,7 +2,7 @@
 
     <data>
 
-        <import type="hr.foi.air.sportloc.view.ui.fragment.EventDetailsEditFragment" />
+        <import type="hr.foi.air.sportloc.view.ui.fragment.eventdetails.EventDetailsEditFragment" />
 
         <variable
             name="event"

@@ -5,27 +5,26 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.annotation.NonNull;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 public class DateTimeHelper {
 
     private DatePickerDialog.OnDateSetListener getOnDateSetListener(final Context context, final TextView textView, final boolean showTimePicker) {
-        return new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                month = month + 1;
+        return (datePicker, year, month, day) -> {
+            month = month + 1;
 //                Log.d(TAG, "onDateSet: dd/mm/yyy: " + day + "/" + month + "/" + year);
 
-                String date = day + "/" + month + "/" + year;
-                if (showTimePicker) {
-                    showTimePicker(context, textView, date);
-                } else {
-                    textView.setText(date);
-                }
+            String date = day + "/" + month + "/" + year;
+            if (showTimePicker) {
+                showTimePicker(context, textView, date);
+            } else {
+                textView.setText(date);
             }
         };
     }
@@ -33,17 +32,13 @@ public class DateTimeHelper {
     private void showTimePicker(final Context context, final TextView textView, final String date) {
         final Calendar c = Calendar.getInstance();
         int hour = c.get(Calendar.HOUR_OF_DAY);
-        int minute = c.get(Calendar.MINUTE);
+        int min = c.get(Calendar.MINUTE);
 
         // Launch Time Picker Dialog
         TimePickerDialog timePickerDialog = new TimePickerDialog(context,
-                new TimePickerDialog.OnTimeSetListener() {
-
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        textView.setText(date+" "+hourOfDay + ":" + minute);
-                    }
-                }, hour, minute, false);
+                (view, hourOfDay, minute) ->
+                        textView.setText(date + " " + hourOfDay + ":" + minute),
+                hour, min, false);
         timePickerDialog.show();
     }
 
@@ -66,7 +61,7 @@ public class DateTimeHelper {
                 android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                 getOnDateSetListener(context, textView, showTimePicker),
                 year, month, day);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
     }
 }

@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class WebServiceResponse {
     
     @SerializedName("success")
-    private boolean successful;
+    private final boolean successful;
 
     public WebServiceResponse(boolean success) {
         this.successful = success;

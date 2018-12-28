@@ -7,13 +7,13 @@ import java.util.List;
 
 import hr.foi.air.sportloc.service.model.EventModel;
 import hr.foi.air.sportloc.service.model.LocationModel;
+import hr.foi.air.sportloc.service.model.ParticipantModel;
 import hr.foi.air.sportloc.service.model.PrimitiveWrapperModel;
 import hr.foi.air.sportloc.service.model.SportModel;
 import hr.foi.air.sportloc.service.model.UserModel;
 import hr.foi.air.sportloc.service.rest.ApiInterface;
 import hr.foi.air.sportloc.service.serviceUtil.BooleanCallback;
 import hr.foi.air.sportloc.service.serviceUtil.DataUtil;
-import hr.foi.air.sportloc.service.serviceUtil.WebServiceResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -66,7 +66,7 @@ public class WebServiceCaller {
             api.getSports().enqueue(new Callback<List<SportModel>>() {
                 @Override
                 public void onResponse(Call<List<SportModel>> call, Response<List<SportModel>> response) {
-                    data.setValue(response.body().toArray(new SportModel[response.body().size()]));
+                    data.setValue(response.body().toArray(new SportModel[0]));
                     DataUtil.getInstance().setSports(data.getValue());
                 }
 
@@ -87,7 +87,7 @@ public class WebServiceCaller {
             api.getCities().enqueue(new Callback<List<LocationModel>>() {
                 @Override
                 public void onResponse(Call<List<LocationModel>> call, Response<List<LocationModel>> response) {
-                    data.setValue(response.body().toArray(new LocationModel[response.body().size()]));
+                    data.setValue(response.body().toArray(new LocationModel[0]));
                     DataUtil.getInstance().setLocations(data.getValue());
                 }
 
@@ -129,4 +129,14 @@ public class WebServiceCaller {
         return data;
     }
 
+    public LiveData<Boolean> updateEvent(EventModel event) {
+        final MutableLiveData<Boolean> data = new MutableLiveData<>();
+        api.updateEvent(event).enqueue(new BooleanCallback(data));
+        return data;
+    }
+    public LiveData<Boolean> resolveParticipant(ParticipantModel participant) {
+        final MutableLiveData<Boolean> data = new MutableLiveData<>();
+        api.resolveParticipant(participant).enqueue(new BooleanCallback(data));
+        return data;
+    }
 }
