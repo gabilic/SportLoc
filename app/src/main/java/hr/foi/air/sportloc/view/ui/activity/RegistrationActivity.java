@@ -86,7 +86,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 MessageSender.sendMessage(this, "Uspješno ste se registrirali!");
                 IntentManager.startActivity(getApplicationContext(), LoginActivity.class);
             } else {
-                MessageSender.sendError(this, "Niste se registrirali");s
+                MessageSender.sendError(this, "Niste se registrirali");
             }
         });
     }
