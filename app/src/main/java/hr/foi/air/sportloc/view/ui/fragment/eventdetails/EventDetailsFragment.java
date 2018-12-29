@@ -219,7 +219,7 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
         vm.leaveEvent(getParticipant());
         vm.getEventObservable().observe(this, result -> {
             if (result) {
-                MessageSender.sendError(getActivity(), getResources().getString(R.string.event_details_leave_event));
+                MessageSender.sendMessage(getActivity(), getResources().getString(R.string.event_details_leave_event));
             } else {
                 MessageSender.sendError(getActivity(), getResources().getString(R.string.general_connection_error));
             }
@@ -239,10 +239,10 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
 
     private void joinEvent() {
         EventViewModel vm = new EventViewModel();
-        vm.joinEvent(getParticipant());
+        vm.joinEvent(getParticipant(), event.isOpen());
         vm.getEventObservable().observe(this, result -> {
             if (result) {
-                MessageSender.sendError(getActivity(), getResources().getString(R.string.event_details_request_sent));
+                MessageSender.sendMessage(getActivity(), getResources().getString(R.string.event_details_request_sent));
             } else {
                 MessageSender.sendError(getActivity(), getResources().getString(R.string.general_connection_error));
             }

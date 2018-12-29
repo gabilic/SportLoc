@@ -17,8 +17,8 @@ public class EventViewModel {
     public void updateEvent(EventModel event) {
         eventObservable = WebServiceCaller.getInstance().updateEvent(event);
     }
-    public void joinEvent(ParticipantModel participant) {
-        participant.setAction(ActionEnum.SEND_REQUEST);
+    public void joinEvent(ParticipantModel participant, Boolean open) {
+        participant.setAction(open ? ActionEnum.ENTER_EVENT : ActionEnum.SEND_REQUEST);
         eventObservable = WebServiceCaller.getInstance().resolveParticipant(participant);
     }
     public void leaveEvent(ParticipantModel participant) {
