@@ -74,7 +74,7 @@ public class RegistrationActivity extends AppCompatActivity {
         user.setEmail(etEmail.getText().toString());
         user.setPassword(etPassword.getText().toString());
         user.setGender(resolveGender());
-        user.setDob(tvDate.getText().toString());
+        user.setDob(tvDate.getText().toString().equals(getResources().getString(R.string.registration_choose)) ? null : tvDate.getText().toString());
         observeRegistration(user);
     }
 
@@ -82,11 +82,15 @@ public class RegistrationActivity extends AppCompatActivity {
         RegistrationViewModel registrationViewModel = new RegistrationViewModel();
         registrationViewModel.register(user);
         registrationViewModel.getRegistrationObservable().observe(this, result -> {
-            if (result) {
-                MessageSender.sendMessage(this, "Uspješno ste se registrirali!");
-                IntentManager.startActivity(getApplicationContext(), LoginActivity.class);
+            if (result != null) {
+                if (result.containsKey(true)) {
+                    MessageSender.sendMessage(this, getResources().getString(R.string.registration_success));
+                    IntentManager.startActivity(getApplicationContext(), LoginActivity.class);
+                } else {
+                    MessageSender.sendError(this, result.get(false));
+                }
             } else {
-                MessageSender.sendError(this, "Niste se registrirali");
+                MessageSender.sendError(this, getResources().getString(R.string.general_connection_error));
             }
         });
     }
