@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 
 import java.util.List;
+import java.util.Map;
 
 import hr.foi.air.sportloc.service.model.EventModel;
 import hr.foi.air.sportloc.service.model.LocationModel;
@@ -14,6 +15,8 @@ import hr.foi.air.sportloc.service.model.UserModel;
 import hr.foi.air.sportloc.service.rest.ApiInterface;
 import hr.foi.air.sportloc.service.serviceUtil.BooleanCallback;
 import hr.foi.air.sportloc.service.serviceUtil.DataUtil;
+import hr.foi.air.sportloc.service.serviceUtil.MessageCallback;
+import hr.foi.air.sportloc.service.serviceUtil.WebServiceResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -123,9 +126,9 @@ public class WebServiceCaller {
         return data;
     }
 
-    public LiveData<Boolean> registerUser(UserModel user) {
-        final MutableLiveData<Boolean> data = new MutableLiveData<>();
-        api.registerUser(user).enqueue(new BooleanCallback(data));
+    public LiveData<Map<Boolean, String>> registerUser(UserModel user) {
+        final MutableLiveData<Map<Boolean, String>> data = new MutableLiveData<>();
+        api.registerUser(user).enqueue(new MessageCallback(data));
         return data;
     }
 

@@ -11,7 +11,6 @@ public class UserModel {
     private String surname;
     private String username;
     private String email;
-    private String salt;
     private String password;
     private String description;
     private String dob;
@@ -63,14 +62,6 @@ public class UserModel {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getSalt() {
-        return resolveNull(salt);
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
     }
 
     public String getPassword() {
