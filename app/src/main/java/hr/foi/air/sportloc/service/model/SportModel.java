@@ -1,5 +1,7 @@
 package hr.foi.air.sportloc.service.model;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 
 public class SportModel implements Serializable {
@@ -31,6 +33,7 @@ public class SportModel implements Serializable {
         this.name = name;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return name;

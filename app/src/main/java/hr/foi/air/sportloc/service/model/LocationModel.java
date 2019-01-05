@@ -33,6 +33,7 @@ public class LocationModel implements Serializable {
         this.name = name;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return name;

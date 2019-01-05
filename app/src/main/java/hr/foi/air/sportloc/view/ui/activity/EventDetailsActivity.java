@@ -9,12 +9,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import hr.foi.air.sportloc.R;
 import hr.foi.air.sportloc.view.adapter.EventDetailsPageAdapter;
-import hr.foi.air.sportloc.view.ui.fragment.EventDetailsFragment;
+import hr.foi.air.sportloc.view.ui.fragment.eventdetails.EventDetailsFragment;
 import hr.foi.air.sportloc.view.ui.fragment.EventMembersFragment;
 
 public class EventDetailsActivity extends AppCompatActivity {
-    @BindView(R.id.container) ViewPager viewPager;
-    @BindView(R.id.tab_layout_event_details) TabLayout tabLayout;
+
+    @BindView(R.id.container)
+    ViewPager viewPager;
+    @BindView(R.id.tab_layout_event_details)
+    TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +27,7 @@ public class EventDetailsActivity extends AppCompatActivity {
         setupTabLayout();
     }
 
-    private void setupTabLayout(){
+    private void setupTabLayout() {
         EventDetailsPageAdapter adapter = new EventDetailsPageAdapter(getSupportFragmentManager());
 
         EventDetailsFragment eventDetailsFragment = new EventDetailsFragment();

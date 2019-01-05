@@ -25,6 +25,7 @@ public class EventModel implements Parcelable {
     }
 
     private EventModel(Parcel in) {
+        eventId = in.readInt();
         capacity = in.readInt();
         current = in.readInt();
         sportId = in.readInt();
@@ -180,6 +181,7 @@ public class EventModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(eventId);
         dest.writeInt(capacity);
         dest.writeInt(capacity);
         dest.writeInt(sportId);
@@ -190,8 +192,8 @@ public class EventModel implements Parcelable {
         dest.writeString(name);
         dest.writeString(start);
         dest.writeString(end);
-        dest.writeString(description);
         dest.writeString(address);
+        dest.writeString(description);
         dest.writeString(sport);
         dest.writeString(city);
     }

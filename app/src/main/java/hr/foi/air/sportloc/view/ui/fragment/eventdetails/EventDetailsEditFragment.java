@@ -1,11 +1,13 @@
-package hr.foi.air.sportloc.view.ui.fragment;
+package hr.foi.air.sportloc.view.ui.fragment.eventdetails;
 
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.LifecycleRegistry;
 import android.content.Context;
+import android.content.res.Resources;
 import android.databinding.InverseMethod;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -45,15 +47,19 @@ public class EventDetailsEditFragment implements LifecycleOwner {
     Spinner spinnerSport;
 
 
-    private static Context context;
-    private EventDetailsFragment rootFragment;
+    private static Resources resources;
+    private final Context context;
+    private final EventDetailsFragment rootFragment;
+    private final FragmentManager fragmentManager;
     private EventModel newEvent;
     private boolean isNewEvent = false;
-    private LifecycleRegistry lifecycleRegistry;
+    private final LifecycleRegistry lifecycleRegistry;
 
     public EventDetailsEditFragment(EventDetailsFragment rootFragment) {
         this.context = rootFragment.getActivity();
+        this.fragmentManager = rootFragment.getFragmentManager();
         this.rootFragment = rootFragment;
+        resources = rootFragment.getActivity().getResources();
         newEvent = new EventModel();
         lifecycleRegistry = new LifecycleRegistry(this);
         lifecycleRegistry.markState(Lifecycle.State.CREATED);
@@ -65,19 +71,32 @@ public class EventDetailsEditFragment implements LifecycleOwner {
     }
 
     @OnClick(R.id.btn_save_event)
-    public void saveEvent() {
+    public void saveChanges() {
         //TODO check if data is valid
         if (isNewEvent) {
             createEvent();
         } else {
-            //TODO update
-            switchToViewMode();
+            updateEvent();
         }
     }
 
-    private void switchToViewMode() {
+    private void updateEvent() {
+        EventViewModel vm = new EventViewModel();
+        vm.updateEvent(newEvent);
+        vm.getEventObservable().observe(this, result -> {
+            if (Boolean.TRUE.equals(result)) {
+                lifecycleRegistry.markState(Lifecycle.State.DESTROYED);
+                switchToViewMode(false, true);
+            } else {
+                MessageSender.sendError(context, resources.getString(R.string.general_connection_error));
+            }
+        });
+        switchToViewMode(true,false);
+    }
+
+    private void switchToViewMode(boolean cancel, boolean save) {
         rootFragment.setEvent(newEvent);
-        rootFragment.switchMode(false);
+        rootFragment.switchMode(cancel, save);
     }
 
     private void createEvent() {
@@ -87,12 +106,11 @@ public class EventDetailsEditFragment implements LifecycleOwner {
         EventViewModel vm = new EventViewModel();
         vm.createEvent(newEvent);
         vm.getEventObservable().observe(this, result -> {
-
             if (Boolean.TRUE.equals(result)) {
                 lifecycleRegistry.markState(Lifecycle.State.DESTROYED);
-                switchToViewMode();
+                switchToViewMode(false, true);
             } else {
-                MessageSender.sendError(context, context.getResources().getString(R.string.general_connection_error));
+                MessageSender.sendError(context, resources.getString(R.string.general_connection_error));
             }
         });
     }
@@ -109,12 +127,16 @@ public class EventDetailsEditFragment implements LifecycleOwner {
 
     @OnTextChanged(R.id.tv_end_date)
     public void setEndDate() {
-        newEvent.setEnd(tvEndDate.getText().toString());
+        if (!resources.getString(R.string.event_details_select_end).equals(tvEndDate.getText().toString())) {
+            newEvent.setEnd(tvEndDate.getText().toString());
+        }
     }
 
     @OnTextChanged(R.id.tv_start_date)
     public void setStartDate() {
-        newEvent.setStart(tvStartDate.getText().toString());
+        if (!resources.getString(R.string.event_details_select_start).equals(tvStartDate.getText().toString())) {
+            newEvent.setStart(tvStartDate.getText().toString());
+        }
     }
 
     @OnTextChanged(R.id.et_name)
@@ -162,13 +184,13 @@ public class EventDetailsEditFragment implements LifecycleOwner {
     @InverseMethod("resolveStartText")
     public static String resolveStartText(String startDate) {
         return isValidString(startDate) ? startDate :
-                context.getResources().getString(R.string.event_details_select_start);
+                resources.getString(R.string.event_details_select_start);
     }
 
     @InverseMethod("resolveEndText")
     public static String resolveEndText(String endDate) {
         return isValidString(endDate) ? endDate :
-                context.getResources().getString(R.string.event_details_select_end);
+                resources.getString(R.string.event_details_select_end);
     }
 
     private static boolean isValidString(String value) {
@@ -176,7 +198,7 @@ public class EventDetailsEditFragment implements LifecycleOwner {
     }
 
     public void setNewEvent(EventModel newEvent) {
-        if (newEvent != null) {
+        if (newEvent == null) {
             isNewEvent = true;
         } else {
             this.newEvent = newEvent;

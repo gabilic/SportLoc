@@ -2,13 +2,11 @@ package hr.foi.air.sportloc.service.serviceUtil;
 
 import android.arch.lifecycle.MutableLiveData;
 
-import javax.security.auth.callback.Callback;
-
 import retrofit2.Call;
 import retrofit2.Response;
 
 public class BooleanCallback implements retrofit2.Callback<WebServiceResponse> {
-    MutableLiveData<Boolean> data;
+    private MutableLiveData<Boolean> data;
 
     public BooleanCallback(MutableLiveData<Boolean> data) {
         this.data=data;

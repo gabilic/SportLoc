@@ -4,6 +4,7 @@ import java.util.List;
 
 import hr.foi.air.sportloc.service.model.EventModel;
 import hr.foi.air.sportloc.service.model.LocationModel;
+import hr.foi.air.sportloc.service.model.ParticipantModel;
 import hr.foi.air.sportloc.service.model.PrimitiveWrapperModel;
 import hr.foi.air.sportloc.service.model.SportModel;
 import hr.foi.air.sportloc.service.model.UserModel;
@@ -27,4 +28,8 @@ public interface ApiInterface {
     Call<WebServiceResponse> createEvent(@Body EventModel event);
     @POST("register")
     Call<WebServiceResponse> registerUser(@Body UserModel user);
+    @POST("updateEvent")
+    Call<WebServiceResponse> updateEvent(@Body EventModel event);
+    @POST("resolveParticipant")
+    Call<WebServiceResponse> resolveParticipant(@Body ParticipantModel participant);
 }
