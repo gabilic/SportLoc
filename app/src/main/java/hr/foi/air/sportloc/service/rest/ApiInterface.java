@@ -17,7 +17,7 @@ import retrofit2.http.Query;
 
 public interface ApiInterface {
     @GET("login")
-    Call<PrimitiveWrapperModel> getLoginUserInfo(@Query("username") String username, @Query("password") String password);
+    Call<UserModel> getLoginUserInfo(@Query("username") String username, @Query("password") String password);
     @GET("resetPassword")
     Call<PrimitiveWrapperModel> getResetPasswordInfo(@Query("email") String email);
     @GET("getCities")

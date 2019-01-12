@@ -1,16 +1,15 @@
 package hr.foi.air.sportloc.view.ui.activity;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import hr.foi.air.sportloc.R;
 import hr.foi.air.sportloc.databinding.ActivityLoginBinding;
+import hr.foi.air.sportloc.service.model.ActiveUserModel;
 import hr.foi.air.sportloc.view.util.Constants;
 import hr.foi.air.sportloc.view.util.DataInputValidator;
 import hr.foi.air.sportloc.view.util.IntentManager;
@@ -62,11 +61,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void observeViewModel(LoginViewModel viewModel) {
-        viewModel.getLoginInfoObservable().observe(this, new Observer<Integer>() {
-            @Override
-            public void onChanged(@Nullable Integer loginInfo) {
+        viewModel.getLoginInfoObservable().observe(this, loginInfo -> {
                 if (loginInfo != null) {
-                    if (loginInfo != 0) {
+                    if (loginInfo.getUserId() != 0) {
+                        ActiveUserModel.getInstance().setActiveUser(loginInfo);
                         MessageSender.sendMessage(getApplicationContext(), getResources().getString(R.string.login_success));
                     }
                     else {
@@ -76,8 +74,6 @@ public class LoginActivity extends AppCompatActivity {
                 else {
                     MessageSender.sendError(getApplicationContext(), getResources().getString(R.string.general_connection_error));
                 }
-            }
         });
     }
-
 }

@@ -1,26 +1,16 @@
 package hr.foi.air.sportloc.view.ui.activity;
 
-import android.app.DatePickerDialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import hr.foi.air.sportloc.R;
 import hr.foi.air.sportloc.service.model.UserModel;
-import hr.foi.air.sportloc.view.util.Constants;
-import hr.foi.air.sportloc.view.util.DataInputValidator;
 import hr.foi.air.sportloc.view.util.DateTimeHelper;
 import hr.foi.air.sportloc.view.util.IntentManager;
 import hr.foi.air.sportloc.view.util.MessageSender;
@@ -96,10 +86,6 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private boolean resolveGender() {
-        if (spnGender.getSelectedItem().toString().equalsIgnoreCase(getResources().getString(R.string.registration_male))) {
-            return true;
-        }
-        return false;
+        return spnGender.getSelectedItem().toString().equalsIgnoreCase(getResources().getString(R.string.registration_male));
     }
-
 }
