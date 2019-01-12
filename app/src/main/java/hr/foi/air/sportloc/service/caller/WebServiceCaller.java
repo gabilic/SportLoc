@@ -16,7 +16,6 @@ import hr.foi.air.sportloc.service.rest.ApiInterface;
 import hr.foi.air.sportloc.service.serviceUtil.BooleanCallback;
 import hr.foi.air.sportloc.service.serviceUtil.DataUtil;
 import hr.foi.air.sportloc.service.serviceUtil.MessageCallback;
-import hr.foi.air.sportloc.service.serviceUtil.WebServiceResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -43,16 +42,16 @@ public class WebServiceCaller {
         return instance;
     }
 
-    public LiveData<Integer> getLoginUserInfo(String username, String password) {
-        final MutableLiveData<Integer> data = new MutableLiveData<>();
-        api.getLoginUserInfo(username, password).enqueue(new Callback<PrimitiveWrapperModel>() {
+    public LiveData<UserModel> getLoginUserInfo(String username, String password) {
+        final MutableLiveData<UserModel> data = new MutableLiveData<>();
+        api.getLoginUserInfo(username, password).enqueue(new Callback<UserModel>() {
             @Override
-            public void onResponse(Call<PrimitiveWrapperModel> call, Response<PrimitiveWrapperModel> response) {
-                data.setValue(response.body().getUserId());
+            public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+                data.setValue(response.body());
             }
 
             @Override
-            public void onFailure(Call<PrimitiveWrapperModel> call, Throwable t) {
+            public void onFailure(Call<UserModel> call, Throwable t) {
                 data.setValue(null);
             }
         });
