@@ -28,8 +28,13 @@ public interface ApiInterface {
     Call<WebServiceResponse> createEvent(@Body EventModel event);
     @POST("register")
     Call<WebServiceResponse> registerUser(@Body UserModel user);
+
     @POST("updateEvent")
     Call<WebServiceResponse> updateEvent(@Body EventModel event);
     @POST("resolveParticipant")
     Call<WebServiceResponse> resolveParticipant(@Body ParticipantModel participant);
+
+    @GET("getProfile")
+    Call<UserModel> getProfile(@Query("username") String username);
+
 }
