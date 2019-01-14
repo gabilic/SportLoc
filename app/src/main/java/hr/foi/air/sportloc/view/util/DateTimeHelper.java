@@ -18,9 +18,9 @@ public class DateTimeHelper {
     private DatePickerDialog.OnDateSetListener getOnDateSetListener(final Context context, final TextView textView, final boolean showTimePicker) {
         return (datePicker, year, month, day) -> {
             month = month + 1;
-//                Log.d(TAG, "onDateSet: dd/mm/yyy: " + day + "/" + month + "/" + year);
+//                Log.d(TAG, "onDateSet: dd/mm/yyy: " + day + "." + month + "." + year + ".");
 
-            String date = day + "/" + month + "/" + year;
+            String date = day + "." + month + "." + year + ".";
             if (showTimePicker) {
                 showTimePicker(context, textView, date);
             } else {
