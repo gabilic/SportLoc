@@ -5,16 +5,11 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import hr.foi.air.sportloc.R;
 import hr.foi.air.sportloc.databinding.ActivityLoginBinding;
 import hr.foi.air.sportloc.service.model.ActiveUserModel;
-import hr.foi.air.sportloc.service.model.ModelEnum;
-import hr.foi.air.sportloc.service.model.UserModel;
 import hr.foi.air.sportloc.view.util.Constants;
 import hr.foi.air.sportloc.view.util.DataInputValidator;
 import hr.foi.air.sportloc.view.util.IntentManager;
@@ -71,24 +66,6 @@ public class LoginActivity extends AppCompatActivity {
                     if (loginInfo.getUserId() != 0) {
                         ActiveUserModel.getInstance().setActiveUser(loginInfo);
                         MessageSender.sendMessage(getApplicationContext(), getResources().getString(R.string.login_success));
-                        UserModel userModel = new UserModel();
-                        userModel.setUsername(loginInfo.getUsername());
-
-                        userModel.setName(loginInfo.getName());
-                        userModel.setSurname(loginInfo.getSurname());
-                        userModel.setPassword(loginInfo.getPassword());
-                        userModel.setEmail(loginInfo.getEmail());
-                        userModel.setDescription(loginInfo.getDescription());
-                        userModel.setUserId(loginInfo.getUserId());
-                        userModel.setUpvote(loginInfo.getUpvote());
-                        userModel.setDownvote(loginInfo.getDownvote());
-                        userModel.setKarma(loginInfo.getKarma());
-
-
-                        Map<String, Object> map = new HashMap<>();
-                        map.put(ModelEnum.UserModel.name(), userModel);
-
-                        IntentManager.startActivity(getApplicationContext(), ProfileActivity.class, map);
                     }
                     else {
                         MessageSender.sendError(getApplicationContext(), getResources().getString(R.string.login_fail));
