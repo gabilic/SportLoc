@@ -94,7 +94,6 @@
                 android:ems="10"
                 android:hint="@string/login_password"
                 android:inputType="textPassword"
-                android:text="@{user.password}"
 
                 android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"

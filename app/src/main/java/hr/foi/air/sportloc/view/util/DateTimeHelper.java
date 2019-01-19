@@ -65,7 +65,7 @@ public class DateTimeHelper {
     }
 
     public static String calculateAge(String date) {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
         Date dateFromPC = Calendar.getInstance().getTime();
         //endregion
 

@@ -2,7 +2,6 @@ package hr.foi.air.sportloc.service.caller;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
-import android.hardware.usb.UsbRequest;
 
 import java.util.List;
 import java.util.Map;
@@ -144,7 +143,11 @@ public class WebServiceCaller {
         api.resolveParticipant(participant).enqueue(new BooleanCallback(data));
         return data;
     }
-
+    public LiveData<Boolean> updateProfile(UserModel user) {
+        final MutableLiveData<Boolean> data = new MutableLiveData<>();
+        api.updateProfile(user).enqueue(new BooleanCallback(data));
+        return data;
+    }
 
     public LiveData<UserModel> getProfile(String username) {
         final MutableLiveData<UserModel> data = new MutableLiveData<>();
@@ -162,4 +165,6 @@ public class WebServiceCaller {
 
         return data;
     }
+
+
 }

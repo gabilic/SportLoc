@@ -18,23 +18,31 @@ import retrofit2.http.Query;
 public interface ApiInterface {
     @GET("login")
     Call<UserModel> getLoginUserInfo(@Query("username") String username, @Query("password") String password);
+
     @GET("resetPassword")
     Call<PrimitiveWrapperModel> getResetPasswordInfo(@Query("email") String email);
+
     @GET("getCities")
     Call<List<LocationModel>> getCities();
+
     @GET("getSports")
     Call<List<SportModel>> getSports();
+
     @POST("createEvent")
     Call<WebServiceResponse> createEvent(@Body EventModel event);
+
     @POST("register")
     Call<WebServiceResponse> registerUser(@Body UserModel user);
 
     @POST("updateEvent")
     Call<WebServiceResponse> updateEvent(@Body EventModel event);
+
     @POST("resolveParticipant")
     Call<WebServiceResponse> resolveParticipant(@Body ParticipantModel participant);
 
     @GET("getProfile")
     Call<UserModel> getProfile(@Query("username") String username);
 
+    @POST("updateProfile")
+    Call<WebServiceResponse> updateProfile(@Body UserModel user);
 }
