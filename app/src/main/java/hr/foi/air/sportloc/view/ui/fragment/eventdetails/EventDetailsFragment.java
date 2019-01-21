@@ -32,6 +32,7 @@ import butterknife.Unbinder;
 import hr.foi.air.sportloc.R;
 import hr.foi.air.sportloc.databinding.FragmentEventDetailsBinding;
 import hr.foi.air.sportloc.databinding.FragmentEventDetailsEditBinding;
+import hr.foi.air.sportloc.service.model.ActiveUserModel;
 import hr.foi.air.sportloc.service.model.EventModel;
 import hr.foi.air.sportloc.service.model.ModelEnum;
 import hr.foi.air.sportloc.service.model.ParticipantModel;
@@ -143,7 +144,7 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
 
     private void resolveEventButton() {
         //TODO check if creator and check if application is already sent
-        boolean isCreator = false;
+        boolean isCreator = ActiveUserModel.getInstance().getActiveUser().getUsername().equalsIgnoreCase(event.getUsername());
         boolean isMember = false;
         if (isCreator) {
             btnEventOptions.setText(R.string.btn_edit);
@@ -194,7 +195,9 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
+        if (unbinder != null) {
+            unbinder.unbind();
+        }
     }
 
     @OnClick(R.id.btn_event_options)
@@ -232,8 +235,7 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
     private ParticipantModel getParticipant() {
         ParticipantModel participant = new ParticipantModel();
         participant.setEventId(event.getEventId());
-        //TODO loggedUser
-        participant.setUserId(event.getUserId());
+        participant.setUserId(ActiveUserModel.getInstance().getActiveUser().getUserId());
         return participant;
     }
 

@@ -18,6 +18,7 @@ import butterknife.OnClick;
 import butterknife.OnItemSelected;
 import butterknife.OnTextChanged;
 import hr.foi.air.sportloc.R;
+import hr.foi.air.sportloc.service.model.ActiveUserModel;
 import hr.foi.air.sportloc.service.model.EventModel;
 import hr.foi.air.sportloc.service.model.LocationModel;
 import hr.foi.air.sportloc.service.model.SportModel;
@@ -100,8 +101,7 @@ public class EventDetailsEditFragment implements LifecycleOwner {
     }
 
     private void createEvent() {
-        //TODO replace with logged user
-        newEvent.setUserId(23);
+        newEvent.setUserId(ActiveUserModel.getInstance().getActiveUser().getUserId());
         lifecycleRegistry.markState(Lifecycle.State.STARTED);
         EventViewModel vm = new EventViewModel();
         vm.createEvent(newEvent);
