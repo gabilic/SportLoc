@@ -18,14 +18,14 @@ public final class IntentManager {
         currentContext.startActivity(intent);
     }
 
-    public static void startActivity(Context currentContext, Class destination, String extraName, Parcelable extraObject) {
+    public static void startActivity(Context currentContext, Class<?> destination, String extraName, Object extraObject) {
         Intent intent = new Intent(currentContext, destination);
-        intent.putExtra(extraName, extraObject);
+        putExtra(intent, extraName, extraObject);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         currentContext.startActivity(intent);
     }
 
-    public static void startActivity(Context currentContext, Class destination, Map<String, Object> extraMap) {
+    public static void startActivity(Context currentContext, Class<?> destination, Map<String, Object> extraMap) {
         Intent intent = new Intent(currentContext, destination);
 
         for (Map.Entry<String, Object> entry : extraMap.entrySet()){
@@ -39,6 +39,8 @@ public final class IntentManager {
     private static void putExtra(Intent intent, String key, Object value) {
         if (value instanceof Boolean) {
             intent.putExtra(key, (Boolean) value);
+        } else if(value instanceof String) {
+            intent.putExtra(key, (String) value);
         } else if (value instanceof Parcelable) {
             intent.putExtra(key, (Parcelable) value);
         } else if (value instanceof Serializable) {

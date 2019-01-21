@@ -6,6 +6,7 @@ import android.arch.lifecycle.MutableLiveData;
 import java.util.List;
 import java.util.Map;
 
+import hr.foi.air.sportloc.service.model.EventFilterModel;
 import hr.foi.air.sportloc.service.model.EventModel;
 import hr.foi.air.sportloc.service.model.LocationModel;
 import hr.foi.air.sportloc.service.model.ParticipantModel;
@@ -100,6 +101,22 @@ public class WebServiceCaller {
             });
         }
 
+        return data;
+    }
+
+    public LiveData<EventModel[]> getEvents(EventFilterModel filter) {
+        final MutableLiveData<EventModel[]> data = new MutableLiveData<>();
+        api.getEvents(filter).enqueue(new Callback<List<EventModel>>() {
+            @Override
+            public void onResponse(Call<List<EventModel>> call, Response<List<EventModel>> response) {
+                data.setValue(response.body().toArray(new EventModel[0]));
+            }
+
+            @Override
+            public void onFailure(Call<List<EventModel>> call, Throwable t) {
+                data.setValue(null);
+            }
+        });
         return data;
     }
 

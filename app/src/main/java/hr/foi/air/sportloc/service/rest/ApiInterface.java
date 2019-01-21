@@ -2,6 +2,7 @@ package hr.foi.air.sportloc.service.rest;
 
 import java.util.List;
 
+import hr.foi.air.sportloc.service.model.EventFilterModel;
 import hr.foi.air.sportloc.service.model.EventModel;
 import hr.foi.air.sportloc.service.model.LocationModel;
 import hr.foi.air.sportloc.service.model.ParticipantModel;
@@ -27,6 +28,9 @@ public interface ApiInterface {
 
     @GET("getSports")
     Call<List<SportModel>> getSports();
+
+    @POST("getEvents")
+    Call<List<EventModel>> getEvents(@Body EventFilterModel filter);
 
     @POST("createEvent")
     Call<WebServiceResponse> createEvent(@Body EventModel event);
