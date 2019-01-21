@@ -148,14 +148,39 @@ public class WebServiceCaller {
         return data;
     }
 
+
     public LiveData<Boolean> updateEvent(EventModel event) {
         final MutableLiveData<Boolean> data = new MutableLiveData<>();
         api.updateEvent(event).enqueue(new BooleanCallback(data));
         return data;
     }
+
     public LiveData<Boolean> resolveParticipant(ParticipantModel participant) {
         final MutableLiveData<Boolean> data = new MutableLiveData<>();
         api.resolveParticipant(participant).enqueue(new BooleanCallback(data));
         return data;
     }
+    public LiveData<Boolean> updateProfile(UserModel user) {
+        final MutableLiveData<Boolean> data = new MutableLiveData<>();
+        api.updateProfile(user).enqueue(new BooleanCallback(data));
+        return data;
+    }
+
+    public LiveData<UserModel> getProfile(String username) {
+        final MutableLiveData<UserModel> data = new MutableLiveData<>();
+        api.getProfile(username).enqueue(new Callback<UserModel>() {
+            @Override
+            public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+                data.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<UserModel> call, Throwable t) {
+                data.setValue(null);
+            }
+        });
+        return data;
+    }
+
+
 }

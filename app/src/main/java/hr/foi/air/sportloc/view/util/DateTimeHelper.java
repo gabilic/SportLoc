@@ -5,12 +5,12 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.annotation.NonNull;
-import android.widget.DatePicker;
 import android.widget.TextView;
-import android.widget.TimePicker;
 
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 public class DateTimeHelper {
@@ -61,5 +61,17 @@ public class DateTimeHelper {
                 year, month, day);
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
+    }
+
+    public static String calculateAge(String date) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+        Date dateFromPC = Calendar.getInstance().getTime();
+        Date DateFromUserNewFormat = formatter.parse(date, new ParsePosition(0));
+        SimpleDateFormat formatterForYears = new SimpleDateFormat("yyyy");
+
+        String yearFromPc = formatterForYears.format(dateFromPC);
+        String yearFromUser = formatterForYears.format(DateFromUserNewFormat);
+        int differenceInYears = Integer.parseInt(yearFromPc) - Integer.parseInt(yearFromUser);
+        return Integer.toString(differenceInYears);
     }
 }
