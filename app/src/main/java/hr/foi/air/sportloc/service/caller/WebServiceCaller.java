@@ -162,7 +162,6 @@ public class WebServiceCaller {
                 data.setValue(null);
             }
         });
-
         return data;
     }
 

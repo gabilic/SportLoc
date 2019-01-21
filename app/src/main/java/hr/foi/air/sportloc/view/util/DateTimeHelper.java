@@ -13,7 +13,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
-
 public class DateTimeHelper {
 
     private DatePickerDialog.OnDateSetListener getOnDateSetListener(final Context context, final TextView textView, final boolean showTimePicker) {
@@ -67,20 +66,12 @@ public class DateTimeHelper {
     public static String calculateAge(String date) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
         Date dateFromPC = Calendar.getInstance().getTime();
-        //endregion
-
-        //region GETTING DATE OF BIRTH FROM USER FROM SERVER
-        String dateOfBirth = date; //userModel.getDob(); <-TO STAVI KAD CES ZAPRAVO DOHVACATI DATUM SA SERVERA
-        Date DateFromUserNewFormat = formatter.parse(dateOfBirth, new ParsePosition(0));
-        //endregion
-
-        //region CALCULATING USER AGE AND SETTING DOB
-
+        Date DateFromUserNewFormat = formatter.parse(date, new ParsePosition(0));
         SimpleDateFormat formatterForYears = new SimpleDateFormat("yyyy");
+
         String yearFromPc = formatterForYears.format(dateFromPC);
         String yearFromUser = formatterForYears.format(DateFromUserNewFormat);
         int differenceInYears = Integer.parseInt(yearFromPc) - Integer.parseInt(yearFromUser);
-        String differenceInYearsString = Integer.toString(differenceInYears);
-        return differenceInYearsString;
+        return Integer.toString(differenceInYears);
     }
 }

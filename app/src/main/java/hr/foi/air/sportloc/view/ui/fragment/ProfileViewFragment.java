@@ -1,8 +1,6 @@
 package hr.foi.air.sportloc.view.ui.fragment;
 
-
 import android.databinding.DataBindingUtil;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -37,7 +35,6 @@ public class ProfileViewFragment extends Fragment {
     ImageButton btnUpvote;
     @BindView(R.id.imb_thumbs_down)
     ImageButton btnDownvote;
-
 
     private Unbinder unbinder;
     private ProfileViewListener listener;
@@ -87,14 +84,13 @@ public class ProfileViewFragment extends Fragment {
         this.listener = listener;
     }
 
-
     public void setKarmaColor() {
         user = (UserModel) getArguments().get(ModelEnum.UserModel.name());
         int karma = Integer.parseInt(user.getKarma());
         if (karma < 0) {
-            tvKarmaCounter.setBackgroundColor(Color.parseColor("#790000"));
+            tvKarmaCounter.setBackgroundColor(getResources().getColor(R.color.color_red_dark));
         } else {
-            tvKarmaCounter.setBackgroundColor(Color.parseColor("#006f00"));
+            tvKarmaCounter.setBackgroundColor(getResources().getColor(R.color.color_green));
         }
     }
 

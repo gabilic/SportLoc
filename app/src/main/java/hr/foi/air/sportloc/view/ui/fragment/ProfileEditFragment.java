@@ -111,15 +111,15 @@ public class ProfileEditFragment extends Fragment {
         int surnameLengthNumber=surnameLength.length();
 
         if (passwordLengthNumber < 6) {
-            MessageSender.sendError(getContext(), "Lozinka mora sadržavati barem 6 znakova");
+            MessageSender.sendError(getContext(), getResources().getString(R.string.profile_password_count));
             success=false;
         }
         if(nameLengthNumber==0){
-            MessageSender.sendError(getContext(), "Polje za ime ne smije biti prazno");
+            MessageSender.sendError(getContext(), getResources().getString(R.string.profile_name_empty));
             success=false;
         }
         if(surnameLengthNumber==0){
-            MessageSender.sendError(getContext(),"Polje za prezime ne smije biti prazno");
+            MessageSender.sendError(getContext(), getResources().getString(R.string.profile_surname_empty));
             success=false;
         }
         if(success==true){
@@ -128,16 +128,16 @@ public class ProfileEditFragment extends Fragment {
             profileViewModel.getProfileUpdateObservable().observe(this, result -> {
                 if (result != null) {
                     if (result) {
-                        MessageSender.sendMessage(getContext(), "Uspiješna promjena stavki");
+                        MessageSender.sendMessage(getContext(), getResources().getString(R.string.profile_edit_complete));
 
                                 if(listener!=null){
                                    listener.onOpenProfileView(); }
 
                     } else {
-                        MessageSender.sendError(getContext(), "Neuspiješna promjena stavki");
+                        MessageSender.sendError(getContext(), getResources().getString(R.string.profile_edit_failure));
                     }
                 } else {
-                    MessageSender.sendError(getContext(), "Neuspiješna promjena. Provjerite internetsku vezu");
+                    MessageSender.sendError(getContext(), getResources().getString(R.string.profile_edit_error));
                 }
             });
         }

@@ -16,15 +16,11 @@ public class UserModel implements Serializable {
     private String surname;
     private String username;
     private String email;
-    private String salt;
     private String password;
     private String description;
     private String dob;
     private String age;
-
-    //--------novo moje
     private String genderString;
-    //--------
 
     public UserModel() {
     }
@@ -74,14 +70,6 @@ public class UserModel implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getSalt() {
-        return resolveNull(salt);
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
     }
 
     public String getPassword() {
@@ -148,11 +136,7 @@ public class UserModel implements Serializable {
         this.karma = karma;
     }
 
-    public String getAge() {
-
-        return dob!=null && !dob.isEmpty()? DateTimeHelper.calculateAge(dob):"";
-
-    }
+    public String getAge() { return dob!=null && !dob.isEmpty()? DateTimeHelper.calculateAge(dob):""; }
 
     public void setAge(String age) {
         this.age = age;

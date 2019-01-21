@@ -79,13 +79,19 @@
     <string name="profile_comments">Komentari</string>
     <string name="profile_description">Osobne informacije</string>
     <string name="profile_description_edit">Napišite nešto o sebi</string>
+    <string name="profile_edit_error">Neuspješna promjena. Provjerite internetsku vezu</string>
+    <string name="profile_edit_failure">Neuspješna promjena stavki</string>
+    <string name="profile_edit_complete">Uspješna promjena stavki</string>
     <string name="profile_email_edit">Vaša e-mail adresa</string>
     <string name="profile_gender_age">Spol i dob</string>
     <string name="profile_name_edit">Vaše ime</string>
+    <string name="profile_name_empty">Polje za ime ne smije biti prazno</string>
     <string name="profile_name_surname">Ime i prezime korisnika</string>
+    <string name="profile_password_count">Lozinka mora sadržavati barem 6 znakova</string>
     <string name="profile_password_edit">Lozinka</string>
     <string name="profile_show_password">Prikaži lozinku</string>
     <string name="profile_surname_edit">Vaše prezime</string>
+    <string name="profile_surname_empty">Polje za prezime ne smije biti prazno</string>
     <string name="profile_username">Korisničko ime</string>
 
     <string name="registration_choose">Odaberite</string>
