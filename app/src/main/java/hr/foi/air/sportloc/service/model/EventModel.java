@@ -12,6 +12,7 @@ public class EventModel implements Parcelable {
     private int capacity;
     private int current;
     private boolean open;
+    private boolean expanded;
     private String username;
     private String name;
     private String start;
@@ -32,6 +33,7 @@ public class EventModel implements Parcelable {
         cityId = in.readInt();
         userId = in.readInt();
         open = in.readByte() != 0;
+        expanded = in.readByte() != 0;
         username = in.readString();
         name = in.readString();
         start= in.readString();
@@ -96,6 +98,14 @@ public class EventModel implements Parcelable {
 
     public void setOpen(boolean open) {
         this.open = open;
+    }
+
+    public boolean isExpanded() {
+        return expanded;
+    }
+
+    public void setExpanded(boolean expanded) {
+        this.expanded = expanded;
     }
 
     public int getCapacity() {
@@ -183,11 +193,12 @@ public class EventModel implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(eventId);
         dest.writeInt(capacity);
-        dest.writeInt(capacity);
+        dest.writeInt(current);
         dest.writeInt(sportId);
         dest.writeInt(cityId);
         dest.writeInt(userId);
         dest.writeByte((byte) (open ? 1 : 0));
+        dest.writeByte((byte) (expanded ? 1 : 0));
         dest.writeString(username);
         dest.writeString(name);
         dest.writeString(start);
