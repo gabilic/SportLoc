@@ -1,9 +1,7 @@
 package hr.foi.air.sportloc.view.ui.activity;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -39,20 +37,15 @@ public class ForgottenPasswordActivity extends AppCompatActivity {
     }
 
     private void observeViewModel(ForgottenPasswordViewModel viewModel) {
-        viewModel.getResetPasswordInfoObservable().observe(this, new Observer<Boolean>() {
-            @Override
-            public void onChanged(@Nullable Boolean resetPasswordInfo) {
-                if (resetPasswordInfo != null) {
-                    if (resetPasswordInfo) {
-                        MessageSender.sendMessage(getApplicationContext(), getResources().getString(R.string.forgotten_password_success));
-                    }
-                    else {
-                        MessageSender.sendError(getApplicationContext(), getResources().getString(R.string.forgotten_password_fail));
-                    }
+        viewModel.getResetPasswordInfoObservable().observe(this, resetPasswordInfo -> {
+            if (resetPasswordInfo != null) {
+                if (resetPasswordInfo) {
+                    MessageSender.sendMessage(getApplicationContext(), getResources().getString(R.string.forgotten_password_success));
+                } else {
+                    MessageSender.sendError(getApplicationContext(), getResources().getString(R.string.forgotten_password_fail));
                 }
-                else {
-                    MessageSender.sendError(getApplicationContext(), getResources().getString(R.string.general_connection_error));
-                }
+            } else {
+                MessageSender.sendError(getApplicationContext(), getResources().getString(R.string.general_connection_error));
             }
         });
     }
