@@ -1,0 +1,266 @@
+<layout>
+
+    <data>
+
+        <import type="hr.foi.air.sportloc.view.ui.fragment.eventdetails.EventDetailsEditFragment" />
+
+        <variable
+            name="event"
+            type="hr.foi.air.sportloc.service.model.EventModel" />
+
+        <variable
+            name="locationAdapter"
+            type="hr.foi.air.sportloc.view.adapter.LocationArrayAdapter" />
+
+        <variable
+            name="sportAdapter"
+            type="hr.foi.air.sportloc.view.adapter.SportArrayAdapter" />
+    </data>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+
+        android:id="@+id/sv_event_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context="hr.foi.air.sportloc.fragments.EventDetailsEditFragment">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="16dp"
+            android:scrollbars="vertical">
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:gravity="start"
+                android:hint="@string/event_details_title"
+                android:inputType="text"
+                android:text="@{event.name}"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Spinner
+                android:id="@+id/spn_sport"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown"
+                app:adapter="@{sportAdapter}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_name" />
+
+
+            <Spinner
+                android:id="@+id/spn_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown"
+                app:adapter="@{locationAdapter}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spn_sport" />
+
+            <TextView
+                android:id="@+id/tv_capacity"
+                style="@style/style_bold_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:labelFor="@id/et_capacity"
+                android:text="@string/event_details_capacity"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spn_location" />
+
+            <EditText
+                android:id="@+id/et_capacity"
+                android:layout_width="50dp"
+                android:layout_height="42dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:inputType="number"
+                android:text="@={``+event.capacity}"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spn_location" />
+
+            <TextView
+                android:id="@+id/tv_start"
+                style="@style/style_bold_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/event_details_start"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_capacity" />
+
+            <TextView
+                android:id="@+id/tv_start_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:text="@={EventDetailsEditFragment.resolveStartText(event.start)}"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_start"
+                app:layout_constraintWidth_percent="0.6" />
+
+            <TextView
+                android:id="@+id/tv_end"
+                style="@style/style_bold_text"
+                android:layout_width="0dp"
+                android:layout_height="26dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/event_details_end"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_start_date" />
+
+            <TextView
+                android:id="@+id/tv_end_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:text="@={EventDetailsEditFragment.resolveEndText(event.end)}"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_end"
+                app:layout_constraintWidth_percent="0.6" />
+
+            <TextView
+                android:id="@+id/tv_address"
+                style="@style/style_bold_text"
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:labelFor="@id/et_address"
+                android:text="@string/event_details_address"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_end_date" />
+
+            <EditText
+                android:id="@+id/et_address"
+                android:layout_width="0dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:inputType="text"
+                android:minWidth="200dp"
+                android:text="@{event.address}"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_address" />
+
+            <Switch
+                android:id="@+id/sw_is_open"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:checked="@={event.open}"
+                android:text="@string/event_details_select_open"
+                android:textOff="@string/event_details_select_private"
+                android:textOn="@string/event_details_select_open"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_address" />
+
+            <TextView
+                android:id="@+id/tv_description"
+                style="@style/style_bold_text"
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:labelFor="@id/et_description"
+                android:text="@string/event_details_description"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sw_is_open" />
+
+            <EditText
+                android:id="@+id/et_description"
+                android:layout_width="341dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/basic_border"
+                android:gravity="top|start"
+                android:inputType="textMultiLine"
+                android:lines="3"
+                android:maxWidth="300dp"
+                android:maxLines="5"
+                android:minLines="3"
+                android:text="@{event.description}"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+
+            <Button
+                android:id="@+id/btn_save_event"
+                style="@style/style_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/btn_general"
+                android:text="@string/btn_save_changes"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_description"
+                app:layout_constraintWidth_percent="0.45" />
+
+            <Button
+                android:id="@+id/btn_cancel_edit"
+                style="@style/style_button"
+                android:layout_width="173dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/btn_general"
+                android:text="@string/btn_cancel_changes"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_save_event"
+                app:layout_constraintTop_toBottomOf="@+id/et_description"
+                app:layout_constraintWidth_percent="0.45" />
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+</layout>

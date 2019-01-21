@@ -9,7 +9,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import hr.foi.air.sportloc.R;
 import hr.foi.air.sportloc.view.adapter.EventDetailsPageAdapter;
-import hr.foi.air.sportloc.view.ui.fragment.EventDetailsFragment;
+import hr.foi.air.sportloc.view.ui.fragment.eventdetails.EventDetailsFragment;
 import hr.foi.air.sportloc.view.ui.fragment.EventMembersFragment;
 
 public class EventDetailsActivity extends AppCompatActivity {
@@ -22,16 +22,12 @@ public class EventDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_event_details);
         ButterKnife.bind(this);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
-        }
         setupTabLayout();
     }
 
-    private void setupTabLayout(){
+    private void setupTabLayout() {
         EventDetailsPageAdapter adapter = new EventDetailsPageAdapter(getSupportFragmentManager());
 
         EventDetailsFragment eventDetailsFragment = new EventDetailsFragment();
@@ -42,5 +38,4 @@ public class EventDetailsActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
     }
-
 }

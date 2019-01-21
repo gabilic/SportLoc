@@ -7,11 +7,9 @@
             type="hr.foi.air.sportloc.service.model.EventModel" />
     </data>
 
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-
         android:id="@+id/sv_event_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,8 +38,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:gravity="start"
-                android:text="@{event.title}"
-                android:textColor="#000000"
+                android:text="@{event.name}"
+                android:textColor="@android:color/black"
                 android:textSize="36sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -50,14 +48,14 @@
 
             <TextView
                 android:id="@+id/tv_sport_location_capacity"
-                style="@style/bold_text"
+                style="@style/style_bold_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="52dp"
-                android:text='@{event.sport + ", " + event.location + "(" + event.currentCapacity + "/" + event.maxCapacity + ")"}'
-                android:textColor="#000000"
+                android:text='@{event.sport + ", " + event.city + "(" + event.current + "/" + event.capacity + ")"}'
+                android:textColor="@android:color/black"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +63,7 @@
 
             <View
                 android:id="@+id/dvd_horizontal"
-                style="@style/horizontal_line"
+                style="@style/style_horizontal_line"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -74,13 +72,13 @@
 
             <TextView
                 android:id="@+id/tv_creator"
-                style="@style/bold_text"
+                style="@style/style_bold_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/event_details_creator"
-                android:textColor="#000000"
+                android:textColor="@android:color/black"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dvd_horizontal" />
@@ -92,8 +90,8 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:text="@{event.creatorUserName}"
-                android:textColor="#000000"
+                android:text="@{event.username}"
+                android:textColor="@android:color/black"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tv_creator"
@@ -101,12 +99,12 @@
 
             <TextView
                 android:id="@+id/tv_lbl_address"
-                style="@style/bold_text"
+                style="@style/style_bold_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="@string/event_details_address"
-                android:textColor="#000000"
+                android:textColor="@android:color/black"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_creator_username" />
@@ -118,7 +116,7 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="16dp"
                 android:text="@{event.address}"
-                android:textColor="#000000"
+                android:textColor="@android:color/black"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tv_lbl_address"
@@ -126,12 +124,12 @@
 
             <TextView
                 android:id="@+id/tv_lbl_start_time"
-                style="@style/bold_text"
+                style="@style/style_bold_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="@string/event_details_start_time"
-                android:textColor="#000000"
+                android:text="@string/event_details_start"
+                android:textColor="@android:color/black"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_lbl_address" />
@@ -142,8 +140,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="16dp"
-                android:text="@{event.startTime}"
-                android:textColor="#000000"
+                android:text="@{event.start ?? ``}"
+                android:textColor="@android:color/black"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tv_lbl_start_time"
@@ -151,12 +149,12 @@
 
             <TextView
                 android:id="@+id/tv_lbl_end_time"
-                style="@style/bold_text"
+                style="@style/style_bold_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="@string/event_details_end_time"
-                android:textColor="#000000"
+                android:text="@string/event_details_end"
+                android:textColor="@android:color/black"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_lbl_start_time" />
@@ -167,8 +165,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="16dp"
-                android:text="@{event.endTime}"
-                android:textColor="#000000"
+                android:text="@{event.end ?? ``}"
+                android:textColor="@android:color/black"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tv_lbl_end_time"
@@ -176,14 +174,14 @@
 
             <TextView
                 android:id="@+id/tv_lbl_description"
-                style="@style/bold_text"
+                style="@style/style_bold_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/event_details_description"
-                android:textColor="#000000"
+                android:textColor="@android:color/black"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -196,7 +194,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="@{event.description}"
-                android:textColor="#000000"
+                android:textColor="@android:color/black"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -204,8 +202,8 @@
 
             <Button
                 android:id="@+id/btn_event_options"
-                android:background="@drawable/btn_general"
                 style="@style/style_event_details_button"
+                android:background="@drawable/btn_general"
                 android:text="@string/event_details_join"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -219,7 +217,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:text="@string/event_details_map"
-                android:textColor="#000000"
+                android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -235,13 +233,10 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="16dp"
-
-                android:background="#00000000"
-
+                android:background="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_lbl_map"
                 app:uiCompass="true"
-
                 app:uiZoomControls="true"
                 app:zOrderOnTop="true"
                 tools:context="hr.foi.air.sportloc.EventDetailsActivity"
@@ -249,5 +244,4 @@
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
-
 </layout>

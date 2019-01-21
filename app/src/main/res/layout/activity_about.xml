@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ui.activity.MainActivity">
+    tools:context=".view.ui.activity.AboutActivity">
 
     <ImageView
         android:id="@+id/iv_app_logo"
@@ -39,67 +39,44 @@
             android:scrollbars="vertical">
 
             <TextView
-                android:id="@+id/tv_login"
-                style="@style/style_text_view_large"
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_about"
+                style="@style/style_text_view_small"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/main_login"
-                android:textAllCaps="true"
-                android:textStyle="bold"
+                android:text="@string/about_about"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/btn_account"
-                style="@style/style_button_large"
+            <TextView
+                android:id="@+id/tv_authors"
+                style="@style/style_text_view_small"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="24dp"
-                android:background="@drawable/btn_account"
-                android:text="@string/main_account"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/about_authors"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_login" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_about" />
 
             <Button
-                android:id="@+id/btn_facebook"
-                style="@style/style_button_large"
+                android:id="@+id/btn_contact_us"
+                style="@style/style_button_small"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="24dp"
-                android:background="@drawable/btn_facebook"
-                android:drawableStart="@drawable/ic_facebook"
-                android:paddingStart="40dp"
-                android:paddingEnd="50dp"
-                android:text="@string/main_facebook"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/btn_general"
+                android:text="@string/about_contact"
+                android:textAllCaps="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btn_account" />
-
-            <Button
-                android:id="@+id/btn_google"
-                style="@style/style_button_large"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="24dp"
-                android:background="@drawable/btn_google"
-                android:drawableStart="@drawable/ic_google"
-                android:paddingStart="30dp"
-                android:paddingEnd="70dp"
-                android:text="@string/main_google"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btn_facebook" />
-
+                app:layout_constraintTop_toBottomOf="@+id/tv_authors" />
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

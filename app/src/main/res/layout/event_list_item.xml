@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="event"
+            type="hr.foi.air.sportloc.service.model.EventModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/style_text_view_medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:drawableStart="@{!event.open ? @drawable/ic_event_closed : null}"
+            android:text='@{(!event.open ? " " : "") + event.name}' />
+
+        <TextView
+            android:id="@+id/tv_info"
+            style="@style/style_text_view_small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="16dp"
+            android:text='@{event.sport + ", " + event.city + " (" + event.current+ "/" + event.capacity + ")"}' />
+
+        <LinearLayout
+            android:id="@+id/lyt_expansion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="@{event.expanded ? View.VISIBLE : View.GONE}">
+
+            <TextView
+                android:id="@+id/tv_date_time"
+                style="@style/style_text_view_small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="8dp"
+                android:text='@{event.end != null ? event.start + " - " + event.end : event.start}' />
+
+            <TextView
+                android:id="@+id/tv_creator"
+                style="@style/style_text_view_small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="16dp"
+                android:text='@{@string/event_details_creator + " " + event.username}' />
+
+            <TextView
+                android:id="@+id/tv_description"
+                style="@style/style_text_view_small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="24dp"
+                android:text="@{event.description}" />
+
+            <Button
+                android:id="@+id/btn_details"
+                style="@style/style_button_medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/btn_general"
+                android:text="@string/event_list_details" />
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>
