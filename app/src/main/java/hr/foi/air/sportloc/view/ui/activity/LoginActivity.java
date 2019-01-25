@@ -5,6 +5,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import hr.foi.air.sportloc.R;
@@ -67,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (loginInfo.getUserId() != 0) {
                     ActiveUserModel.getInstance().setActiveUser(loginInfo);
                     IntentManager.startActivity(getApplicationContext(), EventListActivity.class, EXTRA_MESSAGE, getResources().getString(R.string.login_success));
+
                 } else {
                     MessageSender.sendError(getApplicationContext(), getResources().getString(R.string.login_fail));
                 }

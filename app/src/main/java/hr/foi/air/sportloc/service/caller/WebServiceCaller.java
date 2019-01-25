@@ -6,6 +6,7 @@ import android.arch.lifecycle.MutableLiveData;
 import java.util.List;
 import java.util.Map;
 
+import hr.foi.air.sportloc.service.model.CommentModel;
 import hr.foi.air.sportloc.service.model.EventFilterModel;
 import hr.foi.air.sportloc.service.model.EventModel;
 import hr.foi.air.sportloc.service.model.LocationModel;
@@ -176,6 +177,22 @@ public class WebServiceCaller {
 
             @Override
             public void onFailure(Call<UserModel> call, Throwable t) {
+                data.setValue(null);
+            }
+        });
+        return data;
+    }
+
+    public LiveData<List<CommentModel>> getComments(Integer id){
+        final MutableLiveData<List<CommentModel>> data=new MutableLiveData<>();
+        api.getComments(id).enqueue(new Callback<List<CommentModel>>() {
+            @Override
+            public void onResponse(Call<List<CommentModel>> call, Response<List<CommentModel>> response) {
+                data.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<CommentModel>> call, Throwable t) {
                 data.setValue(null);
             }
         });

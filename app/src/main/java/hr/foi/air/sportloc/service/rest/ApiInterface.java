@@ -9,6 +9,7 @@ import hr.foi.air.sportloc.service.model.ParticipantModel;
 import hr.foi.air.sportloc.service.model.PrimitiveWrapperModel;
 import hr.foi.air.sportloc.service.model.SportModel;
 import hr.foi.air.sportloc.service.model.UserModel;
+import hr.foi.air.sportloc.service.model.CommentModel;
 import hr.foi.air.sportloc.service.serviceUtil.WebServiceResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -49,4 +50,7 @@ public interface ApiInterface {
 
     @POST("updateProfile")
     Call<WebServiceResponse> updateProfile(@Body UserModel user);
+
+    @GET("getComments")
+    Call<List<CommentModel>> getComments(@Query("id") Integer id);
 }

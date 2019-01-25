@@ -1,5 +1,6 @@
 package hr.foi.air.sportloc.view.ui.fragment;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -21,6 +23,7 @@ import hr.foi.air.sportloc.databinding.FragmentProfileViewBinding;
 import hr.foi.air.sportloc.service.model.ActiveUserModel;
 import hr.foi.air.sportloc.service.model.ModelEnum;
 import hr.foi.air.sportloc.service.model.UserModel;
+import hr.foi.air.sportloc.view.ui.activity.CommentActivity;
 import hr.foi.air.sportloc.view.util.Constants;
 import hr.foi.air.sportloc.viewmodel.ProfileViewModel;
 
@@ -36,8 +39,10 @@ public class ProfileViewFragment extends Fragment {
     @BindView(R.id.imb_thumbs_down)
     ImageButton btnDownvote;
 
+
     private Unbinder unbinder;
     private ProfileViewListener listener;
+
     private UserModel user;
     private boolean upvote = false;
     private boolean downvote = false;
@@ -79,7 +84,9 @@ public class ProfileViewFragment extends Fragment {
     public interface ProfileViewListener {
         void onOpenProfileEditor();
     }
-
+    public  interface CommentsListViewListener{
+        void onOpenCommentsList();
+    }
     public void setListener(ProfileViewListener listener) {
         this.listener = listener;
     }
@@ -134,12 +141,16 @@ public class ProfileViewFragment extends Fragment {
     }
 
     public void reloadFragment(UserModel user) {
-
         getArguments().clear();
         getArguments().putBoolean(Constants.RELOADED, true);
         getArguments().putSerializable(ModelEnum.UserModel.name(), user);
         getFragmentManager().beginTransaction().detach(this).attach(this).commit();
+    }
 
 
+
+    @OnClick(R.id.btn_comments)
+    public void Comments(){
+        startActivity(new Intent(getContext(),CommentActivity.class));
     }
 }

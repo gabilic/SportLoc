@@ -25,6 +25,9 @@
     <string name="btn_edit">Uredi</string>
     <string name="btn_save_changes">Spremi</string>
 
+    <string name="comment_commentator_username">Komentar korisnika <b> </b></string>
+
+
     <string name="event_creation_error">Došlo je do pogreške prilikom izrade događaja!</string>
     <string name="event_details_address">Adresa</string>
     <string name="event_details_capacity">Kapacitet:</string>
