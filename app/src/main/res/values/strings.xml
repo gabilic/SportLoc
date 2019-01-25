@@ -102,6 +102,7 @@
     <string name="registration_male">Muško</string>
     <string name="registration_name">Ime</string>
     <string name="registration_password">Lozinka</string>
+    <string name="registration_password_count">Lozinka mora sadržavati najmanje 6 znakova</string>
     <string name="registration_send">Registriraj se</string>
     <string-array name="registration_spinner">
         <item>Muško</item>
@@ -110,6 +111,7 @@
     <string name="registration_surname">Prezime</string>
     <string name="registration_user_exists">Ovakvo korisničko ime već postoji!</string>
     <string name="registration_username">Korisničko ime</string>
+
 
     <string name="title_activity_event_details">Događaj</string>
     <string name="title_activity_event_members">Sudionici</string>
