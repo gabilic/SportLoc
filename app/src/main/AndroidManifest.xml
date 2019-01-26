@@ -33,6 +33,8 @@
         <activity android:name=".view.ui.activity.EventDetailsActivity" />
         <activity android:name=".view.ui.activity.AboutActivity" />
         <activity android:name=".view.ui.activity.EventListActivity" />
+        <activity android:name=".view.ui.activity.CommentActivity"/>
+
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
