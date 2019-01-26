@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.res.ResourcesCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -17,6 +18,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import hr.foi.air.sportloc.R;
 import hr.foi.air.sportloc.databinding.ActivityEventListBinding;
+import hr.foi.air.sportloc.databinding.NavHeaderBinding;
 import hr.foi.air.sportloc.service.model.ActiveUserModel;
 import hr.foi.air.sportloc.service.model.EventFilterModel;
 import hr.foi.air.sportloc.service.model.EventModel;
@@ -28,16 +30,19 @@ import hr.foi.air.sportloc.view.util.MessageSender;
 import hr.foi.air.sportloc.viewmodel.EventViewModel;
 
 public class EventListActivity extends AppCompatActivity {
-    private ActivityEventListBinding binding;
+    private ActivityEventListBinding activityEventListBinding;
+    private NavHeaderBinding navHeaderBinding;
     private EventViewModel viewModel;
     private EventListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_event_list);
+        activityEventListBinding = DataBindingUtil.setContentView(this, R.layout.activity_event_list);
+        navHeaderBinding = NavHeaderBinding.bind(activityEventListBinding.nvDrawer.getHeaderView(0));
         ButterKnife.bind(this);
         viewModel = ViewModelProviders.of(this).get(EventViewModel.class);
+        setSupportActionBar(activityEventListBinding.tlbrGeneral);
         initializeActivity();
     }
 
@@ -47,6 +52,12 @@ public class EventListActivity extends AppCompatActivity {
     }
 
     private void initializeActivity() {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        }
+        navHeaderBinding.setUser(ActiveUserModel.getInstance().getActiveUser());
         String message = getIntent().getStringExtra(LoginActivity.EXTRA_MESSAGE);
         if (message != null && !message.isEmpty()) {
             MessageSender.sendMessage(getApplicationContext(), message);
@@ -88,9 +99,9 @@ public class EventListActivity extends AppCompatActivity {
         if (divider != null) {
             decoration.setDrawable(divider);
         }
-        binding.rvEventList.setLayoutManager(layoutManager);
-        binding.rvEventList.addItemDecoration(decoration);
-        binding.rvEventList.setAdapter(adapter);
+        activityEventListBinding.rvEventList.setLayoutManager(layoutManager);
+        activityEventListBinding.rvEventList.addItemDecoration(decoration);
+        activityEventListBinding.rvEventList.setAdapter(adapter);
     }
 
     private void observeViewModel(EventViewModel viewModel) {
