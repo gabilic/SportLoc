@@ -7,6 +7,8 @@ public final class Constants {
     public static final String RELOADED = "Reloaded";
     public static final String CREATE_NEW_EVENT = "hr.foi.air.sportloc.CREATE_NEW_EVENT";
 
+    public static final String BASE_URL = "https://sportloc-backend-test.herokuapp.com/";
+
     private Constants() {
     }
 }

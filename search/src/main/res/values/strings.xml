@@ -1,0 +1,14 @@
+<resources>
+    <string name="search">Pretraži</string>
+    <string name="feeling_lucky">Osjećam se sretno</string>
+    <string-array name="spinner_capacity">
+        <item>Slobodni</item>
+        <item>Puni</item>
+        <item>Svi</item>
+    </string-array>
+    <string-array name="spinner_open">
+        <item>Otvoreni</item>
+        <item>Zatvoreni</item>
+        <item>Svi</item>
+    </string-array>
+</resources>

@@ -23,10 +23,11 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static hr.foi.air.sportloc.view.util.Constants.BASE_URL;
+
 public class WebServiceCaller {
     private ApiInterface api;
     private static WebServiceCaller instance;
-    private static final String BASE_URL = "https://sportloc-backend-test.herokuapp.com/";
 
     private WebServiceCaller() {
         Retrofit retrofit = new Retrofit.Builder()
