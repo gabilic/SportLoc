@@ -50,7 +50,11 @@ public class ProfileViewFragment extends Fragment {
         View view = viewBinding.getRoot();
         unbinder = ButterKnife.bind(this, view);
 
-        user = (UserModel) getArguments().get(ModelEnum.UserModel.name());
+        user = getArguments() != null ? (getArguments().get(ModelEnum.UserModel.name()) != null ?
+                (UserModel) getArguments().get(ModelEnum.UserModel.name()) :
+                ActiveUserModel.getInstance().getActiveUser()) :
+                ActiveUserModel.getInstance().getActiveUser();
+
         viewBinding.setUser(user);
 
         checkUser();
@@ -85,7 +89,11 @@ public class ProfileViewFragment extends Fragment {
     }
 
     public void setKarmaColor() {
-        user = (UserModel) getArguments().get(ModelEnum.UserModel.name());
+        user = getArguments() != null ? (getArguments().get(ModelEnum.UserModel.name()) != null ?
+                (UserModel) getArguments().get(ModelEnum.UserModel.name()) :
+                ActiveUserModel.getInstance().getActiveUser()) :
+                ActiveUserModel.getInstance().getActiveUser();
+
         int karma = Integer.parseInt(user.getKarma());
         if (karma < 0) {
             tvKarmaCounter.setBackgroundColor(getResources().getColor(R.color.color_red_dark));
