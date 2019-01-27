@@ -16,6 +16,7 @@ import hr.foi.air.sportloc.view.util.IntentManager;
 import hr.foi.air.sportloc.view.util.MessageSender;
 import hr.foi.air.sportloc.viewmodel.RegistrationViewModel;
 
+
 public class RegistrationActivity extends AppCompatActivity {
 
     @BindView(R.id.et_name)
@@ -43,9 +44,6 @@ public class RegistrationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
-        }
         setContentView(R.layout.activity_registration);
         ButterKnife.bind(this);
     }
@@ -69,20 +67,29 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private void observeRegistration(UserModel user) {
-        RegistrationViewModel registrationViewModel = new RegistrationViewModel();
-        registrationViewModel.register(user);
-        registrationViewModel.getRegistrationObservable().observe(this, result -> {
-            if (result != null) {
-                if (result.containsKey(true)) {
-                    MessageSender.sendMessage(this, getResources().getString(R.string.registration_success));
-                    IntentManager.startActivity(getApplicationContext(), LoginActivity.class);
+        boolean success = true;
+        String passwordLength = etPassword.getText().toString();
+        int passwordLengthNumber = passwordLength.length();
+        if (passwordLengthNumber < 6) {
+            MessageSender.sendError(getApplicationContext(), getResources().getString(R.string.registration_password_count));
+            success = false;
+        }
+        if (success == true) {
+            RegistrationViewModel registrationViewModel = new RegistrationViewModel();
+            registrationViewModel.register(user);
+            registrationViewModel.getRegistrationObservable().observe(this, result -> {
+                if (result != null) {
+                    if (result.containsKey(true)) {
+                        MessageSender.sendMessage(this, getResources().getString(R.string.registration_success));
+                        IntentManager.startActivity(getApplicationContext(), LoginActivity.class);
+                    } else {
+                        MessageSender.sendError(this, result.get(false));
+                    }
                 } else {
-                    MessageSender.sendError(this, result.get(false));
+                    MessageSender.sendError(this, getResources().getString(R.string.general_connection_error));
                 }
-            } else {
-                MessageSender.sendError(this, getResources().getString(R.string.general_connection_error));
-            }
-        });
+            });
+        }
     }
 
     private boolean resolveGender() {
