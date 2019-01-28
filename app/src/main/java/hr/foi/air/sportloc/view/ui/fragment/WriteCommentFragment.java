@@ -62,13 +62,12 @@ public class WriteCommentFragment extends Fragment {
     @OnClick(R.id.btn_save_comment)
     public void sendComment() {
         int commentatorId = ActiveUserModel.getInstance().getActiveUser().getUserId();
-        Boolean vote = userVote;
         String comment = etComment.getText().toString();
 
         CommentModel commentModel = new CommentModel();
         commentModel.setUserId(id);
         commentModel.setCommentatorId(commentatorId);
-        commentModel.setVote(vote);
+        commentModel.setVote(userVote);
         commentModel.setComment(comment);
         observeCommentWrite(commentModel);
     }

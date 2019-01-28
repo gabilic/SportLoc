@@ -155,15 +155,10 @@ public class ProfileViewFragment extends Fragment {
             MessageSender.sendError(getContext(), getResources().getString(R.string.profile_write_error));
         } else {
             openWriteComment = true;
-            boolean userVote;
-            if (upvote) {
-                userVote = true;
-            } else {
-                userVote = false;
-            }
+
             Intent i = new Intent(getContext(), CommentActivity.class);
             i.putExtra(Constants.KEY, openWriteComment);
-            i.putExtra(Constants.VOTE, userVote);
+            i.putExtra(Constants.VOTE, upvote);
             int id = user.getUserId();
             i.putExtra(Constants.USERID, id);
             startActivity(i);

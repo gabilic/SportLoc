@@ -35,9 +35,6 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-
-
-import hr.foi.air.sportloc.service.model.ActiveUserModel;
 import hr.foi.air.sportloc.service.model.CommentModel;
 import hr.foi.air.sportloc.service.model.ModelEnum;
 import hr.foi.air.sportloc.service.model.UserModel;
