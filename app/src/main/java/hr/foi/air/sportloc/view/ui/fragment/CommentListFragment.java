@@ -42,6 +42,7 @@ import hr.foi.air.sportloc.service.model.CommentModel;
 import hr.foi.air.sportloc.service.model.ModelEnum;
 import hr.foi.air.sportloc.service.model.UserModel;
 import hr.foi.air.sportloc.view.ui.activity.ProfileActivity;
+import hr.foi.air.sportloc.view.util.Constants;
 import hr.foi.air.sportloc.view.util.IntentManager;
 import hr.foi.air.sportloc.viewmodel.CommentsViewModel;
 import hr.foi.air.sportloc.databinding.FragmentCommentListBinding;
@@ -50,7 +51,7 @@ import hr.foi.air.sportloc.databinding.FragmentCommentListBinding;
 public class CommentListFragment extends Fragment {
     private Unbinder unbinder;
     private CommentsListViewListener listener;
-    private String stringId;
+    private int id;
 
     @BindView(R.id.lv_comment)
     ListView listView;
@@ -62,13 +63,8 @@ public class CommentListFragment extends Fragment {
         View view = viewBinding.getRoot();
         unbinder = ButterKnife.bind(this, view);
 
-        Map<String, Object> map = new HashMap<>();
-        map.put(ModelEnum.UserModel.name(), ActiveUserModel.getInstance().getActiveUser());
-
-
         Bundle bundle = this.getArguments();
-        stringId=bundle.getString("stringId");
-        int id=Integer.parseInt(stringId);
+        id = bundle.getInt(Constants.USERID);
         showComments(id);
         return view;
     }
@@ -98,23 +94,14 @@ public class CommentListFragment extends Fragment {
         commentsViewModel.getComments(id);
 
         commentsViewModel.getCommentsObservable().observe(getActivity(), result -> {
-            int commentCounter = 0;
             List<CommentModel> list = result;
 
-            for (int i = 0; i < list.size(); i++) {
-                commentCounter++;
-            }
-
-            String usernameListArray[] = new String[commentCounter];
+            String usernameListArray[] = new String[list.size()];
 
             for (int i = 0; i < list.size(); i++) {
                 CommentModel comment;
                 comment = list.get(i);
-                int commentatorId = comment.getCommentatorId();
-                boolean vote = comment.isVote();
-                String userComment = comment.getComment();
                 String commentatorUsername = comment.getCommentator();
-
                 usernameListArray[i] = commentatorUsername;
             }
 
@@ -141,9 +128,9 @@ public class CommentListFragment extends Fragment {
                     TextView title = new TextView(getContext());
                     title.setText(getResources().getString(R.string.comment_commentator_username) + clickItemObj.toString());
 
-                    int usernameLength=clickItemObj.toString().length();
-                    SpannableString ss= new SpannableString(title.getText());
-                    ClickableSpan clickableSpan=new ClickableSpan() {
+                    int usernameLength = clickItemObj.toString().length();
+                    SpannableString ss = new SpannableString(title.getText());
+                    ClickableSpan clickableSpan = new ClickableSpan() {
                         @Override
                         public void onClick(View widget) {
                             UserModel user = new UserModel();
@@ -161,11 +148,10 @@ public class CommentListFragment extends Fragment {
                             ds.setUnderlineText(false);
                         }
                     };
-                    usernameLength=usernameLength+20;
-                    ss.setSpan(clickableSpan,20,usernameLength,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    usernameLength += 20;
+                    ss.setSpan(clickableSpan, 20, usernameLength, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     title.setText(ss);
                     title.setMovementMethod(LinkMovementMethod.getInstance());
-
 
 
                     title.setPadding(10, 10, 10, 10);
@@ -173,7 +159,6 @@ public class CommentListFragment extends Fragment {
                     title.setTextColor(Color.BLACK);
                     title.setTextSize(20);
                     alertDialog.setCustomTitle(title);
-
 
 
                     TextView msg = new TextView(getContext());

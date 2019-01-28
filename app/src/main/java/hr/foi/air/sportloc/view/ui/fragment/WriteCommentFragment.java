@@ -19,6 +19,7 @@ import hr.foi.air.sportloc.R;
 import hr.foi.air.sportloc.service.model.ActiveUserModel;
 import hr.foi.air.sportloc.service.model.CommentModel;
 import hr.foi.air.sportloc.databinding.FragmentWriteCommentBinding;
+import hr.foi.air.sportloc.view.util.Constants;
 import hr.foi.air.sportloc.view.util.MessageSender;
 import hr.foi.air.sportloc.viewmodel.CommentsViewModel;
 
@@ -29,21 +30,19 @@ public class WriteCommentFragment extends Fragment {
 
     private Unbinder unbinder;
     private Boolean userVote;
-    private String stringId;
+    private int id;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        FragmentWriteCommentBinding viewBinding=DataBindingUtil.inflate(inflater, R.layout.fragment_write_comment, container, false);
+        FragmentWriteCommentBinding viewBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_write_comment, container, false);
         View view = viewBinding.getRoot();
 
-
         Bundle bundle = this.getArguments();
-        userVote=bundle.getBoolean("userVote");
-        stringId=bundle.getString("stringId");
-
+        userVote = bundle.getBoolean(Constants.USERVOTE);
+        id = bundle.getInt(Constants.USERID);
 
         unbinder = ButterKnife.bind(this, view);
         return view;
@@ -53,6 +52,7 @@ public class WriteCommentFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -60,14 +60,13 @@ public class WriteCommentFragment extends Fragment {
     }
 
     @OnClick(R.id.btn_save_comment)
-    public void sendComment(){
-        int userId=Integer.parseInt(stringId);
-        int commentatorId=ActiveUserModel.getInstance().getActiveUser().getUserId();
-        Boolean vote=userVote;
-        String comment=etComment.getText().toString();
+    public void sendComment() {
+        int commentatorId = ActiveUserModel.getInstance().getActiveUser().getUserId();
+        Boolean vote = userVote;
+        String comment = etComment.getText().toString();
 
-        CommentModel commentModel=new CommentModel();
-        commentModel.setUserId(userId);
+        CommentModel commentModel = new CommentModel();
+        commentModel.setUserId(id);
         commentModel.setCommentatorId(commentatorId);
         commentModel.setVote(vote);
         commentModel.setComment(comment);
@@ -75,19 +74,17 @@ public class WriteCommentFragment extends Fragment {
     }
 
     @OnClick(R.id.btn_cancel_coment)
-    public void cancelComment(){
+    public void cancelComment() {
         getActivity().onBackPressed();
     }
 
-    public void observeCommentWrite(CommentModel commentModel){
-        int commentLength=etComment.length();
-        if(commentLength<20){
+    public void observeCommentWrite(CommentModel commentModel) {
+        if (etComment.getText().length() < 20) {
             MessageSender.sendError(getContext(), getResources().getString(R.string.write_comment_length));
-        }
-        else{
-            CommentsViewModel commentsViewModel=new CommentsViewModel();
+        } else {
+            CommentsViewModel commentsViewModel = new CommentsViewModel();
             commentsViewModel.writeComment(commentModel);
-            commentsViewModel.sendCommentObservable().observe(this, result->{
+            commentsViewModel.sendCommentObservable().observe(this, result -> {
                 if (result != null) {
                     if (result) {
                         MessageSender.sendMessage(getContext(), getResources().getString(R.string.write_comment_success));

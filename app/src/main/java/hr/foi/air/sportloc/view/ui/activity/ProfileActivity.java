@@ -15,7 +15,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileViewFra
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         ProfileViewFragment profileViewFragment = new ProfileViewFragment();
-        ProfileEditFragment profileEditFragment=new ProfileEditFragment();
+        ProfileEditFragment profileEditFragment = new ProfileEditFragment();
         profileViewFragment.setArguments(getIntent().getExtras());
         profileEditFragment.setArguments(getIntent().getExtras());
         getSupportFragmentManager().beginTransaction().add(R.id.profile_fragment, profileViewFragment).commit();
@@ -23,7 +23,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileViewFra
 
     @Override
     public void onOpenProfileEditor() {
-        ProfileEditFragment profileEditFragment=new ProfileEditFragment();
+        ProfileEditFragment profileEditFragment = new ProfileEditFragment();
         profileEditFragment.setArguments(getIntent().getExtras());
 
         getSupportFragmentManager().beginTransaction().replace(R.id.profile_fragment, profileEditFragment).commit();
@@ -36,15 +36,15 @@ public class ProfileActivity extends AppCompatActivity implements ProfileViewFra
             profileFragment.setListener(this::onOpenProfileEditor);
         }
 
-        if (fragment instanceof ProfileEditFragment){
+        if (fragment instanceof ProfileEditFragment) {
             ProfileEditFragment profileEditFragment = (ProfileEditFragment) fragment;
             profileEditFragment.setListener(this::onOpenProfileView);
         }
     }
 
     @Override
-    public void onOpenProfileView(){
-        ProfileViewFragment profileViewFragment=new ProfileViewFragment();
+    public void onOpenProfileView() {
+        ProfileViewFragment profileViewFragment = new ProfileViewFragment();
         profileViewFragment.setArguments(getIntent().getExtras());
         getSupportFragmentManager().beginTransaction().replace(R.id.profile_fragment, profileViewFragment).commit();
     }

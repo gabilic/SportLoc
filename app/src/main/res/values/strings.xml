@@ -107,6 +107,7 @@
     <string name="registration_name">Ime</string>
     <string name="registration_password">Lozinka</string>
     <string name="registration_send">Registriraj se</string>
+    <string name="registration_password_count">Lozinka mora sadržavati barem 6 znakova</string>
     <string-array name="registration_spinner">
         <item>Muško</item>
         <item>Žensko</item>

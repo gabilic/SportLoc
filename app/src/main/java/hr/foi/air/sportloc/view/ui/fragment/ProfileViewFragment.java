@@ -86,10 +86,6 @@ public class ProfileViewFragment extends Fragment {
         void onOpenProfileEditor();
     }
 
-    public interface CommentsListViewListener {
-        void onOpenCommentsList();
-    }
-
     public void setListener(ProfileViewListener listener) {
         this.listener = listener;
     }
@@ -160,17 +156,16 @@ public class ProfileViewFragment extends Fragment {
         } else {
             openWriteComment = true;
             boolean userVote;
-            if (upvote == true) {
+            if (upvote) {
                 userVote = true;
             } else {
                 userVote = false;
             }
             Intent i = new Intent(getContext(), CommentActivity.class);
-            i.putExtra("key", openWriteComment);
-            i.putExtra("vote", userVote);
+            i.putExtra(Constants.KEY, openWriteComment);
+            i.putExtra(Constants.VOTE, userVote);
             int id = user.getUserId();
-            String stringId = Integer.toString(id);
-            i.putExtra("stringId", stringId);
+            i.putExtra(Constants.USERID, id);
             startActivity(i);
         }
     }
@@ -179,8 +174,7 @@ public class ProfileViewFragment extends Fragment {
     public void Comments() {
         Intent intent = new Intent(getActivity(), CommentActivity.class);
         int id = user.getUserId();
-        String stringId = Integer.toString(id);
-        intent.putExtra("stringId", stringId);
+        intent.putExtra(Constants.USERID, id);
         startActivity(intent);
     }
 }
