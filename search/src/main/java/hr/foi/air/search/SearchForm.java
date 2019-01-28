@@ -11,6 +11,7 @@ import hr.foi.air.search.view.SearchActivity;
 public class SearchForm {
 
     private SearchFormModel model;
+    private DataArrivedHandler dataArrivedHandler;
     private String serviceUrl;
 
     private SearchForm(SearchFormBuilder builder) {
@@ -21,6 +22,7 @@ public class SearchForm {
         model.setShowFullSelection(builder.showFullSelection);
         model.setShowOpenSelection(builder.showOpenSelection);
         model.setShowParticipantSelection(builder.showParticipantSelection);
+        dataArrivedHandler = builder.dataArrivedHandler;
     }
 
     public static class SearchFormBuilder {
@@ -83,6 +85,7 @@ public class SearchForm {
         WebServiceCaller.getInstance().setupRetrofit(serviceUrl);
         Intent intent = new Intent(context, SearchActivity.class);
         intent.putExtra(SearchActivity.class.getName(), model);
+        intent.putExtra(DataArrivedHandler.class.getName(), dataArrivedHandler);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }

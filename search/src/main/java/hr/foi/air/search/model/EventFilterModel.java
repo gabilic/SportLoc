@@ -6,8 +6,14 @@ public class EventFilterModel {
     private int cityId;
     private boolean owner;
     private boolean full;
+    private Boolean participant;
+    private Boolean open;
 
     public EventFilterModel() {
+    }
+
+    public EventFilterModel(int userId) {
+        this.userId = userId;
     }
 
     public int getUserId() {
@@ -48,5 +54,21 @@ public class EventFilterModel {
 
     public void setFull(boolean full) {
         this.full = full;
+    }
+
+    public Boolean getParticipant() {
+        return participant;
+    }
+
+    public void setParticipant(Boolean participant) {
+        this.participant = participant;
+    }
+
+    public Boolean getOpen() {
+        return open;
+    }
+
+    public void setOpen(Boolean open) {
+        this.open = open;
     }
 }

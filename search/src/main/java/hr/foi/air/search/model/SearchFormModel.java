@@ -9,7 +9,6 @@ import hr.foi.air.search.DataArrivedHandler;
 public class SearchFormModel implements Parcelable {
 
     private Integer activeUserId;
-    private DataArrivedHandler dataArrivedHandler;
 
     private boolean showSportSelection;
     private boolean showCitySelection;
@@ -76,14 +75,6 @@ public class SearchFormModel implements Parcelable {
 
     public void setShowOpenSelection(boolean showOpenSelection) {
         this.showOpenSelection = showOpenSelection;
-    }
-
-    public DataArrivedHandler getDataArrivedHandler() {
-        return dataArrivedHandler;
-    }
-
-    public void setDataArrivedHandler(DataArrivedHandler dataArrivedHandler) {
-        this.dataArrivedHandler = dataArrivedHandler;
     }
 
     @Override
