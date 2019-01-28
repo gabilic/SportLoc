@@ -43,6 +43,7 @@
     <string name="event_details_select_start">Odaberite početak</string>
     <string name="event_details_start">Početak</string>
     <string name="event_details_title">Naziv događaja</string>
+
     <string name="event_list_details">Više informacija</string>
 
     <string name="forgotten_password_email">E-mail</string>
@@ -53,12 +54,10 @@
     <string name="forgotten_password_success">Obnavljanje lozinke uspješno</string>
 
     <string name="general_connection_error">Pojavila se pogreška! Provjerite internetsku vezu i pokušajte ponovo.</string>
-    <string name="general_today">Danas</string>
-    <string name="general_tomorrow">Sutra</string>
-    <string name="general_yesterday">Jučer</string>
 
     <string name="login_fail">Unijeli ste pogrešno korisničko ime ili lozinku!</string>
     <string name="login_forgotten_password">Zaboravljena lozinka?</string>
+    <string name="login_internal_storage_error">Pogreška prilikom spremanja korisničkih podataka u lokalnu memoriju!</string>
     <string name="login_login">Prijava</string>
     <string name="login_password">Lozinka</string>
     <string name="login_password_empty_error">Polje za unos lozinke ne smije biti prazno!</string>
@@ -118,6 +117,7 @@
         <item>Muško</item>
         <item>Žensko</item>
     </string-array>
+    <string name="registration_success">Uspješno ste se registrirali!</string>
     <string name="registration_surname">Prezime</string>
     <string name="registration_user_exists">Ovakvo korisničko ime već postoji!</string>
     <string name="registration_username">Korisničko ime</string>
@@ -126,5 +126,4 @@
     <string name="title_activity_event_details">Događaj</string>
     <string name="title_activity_event_members">Sudionici</string>
     <string name="title_activity_maps">Map</string>
-    <string name="registration_success">Uspješno ste se registrirali!</string>
 </resources>
