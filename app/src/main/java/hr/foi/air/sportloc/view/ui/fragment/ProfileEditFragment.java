@@ -51,7 +51,11 @@ public class ProfileEditFragment extends Fragment {
         View view = viewBinding.getRoot();
         unbinder = ButterKnife.bind(this, view);
 
-        UserModel user = (UserModel) getArguments().get(ModelEnum.UserModel.name());
+        UserModel user = getArguments() != null ? (getArguments().get(ModelEnum.UserModel.name()) != null ?
+                 (UserModel) getArguments().get(ModelEnum.UserModel.name()) :
+                 ActiveUserModel.getInstance().getActiveUser()) :
+                 ActiveUserModel.getInstance().getActiveUser();
+
         viewBinding.setUser(user);
 
         etName.setText(user.getName());

@@ -13,6 +13,7 @@ import hr.foi.air.sportloc.service.model.ActiveUserModel;
 import hr.foi.air.sportloc.view.util.Constants;
 import hr.foi.air.sportloc.view.util.DataInputValidator;
 import hr.foi.air.sportloc.view.util.IntentManager;
+import hr.foi.air.sportloc.view.util.InternalStorageManager;
 import hr.foi.air.sportloc.view.util.MessageSender;
 import hr.foi.air.sportloc.viewmodel.LoginViewModel;
 
@@ -25,9 +26,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
-        }
         ButterKnife.bind(this);
         viewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
     }
@@ -66,6 +64,11 @@ public class LoginActivity extends AppCompatActivity {
             if (loginInfo != null) {
                 if (loginInfo.getUserId() != 0) {
                     ActiveUserModel.getInstance().setActiveUser(loginInfo);
+                    try {
+                        InternalStorageManager.writeObject(getApplicationContext(), loginInfo);
+                    } catch (Exception e) {
+                        MessageSender.sendError(getApplicationContext(), getResources().getString(R.string.login_internal_storage_error));
+                    }
                     IntentManager.startActivity(getApplicationContext(), EventListActivity.class, EXTRA_MESSAGE, getResources().getString(R.string.login_success));
                 } else {
                     MessageSender.sendError(getApplicationContext(), getResources().getString(R.string.login_fail));
