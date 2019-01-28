@@ -25,6 +25,9 @@
     <string name="btn_edit">Uredi</string>
     <string name="btn_save_changes">Spremi</string>
 
+    <string name="comment_commentator_username">Komentar korisnika <b> </b></string>
+
+
     <string name="event_creation_error">Došlo je do pogreške prilikom izrade događaja!</string>
     <string name="event_details_address">Adresa</string>
     <string name="event_details_capacity">Kapacitet:</string>
@@ -102,6 +105,7 @@
     <string name="profile_surname_edit">Vaše prezime</string>
     <string name="profile_surname_empty">Polje za prezime ne smije biti prazno</string>
     <string name="profile_username">Korisničko ime</string>
+    <string name="profile_write_error">Morate prvo glasati kako bi komentirali!</string>
 
     <string name="registration_choose">Odaberite</string>
     <string name="registration_dob">Datum rođenja</string>
@@ -111,8 +115,8 @@
     <string name="registration_male">Muško</string>
     <string name="registration_name">Ime</string>
     <string name="registration_password">Lozinka</string>
-    <string name="registration_password_count">Lozinka mora sadržavati najmanje 6 znakova</string>
     <string name="registration_send">Registriraj se</string>
+    <string name="registration_password_count">Lozinka mora sadržavati barem 6 znakova</string>
     <string-array name="registration_spinner">
         <item>Muško</item>
         <item>Žensko</item>
@@ -122,8 +126,15 @@
     <string name="registration_user_exists">Ovakvo korisničko ime već postoji!</string>
     <string name="registration_username">Korisničko ime</string>
 
-
     <string name="title_activity_event_details">Događaj</string>
     <string name="title_activity_event_members">Sudionici</string>
     <string name="title_activity_maps">Map</string>
+  
+    <string name="registration_success">Uspješno ste se registrirali!</string>
+
+    <string name="write_comment_error">Greška. Provjerite Internetsku vezu</string>
+    <string name="write_comment_exists">Već ste ostavili komentar na ovom profilu!</string>
+    <string name="write_comment_length">Komentar mora sadržavati minimalno 20 znakova!</string>
+    <string name="write_comment_success">Komentar uspješno zapisan</string>
+
 </resources>
