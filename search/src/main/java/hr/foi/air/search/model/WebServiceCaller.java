@@ -5,6 +5,7 @@ import android.arch.lifecycle.MutableLiveData;
 
 import java.util.List;
 
+import hr.foi.air.core.EventModel;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

@@ -2,9 +2,6 @@ package hr.foi.air.search.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.provider.ContactsContract;
-
-import hr.foi.air.search.DataArrivedHandler;
 
 public class SearchFormModel implements Parcelable {
 

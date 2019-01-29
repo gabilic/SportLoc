@@ -2,16 +2,18 @@ package hr.foi.air.search;
 
 import android.content.Context;
 import android.content.Intent;
-import android.provider.ContactsContract;
 
+import java.io.Serializable;
+
+import hr.foi.air.core.DataArrivedHandler;
 import hr.foi.air.search.model.SearchFormModel;
 import hr.foi.air.search.model.WebServiceCaller;
 import hr.foi.air.search.view.SearchActivity;
 
-public class SearchForm {
+public class SearchForm implements Serializable {
 
     private SearchFormModel model;
-    private DataArrivedHandler dataArrivedHandler;
+    private static DataArrivedHandler dataArrivedHandler;
     private String serviceUrl;
 
     private SearchForm(SearchFormBuilder builder) {
@@ -85,9 +87,13 @@ public class SearchForm {
         WebServiceCaller.getInstance().setupRetrofit(serviceUrl);
         Intent intent = new Intent(context, SearchActivity.class);
         intent.putExtra(SearchActivity.class.getName(), model);
-        intent.putExtra(DataArrivedHandler.class.getName(), dataArrivedHandler);
+        //intent.putExtra(DataArrivedHandler.class.getName(), dataArrivedHandler);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
+    }
+
+    public static void dataArrived(Object[] result) {
+        dataArrivedHandler.onDataArrived(result);
     }
 
 }

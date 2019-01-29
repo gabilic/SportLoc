@@ -2,6 +2,7 @@ package hr.foi.air.search.model;
 
 import java.util.List;
 
+import hr.foi.air.core.EventModel;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;

@@ -4,7 +4,7 @@
 
         <variable
             name="event"
-            type="hr.foi.air.sportloc.service.model.EventModel" />
+            type="hr.foi.air.core.EventModel" />
     </data>
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"

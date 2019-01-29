@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
         UserModel user = (UserModel) InternalStorageManager.readObject(getApplicationContext());
         if (user != null) {
             ActiveUserModel.getInstance().setActiveUser(user);
-            IntentManager.startActivity(getApplicationContext(), EventListActivity.class);
+            IntentManager.startActivity(getApplicationContext(), NavigationDrawerActivity.class);
         }
     }
+
 }

@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                     } catch (Exception e) {
                         MessageSender.sendError(getApplicationContext(), getResources().getString(R.string.login_internal_storage_error));
                     }
-                    IntentManager.startActivity(getApplicationContext(), EventListActivity.class, EXTRA_MESSAGE, getResources().getString(R.string.login_success));
+                    IntentManager.startActivity(getApplicationContext(), NavigationDrawerActivity.class, EXTRA_MESSAGE, getResources().getString(R.string.login_success));
                 } else {
                     MessageSender.sendError(getApplicationContext(), getResources().getString(R.string.login_fail));
                 }

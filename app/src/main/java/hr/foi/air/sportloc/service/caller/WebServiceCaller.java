@@ -8,7 +8,7 @@ import java.util.Map;
 
 import hr.foi.air.sportloc.service.model.CommentModel;
 import hr.foi.air.sportloc.service.model.EventFilterModel;
-import hr.foi.air.sportloc.service.model.EventModel;
+import hr.foi.air.core.EventModel;
 import hr.foi.air.sportloc.service.model.LocationModel;
 import hr.foi.air.sportloc.service.model.ParticipantModel;
 import hr.foi.air.sportloc.service.model.PrimitiveWrapperModel;

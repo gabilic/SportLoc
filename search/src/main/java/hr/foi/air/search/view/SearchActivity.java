@@ -5,7 +5,6 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
-import android.widget.Filter;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -13,12 +12,12 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import hr.foi.air.search.DataArrivedHandler;
+import hr.foi.air.core.EventModel;
 import hr.foi.air.search.R;
 import hr.foi.air.search.R2;
+import hr.foi.air.search.SearchForm;
 import hr.foi.air.search.databinding.ActivitySearchBinding;
 import hr.foi.air.search.model.EventFilterModel;
-import hr.foi.air.search.model.EventModel;
 import hr.foi.air.search.model.LocationModel;
 import hr.foi.air.search.model.SearchFormModel;
 import hr.foi.air.search.model.SportModel;
@@ -28,7 +27,6 @@ import hr.foi.air.search.viewmodel.SearchViewModel;
 public class SearchActivity extends AppCompatActivity {
 
     private ActivitySearchBinding binding;
-    private DataArrivedHandler dataArrivedHandler;
     private SearchFormModel searchForm;
 
     @Override
@@ -37,7 +35,6 @@ public class SearchActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_search);
 
         searchForm = getIntent().getExtras().getParcelable(this.getClass().getName());
-        dataArrivedHandler = (DataArrivedHandler) getIntent().getExtras().getSerializable(DataArrivedHandler.class.getName());
         binding.setSearchForm(searchForm);
 
         loadSpinnerData();
@@ -67,7 +64,7 @@ public class SearchActivity extends AppCompatActivity {
         EventFilterModel filterModel = setupFilter();
         viewModel.getEvents(filterModel);
         viewModel.getEventsObservable().observe(this, result -> {
-            dataArrivedHandler.onDataArrived(result);
+            SearchForm.dataArrived(result);
         });
     }
 
@@ -101,9 +98,9 @@ public class SearchActivity extends AppCompatActivity {
         viewModel.getEvents(new EventFilterModel());
         viewModel.getEventsObservable().observe(this, result -> {
             if (result != null && result.length > 0) {
-                dataArrivedHandler.onDataArrived(getRandomData(result));
+                SearchForm.dataArrived(getRandomData(result));
             } else {
-                dataArrivedHandler.onDataArrived(null);
+                SearchForm.dataArrived(null);
             }
         });
     }

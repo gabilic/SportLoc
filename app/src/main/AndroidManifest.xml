@@ -29,18 +29,18 @@
 
         <activity
             android:name=".view.ui.activity.EventDetailsActivity"
-            android:parentActivityName=".view.ui.activity.EventListActivity"
+            android:parentActivityName=".view.ui.activity.NavigationDrawerActivity"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".view.ui.activity.ProfileActivity"
-            android:parentActivityName=".view.ui.activity.EventListActivity"
+            android:parentActivityName=".view.ui.activity.NavigationDrawerActivity"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".view.ui.activity.AboutActivity"
-            android:parentActivityName=".view.ui.activity.EventListActivity"
+            android:parentActivityName=".view.ui.activity.NavigationDrawerActivity"
             android:theme="@style/AppTheme" />
 
-        <activity android:name=".view.ui.activity.EventListActivity" />
+        <activity android:name=".view.ui.activity.NavigationDrawerActivity" />
         <activity android:name=".view.ui.activity.ForgottenPasswordActivity" />
         <activity android:name=".view.ui.activity.LoginActivity" />
         <activity android:name=".view.ui.activity.CommentActivity"/>
