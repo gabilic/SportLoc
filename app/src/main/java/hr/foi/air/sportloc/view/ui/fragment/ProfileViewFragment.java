@@ -1,5 +1,6 @@
 package hr.foi.air.sportloc.view.ui.fragment;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -21,7 +23,9 @@ import hr.foi.air.sportloc.databinding.FragmentProfileViewBinding;
 import hr.foi.air.sportloc.service.model.ActiveUserModel;
 import hr.foi.air.sportloc.service.model.ModelEnum;
 import hr.foi.air.sportloc.service.model.UserModel;
+import hr.foi.air.sportloc.view.ui.activity.CommentActivity;
 import hr.foi.air.sportloc.view.util.Constants;
+import hr.foi.air.sportloc.view.util.MessageSender;
 import hr.foi.air.sportloc.viewmodel.ProfileViewModel;
 
 public class ProfileViewFragment extends Fragment {
@@ -36,23 +40,29 @@ public class ProfileViewFragment extends Fragment {
     @BindView(R.id.imb_thumbs_down)
     ImageButton btnDownvote;
 
+
     private Unbinder unbinder;
     private ProfileViewListener listener;
+
     private UserModel user;
     private boolean upvote = false;
     private boolean downvote = false;
+    private boolean openWriteComment;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
+        openWriteComment = false;
         FragmentProfileViewBinding viewBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile_view, container, false);
         View view = viewBinding.getRoot();
         unbinder = ButterKnife.bind(this, view);
 
-        user = (UserModel) getArguments().get(ModelEnum.UserModel.name());
-        viewBinding.setUser(user);
+        user = getArguments() != null ? (getArguments().get(ModelEnum.UserModel.name()) != null ?
+                (UserModel) getArguments().get(ModelEnum.UserModel.name()) :
+                ActiveUserModel.getInstance().getActiveUser()) :
+                ActiveUserModel.getInstance().getActiveUser();
 
+        viewBinding.setUser(user);
         checkUser();
         setKarmaColor();
         return view;
@@ -85,7 +95,11 @@ public class ProfileViewFragment extends Fragment {
     }
 
     public void setKarmaColor() {
-        user = (UserModel) getArguments().get(ModelEnum.UserModel.name());
+        user = getArguments() != null ? (getArguments().get(ModelEnum.UserModel.name()) != null ?
+                (UserModel) getArguments().get(ModelEnum.UserModel.name()) :
+                ActiveUserModel.getInstance().getActiveUser()) :
+                ActiveUserModel.getInstance().getActiveUser();
+
         int karma = Integer.parseInt(user.getKarma());
         if (karma < 0) {
             tvKarmaCounter.setBackgroundColor(getResources().getColor(R.color.color_red_dark));
@@ -133,13 +147,37 @@ public class ProfileViewFragment extends Fragment {
         downvote = true;
     }
 
-    public void reloadFragment(UserModel user) {
 
+    public void reloadFragment(UserModel user) {
         getArguments().clear();
         getArguments().putBoolean(Constants.RELOADED, true);
         getArguments().putSerializable(ModelEnum.UserModel.name(), user);
         getFragmentManager().beginTransaction().detach(this).attach(this).commit();
+        upvote = false;
+        downvote = false;
+    }
 
+    @OnClick(R.id.btn_comment)
+    public void writeComment() {
+        if (upvote == false && downvote == false) {
+            MessageSender.sendError(getContext(), getResources().getString(R.string.profile_write_error));
+        } else {
+            openWriteComment = true;
 
+            Intent i = new Intent(getContext(), CommentActivity.class);
+            i.putExtra(Constants.KEY, openWriteComment);
+            i.putExtra(Constants.VOTE, upvote);
+            int id = user.getUserId();
+            i.putExtra(Constants.USERID, id);
+            startActivity(i);
+        }
+    }
+
+    @OnClick(R.id.btn_comments)
+    public void Comments() {
+        Intent intent = new Intent(getActivity(), CommentActivity.class);
+        int id = user.getUserId();
+        intent.putExtra(Constants.USERID, id);
+        startActivity(intent);
     }
 }
