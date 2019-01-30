@@ -16,7 +16,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.View
     private ArrayList<EventModel> eventList;
     private OnEventClickListener eventListener;
     private OnEventDetailsClickListener detailsListener;
-    private static int lastExpandedPosition = -1;
+    private static int lastExpandedPosition;
 
     public EventListAdapter(ArrayList<EventModel> eventList, OnEventClickListener eventListener,
                             OnEventDetailsClickListener detailsListener) {
@@ -24,6 +24,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.View
         this.eventList = eventList;
         this.eventListener = eventListener;
         this.detailsListener = detailsListener;
+        lastExpandedPosition = -1;
     }
 
     public static int getLastExpandedPosition() {
