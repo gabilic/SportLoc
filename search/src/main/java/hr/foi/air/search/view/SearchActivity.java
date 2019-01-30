@@ -86,7 +86,7 @@ public class SearchActivity extends AppCompatActivity {
             filterModel.setOpen(openSelection < 2 ? openSelection == 0 : null);
         }
         if (searchForm.getShowParticipantSelection()) {
-            int participantSelection = binding.spnOpen.getSelectedItemPosition();
+            int participantSelection = binding.spnParticipant.getSelectedItemPosition();
             filterModel.setParticipant(participantSelection < 2 ? participantSelection == 0 : null);
         }
         return filterModel;
