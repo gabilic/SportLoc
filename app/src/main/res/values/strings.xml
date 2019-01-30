@@ -25,6 +25,8 @@
     <string name="btn_edit">Uredi</string>
     <string name="btn_save_changes">Spremi</string>
 
+    <string name="comment_commentator_username">Komentar korisnika <b> </b></string>
+
     <string name="event_creation_error">Došlo je do pogreške prilikom izrade događaja!</string>
     <string name="event_details_address">Adresa</string>
     <string name="event_details_capacity">Kapacitet:</string>
@@ -43,6 +45,10 @@
     <string name="event_details_select_start">Odaberite početak</string>
     <string name="event_details_start">Početak</string>
     <string name="event_details_title">Naziv događaja</string>
+    <string name="event_details_approved_users">Trenutni sudionici</string>
+    <string name="event_details_pending_users">Poslani zahtjevi</string>
+    <string name="event_details_blocked_users">Blokirani korisnici</string>
+
     <string name="event_list_details">Više informacija</string>
 
     <string name="forgotten_password_email">E-mail</string>
@@ -53,12 +59,10 @@
     <string name="forgotten_password_success">Obnavljanje lozinke uspješno</string>
 
     <string name="general_connection_error">Pojavila se pogreška! Provjerite internetsku vezu i pokušajte ponovo.</string>
-    <string name="general_today">Danas</string>
-    <string name="general_tomorrow">Sutra</string>
-    <string name="general_yesterday">Jučer</string>
 
     <string name="login_fail">Unijeli ste pogrešno korisničko ime ili lozinku!</string>
     <string name="login_forgotten_password">Zaboravljena lozinka?</string>
+    <string name="login_internal_storage_error">Pogreška prilikom spremanja korisničkih podataka u lokalnu memoriju!</string>
     <string name="login_login">Prijava</string>
     <string name="login_password">Lozinka</string>
     <string name="login_password_empty_error">Polje za unos lozinke ne smije biti prazno!</string>
@@ -73,6 +77,16 @@
     <string name="main_facebook">Facebook</string>
     <string name="main_google">Google</string>
     <string name="main_login">Prijava:</string>
+
+    <string name="nav_drawer_about">O aplikaciji</string>
+    <string name="nav_drawer_event_list">Pregled događaja</string>
+    <string name="nav_drawer_events">Događaji</string>
+    <string name="nav_drawer_logout">Odjava</string>
+    <string name="nav_drawer_my_events">Moji događaji</string>
+    <string name="nav_drawer_new_event">Izradi događaj</string>
+    <string name="nav_drawer_other">Ostalo</string>
+    <string name="nav_drawer_profile">Moj profil</string>
+    <string name="nav_drawer_search_filter">Pretraga i filter</string>
 
     <string name="profile_change_settings">Uredi korisničke podatke</string>
     <string name="profile_comment">Komentiraj</string>
@@ -93,6 +107,7 @@
     <string name="profile_surname_edit">Vaše prezime</string>
     <string name="profile_surname_empty">Polje za prezime ne smije biti prazno</string>
     <string name="profile_username">Korisničko ime</string>
+    <string name="profile_write_error">Morate prvo glasati kako bi komentirali!</string>
 
     <string name="registration_choose">Odaberite</string>
     <string name="registration_dob">Datum rođenja</string>
@@ -103,10 +118,12 @@
     <string name="registration_name">Ime</string>
     <string name="registration_password">Lozinka</string>
     <string name="registration_send">Registriraj se</string>
+    <string name="registration_password_count">Lozinka mora sadržavati barem 6 znakova</string>
     <string-array name="registration_spinner">
         <item>Muško</item>
         <item>Žensko</item>
     </string-array>
+    <string name="registration_success">Uspješno ste se registrirali!</string>
     <string name="registration_surname">Prezime</string>
     <string name="registration_user_exists">Ovakvo korisničko ime već postoji!</string>
     <string name="registration_username">Korisničko ime</string>
@@ -114,5 +131,10 @@
     <string name="title_activity_event_details">Događaj</string>
     <string name="title_activity_event_members">Sudionici</string>
     <string name="title_activity_maps">Map</string>
-    <string name="registration_success">Uspješno ste se registrirali!</string>
+
+    <string name="write_comment_error">Greška. Provjerite Internetsku vezu</string>
+    <string name="write_comment_exists">Već ste ostavili komentar na ovom profilu!</string>
+    <string name="write_comment_length">Komentar mora sadržavati minimalno 20 znakova!</string>
+    <string name="write_comment_success">Komentar uspješno zapisan</string>
+
 </resources>

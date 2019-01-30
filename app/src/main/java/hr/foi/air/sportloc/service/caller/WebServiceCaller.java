@@ -6,8 +6,9 @@ import android.arch.lifecycle.MutableLiveData;
 import java.util.List;
 import java.util.Map;
 
+import hr.foi.air.sportloc.service.model.CommentModel;
 import hr.foi.air.sportloc.service.model.EventFilterModel;
-import hr.foi.air.sportloc.service.model.EventModel;
+import hr.foi.air.core.EventModel;
 import hr.foi.air.sportloc.service.model.LocationModel;
 import hr.foi.air.sportloc.service.model.ParticipantModel;
 import hr.foi.air.sportloc.service.model.PrimitiveWrapperModel;
@@ -23,10 +24,11 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static hr.foi.air.sportloc.view.util.Constants.BASE_URL;
+
 public class WebServiceCaller {
     private ApiInterface api;
     private static WebServiceCaller instance;
-    private static final String BASE_URL = "https://sportloc-backend-test.herokuapp.com/";
 
     private WebServiceCaller() {
         Retrofit retrofit = new Retrofit.Builder()
@@ -176,6 +178,44 @@ public class WebServiceCaller {
 
             @Override
             public void onFailure(Call<UserModel> call, Throwable t) {
+                data.setValue(null);
+            }
+        });
+        return data;
+    }
+
+    public LiveData<List<CommentModel>> getComments(Integer id){
+        final MutableLiveData<List<CommentModel>> data=new MutableLiveData<>();
+        api.getComments(id).enqueue(new Callback<List<CommentModel>>() {
+            @Override
+            public void onResponse(Call<List<CommentModel>> call, Response<List<CommentModel>> response) {
+                data.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<CommentModel>> call, Throwable t) {
+                data.setValue(null);
+            }
+        });
+        return data;
+    }
+
+    public LiveData<Boolean> writeComment(CommentModel comment) {
+        final MutableLiveData<Boolean> data = new MutableLiveData<>();
+        api.writeComment(comment).enqueue(new BooleanCallback(data));
+        return data;
+    }
+
+    public LiveData<List<ParticipantModel>> getParticipants(Integer id){
+        final MutableLiveData<List<ParticipantModel>> data=new MutableLiveData<>();
+        api.getParticipants(id).enqueue(new Callback<List<ParticipantModel>>() {
+            @Override
+            public void onResponse(Call<List<ParticipantModel>> call, Response<List<ParticipantModel>> response) {
+                data.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<ParticipantModel>> call, Throwable t) {
                 data.setValue(null);
             }
         });

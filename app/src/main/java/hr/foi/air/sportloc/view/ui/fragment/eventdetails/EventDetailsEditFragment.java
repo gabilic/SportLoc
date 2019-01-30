@@ -19,7 +19,7 @@ import butterknife.OnItemSelected;
 import butterknife.OnTextChanged;
 import hr.foi.air.sportloc.R;
 import hr.foi.air.sportloc.service.model.ActiveUserModel;
-import hr.foi.air.sportloc.service.model.EventModel;
+import hr.foi.air.core.EventModel;
 import hr.foi.air.sportloc.service.model.LocationModel;
 import hr.foi.air.sportloc.service.model.SportModel;
 import hr.foi.air.sportloc.view.util.DateTimeHelper;
@@ -102,6 +102,7 @@ public class EventDetailsEditFragment implements LifecycleOwner {
 
     private void createEvent() {
         newEvent.setUserId(ActiveUserModel.getInstance().getActiveUser().getUserId());
+        newEvent.setUsername(ActiveUserModel.getInstance().getActiveUser().getUsername());
         lifecycleRegistry.markState(Lifecycle.State.STARTED);
         EventViewModel vm = new EventViewModel();
         vm.createEvent(newEvent);

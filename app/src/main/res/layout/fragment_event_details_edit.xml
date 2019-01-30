@@ -6,7 +6,7 @@
 
         <variable
             name="event"
-            type="hr.foi.air.sportloc.service.model.EventModel" />
+            type="hr.foi.air.core.EventModel" />
 
         <variable
             name="locationAdapter"

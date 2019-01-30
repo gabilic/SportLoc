@@ -12,7 +12,6 @@ public class ProfileViewModel {
     public void getProfile(String username){
         profileObservable=WebServiceCaller.getInstance().getProfile(username);
     }
-
     public void updateProfile(UserModel user){
         profileUpdateObservable=WebServiceCaller.getInstance().updateProfile(user);
     }

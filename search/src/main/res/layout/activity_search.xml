@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="searchForm"
+            type="hr.foi.air.search.model.SearchFormModel" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Spinner
+            android:id="@+id/spn_participant"
+            android:layout_width="192dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:entries="@array/spinner_participant"
+            android:visibility='@{searchForm.showParticipantSelection ?  View.VISIBLE : View.GONE}'
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spn_open" />
+
+        <TextView
+            android:id="@+id/tv_participant"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/participant"
+            android:visibility='@{searchForm.showParticipantSelection ?  View.VISIBLE : View.GONE}'
+            app:layout_constraintEnd_toStartOf="@+id/spn_participant"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_open"
+            tools:text="@string/participant" />
+
+        <Spinner
+            android:id="@+id/spn_sport"
+            android:layout_width="192dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:visibility='@{searchForm.showSportSelection ? View.VISIBLE : View.GONE}'
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_sport"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/sport"
+            android:visibility='@{searchForm.showSportSelection ? View.VISIBLE : View.GONE}'
+            app:layout_constraintEnd_toStartOf="@+id/spn_sport"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/sport" />
+
+        <Spinner
+            android:id="@+id/spn_city"
+            android:layout_width="192dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:visibility='@{searchForm.showCitySelection ?  View.VISIBLE : View.GONE}'
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spn_sport" />
+
+        <TextView
+            android:id="@+id/tvLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/location"
+            android:visibility='@{searchForm.showCitySelection ?  View.VISIBLE : View.GONE}'
+            app:layout_constraintEnd_toStartOf="@+id/spn_city"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sport"
+            tools:text="@string/location" />
+
+        <Spinner
+            android:id="@+id/spn_capacity"
+            android:layout_width="192dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:entries="@array/spinner_capacity"
+            android:visibility='@{searchForm.showFullSelection ?  View.VISIBLE : View.GONE}'
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spn_city" />
+
+        <TextView
+            android:id="@+id/tv_capacity"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/capacity"
+            android:visibility='@{searchForm.showFullSelection ?  View.VISIBLE : View.GONE}'
+            app:layout_constraintEnd_toStartOf="@+id/spn_capacity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvLocation"
+            tools:text="@string/capacity" />
+
+        <Spinner
+            android:id="@+id/spn_open"
+            android:layout_width="192dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:entries="@array/spinner_open"
+            android:visibility='@{searchForm.showOpenSelection ?  View.VISIBLE : View.GONE}'
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spn_capacity" />
+
+        <TextView
+            android:id="@+id/tv_open"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/open"
+            android:visibility='@{searchForm.showOpenSelection ?  View.VISIBLE : View.GONE}'
+            app:layout_constraintEnd_toStartOf="@+id/spn_open"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_capacity"
+            tools:text="@string/open" />
+
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_width="wrap_content"
+            android:layout_height="46dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/search"
+            app:layout_constraintBottom_toTopOf="@+id/btn_feeling_lucky"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btn_feeling_lucky"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/feeling_lucky"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

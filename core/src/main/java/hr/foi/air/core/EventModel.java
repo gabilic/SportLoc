@@ -1,4 +1,4 @@
-package hr.foi.air.sportloc.service.model;
+package hr.foi.air.core;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -3,12 +3,13 @@ package hr.foi.air.sportloc.service.rest;
 import java.util.List;
 
 import hr.foi.air.sportloc.service.model.EventFilterModel;
-import hr.foi.air.sportloc.service.model.EventModel;
+import hr.foi.air.core.EventModel;
 import hr.foi.air.sportloc.service.model.LocationModel;
 import hr.foi.air.sportloc.service.model.ParticipantModel;
 import hr.foi.air.sportloc.service.model.PrimitiveWrapperModel;
 import hr.foi.air.sportloc.service.model.SportModel;
 import hr.foi.air.sportloc.service.model.UserModel;
+import hr.foi.air.sportloc.service.model.CommentModel;
 import hr.foi.air.sportloc.service.serviceUtil.WebServiceResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -49,4 +50,13 @@ public interface ApiInterface {
 
     @POST("updateProfile")
     Call<WebServiceResponse> updateProfile(@Body UserModel user);
+
+    @GET("getComments")
+    Call<List<CommentModel>> getComments(@Query("id") Integer id);
+
+    @POST("writeComment")
+    Call<WebServiceResponse> writeComment(@Body CommentModel comment);
+
+    @GET("getParticipants")
+    Call<List<ParticipantModel>> getParticipants(@Query("id") Integer id);
 }

@@ -6,6 +6,7 @@ import android.databinding.ViewDataBinding;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -29,15 +30,16 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import hr.foi.air.core.EventModel;
 import hr.foi.air.sportloc.R;
 import hr.foi.air.sportloc.databinding.FragmentEventDetailsBinding;
 import hr.foi.air.sportloc.databinding.FragmentEventDetailsEditBinding;
 import hr.foi.air.sportloc.service.model.ActiveUserModel;
-import hr.foi.air.sportloc.service.model.EventModel;
 import hr.foi.air.sportloc.service.model.ModelEnum;
 import hr.foi.air.sportloc.service.model.ParticipantModel;
 import hr.foi.air.sportloc.view.adapter.LocationArrayAdapter;
 import hr.foi.air.sportloc.view.adapter.SportArrayAdapter;
+import hr.foi.air.sportloc.view.ui.activity.EventDetailsActivity;
 import hr.foi.air.sportloc.view.util.Constants;
 import hr.foi.air.sportloc.view.util.MessageSender;
 import hr.foi.air.sportloc.viewmodel.EventViewModel;
@@ -72,6 +74,8 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
         target = this;
         if (!editMode && !isNewEvent()) {
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_event_details, container, false);
+            //getFragmentManager().executePendingTransactions();
+            //((EventDetailsActivity)getActivity()).addMembersAdapter();
         } else {
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_event_details_edit, container, false);
             target = new EventDetailsEditFragment(this);
@@ -88,6 +92,7 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
         if (getArguments() != null) {
             newEvent = getArguments().getBoolean(Constants.CREATE_NEW_EVENT);
             editMode = newEvent;
+
         }
         return newEvent;
     }
@@ -145,14 +150,27 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
     private void resolveEventButton() {
         //TODO check if creator and check if application is already sent
         boolean isCreator = ActiveUserModel.getInstance().getActiveUser().getUsername().equalsIgnoreCase(event.getUsername());
-        boolean isMember = false;
+
         if (isCreator) {
             btnEventOptions.setText(R.string.btn_edit);
             currentState = ButtonState.EDIT;
-        } else if (isMember) {
+        } else if (isMember()) {
             btnEventOptions.setText(R.string.event_details_leave);
             currentState = ButtonState.LEAVE;
         }
+    }
+
+    private boolean isMember() {
+        boolean isMember = false;
+        if (getArguments().getParcelableArrayList(Constants.EVENT_PARTICIPANTS) != null) {
+            for (Parcelable parcel : getArguments().getParcelableArrayList(Constants.EVENT_PARTICIPANTS)) {
+                if (ActiveUserModel.getInstance().getActiveUser().getUsername().equalsIgnoreCase(((ParticipantModel) parcel).getUsername())) {
+                    isMember = true;
+                    break;
+                }
+            }
+        }
+        return isMember;
     }
 
     private LatLng getLocationFromAddress(String strAddress) {
@@ -258,12 +276,13 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
             getFragmentManager().popBackStack();
             getActivity().finish();
         } else {
-            if(save) {
+            if (save) {
                 getArguments().clear();
-                getArguments().putParcelable(ModelEnum.EventModel.name(),event);
+                getArguments().putParcelable(ModelEnum.EventModel.name(), event);
             }
             editMode = !editMode;
             getFragmentManager().beginTransaction().detach(this).attach(this).commit();
+            ((EventDetailsActivity) getActivity()).getEventMembers(true, event);
         }
     }
 

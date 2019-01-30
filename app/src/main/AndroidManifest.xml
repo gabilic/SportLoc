@@ -18,21 +18,33 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.NoActionBar">
+
         <activity android:name=".view.ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.ui.activity.ProfileActivity" />
-        <activity android:name=".view.ui.activity.RegistrationActivity" />
+
+        <activity
+            android:name=".view.ui.activity.EventDetailsActivity"
+            android:parentActivityName=".view.ui.activity.NavigationDrawerActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".view.ui.activity.ProfileActivity"
+            android:parentActivityName=".view.ui.activity.NavigationDrawerActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".view.ui.activity.AboutActivity"
+            android:parentActivityName=".view.ui.activity.NavigationDrawerActivity"
+            android:theme="@style/AppTheme" />
+
+        <activity android:name=".view.ui.activity.NavigationDrawerActivity" />
         <activity android:name=".view.ui.activity.ForgottenPasswordActivity" />
         <activity android:name=".view.ui.activity.LoginActivity" />
-        <activity android:name=".view.ui.activity.EventDetailsActivity" />
-        <activity android:name=".view.ui.activity.AboutActivity" />
-        <activity android:name=".view.ui.activity.EventListActivity" />
+        <activity android:name=".view.ui.activity.CommentActivity"/>
+        <activity android:name=".view.ui.activity.RegistrationActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

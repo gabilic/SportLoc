@@ -21,9 +21,6 @@ public class ForgottenPasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_forgotten_password);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
-        }
         ButterKnife.bind(this);
         viewModel = ViewModelProviders.of(this).get(ForgottenPasswordViewModel.class);
     }

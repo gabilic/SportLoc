@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="hr.foi.air.search">
+
+    <application>
+        <activity
+            android:name=".view.SearchActivity"
+            android:parentActivityName=".view.SearchActivity"
+            android:theme="@style/AppTheme" />
+    </application>
+</manifest>

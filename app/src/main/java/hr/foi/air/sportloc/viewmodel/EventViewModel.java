@@ -5,7 +5,7 @@ import android.arch.lifecycle.ViewModel;
 
 import hr.foi.air.sportloc.service.caller.WebServiceCaller;
 import hr.foi.air.sportloc.service.model.EventFilterModel;
-import hr.foi.air.sportloc.service.model.EventModel;
+import hr.foi.air.core.EventModel;
 import hr.foi.air.sportloc.service.model.ParticipantModel;
 import hr.foi.air.sportloc.service.serviceUtil.ActionEnum;
 

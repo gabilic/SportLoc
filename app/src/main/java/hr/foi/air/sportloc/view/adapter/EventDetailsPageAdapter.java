@@ -21,6 +21,10 @@ public class EventDetailsPageAdapter extends FragmentPagerAdapter {
         fragmentTitleList.add(title);
     }
 
+    public void replaceFragment(Fragment oldFragment, Fragment newFragment){
+        fragmentList.remove(oldFragment);
+        fragmentList.add(newFragment);
+    }
     @Override
     public CharSequence getPageTitle(int position) {
         return fragmentTitleList.get(position);
