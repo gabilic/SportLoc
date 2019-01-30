@@ -15,9 +15,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import hr.foi.air.core.EventModel;
 import hr.foi.air.sportloc.R;
 import hr.foi.air.sportloc.service.model.ActiveUserModel;
-import hr.foi.air.sportloc.service.model.EventModel;
 import hr.foi.air.sportloc.service.model.ModelEnum;
 import hr.foi.air.sportloc.service.model.ParticipantModel;
 import hr.foi.air.sportloc.view.util.Constants;
