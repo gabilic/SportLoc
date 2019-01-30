@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import butterknife.ButterKnife;
+import hr.foi.air.search.SearchForm;
 import hr.foi.air.sportloc.R;
 import hr.foi.air.sportloc.databinding.ActivityEventListBinding;
 import hr.foi.air.sportloc.databinding.NavHeaderBinding;
@@ -19,7 +20,7 @@ import hr.foi.air.sportloc.view.util.IntentManager;
 import hr.foi.air.sportloc.view.util.InternalStorageManager;
 import hr.foi.air.sportloc.view.util.MessageSender;
 
-public class EventListActivity extends AppCompatActivity {
+public class NavigationDrawerActivity extends AppCompatActivity {
     private ActivityEventListBinding activityEventListBinding;
     private NavHeaderBinding navHeaderBinding;
 
@@ -55,8 +56,10 @@ public class EventListActivity extends AppCompatActivity {
     private void initializeEventListFragment(Bundle savedInstanceState) {
         activityEventListBinding.nvDrawer.setCheckedItem(R.id.nav_event_list);
         if (savedInstanceState == null) {
+            EventListFragment newEventList = new EventListFragment();
+            newEventList.setArguments(getIntent().getExtras());
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.cl_fragment_holder, new EventListFragment())
+                    .add(R.id.cl_fragment_holder, newEventList)
                     .commit();
         }
     }
@@ -98,8 +101,20 @@ public class EventListActivity extends AppCompatActivity {
                 InternalStorageManager.clearObject(getApplicationContext());
                 IntentManager.startActivity(getApplicationContext(), MainActivity.class);
                 break;
+            case R.id.nav_search_filter:
+                openSearch(args);
+                break;
         }
         return true;
+    }
+
+    private void openSearch(Bundle args) {
+        SearchForm searchForm = new SearchForm.SearchFormBuilder(Constants.BASE_URL, ActiveUserModel.getInstance().getActiveUser().getUserId(),
+                result -> IntentManager.startActivity(getApplicationContext(), NavigationDrawerActivity.class, Constants.EVENTS, result))
+                .setShowCitySelection(true)
+                .setShowSportSelection(true)
+                .build();
+        searchForm.showSearchActivity(getApplicationContext());
     }
 
     private void initializeActivity() {

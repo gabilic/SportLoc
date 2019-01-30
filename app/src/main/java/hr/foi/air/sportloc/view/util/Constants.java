@@ -16,9 +16,7 @@ public final class Constants {
     public static final String USERID="id";
     public static final String USERVOTE="userVote";
 
-    public static final String APPROVED="Approved";
-    public static final String PENDING="Pending";
-    public static final String BLOCKED="Blocked";
+    public static final String BASE_URL = "https://sportloc-backend-test.herokuapp.com/";
 
     private Constants() {
     }

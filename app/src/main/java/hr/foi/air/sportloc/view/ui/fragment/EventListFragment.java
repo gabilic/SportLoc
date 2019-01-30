@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -24,7 +25,7 @@ import hr.foi.air.sportloc.R;
 import hr.foi.air.sportloc.databinding.FragmentEventListBinding;
 import hr.foi.air.sportloc.service.model.ActiveUserModel;
 import hr.foi.air.sportloc.service.model.EventFilterModel;
-import hr.foi.air.sportloc.service.model.EventModel;
+import hr.foi.air.core.EventModel;
 import hr.foi.air.sportloc.service.model.ModelEnum;
 import hr.foi.air.sportloc.view.adapter.EventListAdapter;
 import hr.foi.air.sportloc.view.ui.activity.EventDetailsActivity;
@@ -76,7 +77,9 @@ public class EventListFragment extends Fragment {
 
     private void loadEvents() {
         if (getArguments() != null && getArguments().getParcelableArray(Constants.EVENTS) != null) {
-            setupAdapter((EventModel[]) getArguments().getParcelableArray(Constants.EVENTS));
+            Parcelable[] array = getArguments().getParcelableArray(Constants.EVENTS);
+            //For some reason humane conversion of Parcelable array does not work...
+            setupAdapter(Arrays.copyOf(array, array.length, EventModel[].class));
         } else {
             viewModel.getEvents(createFilter());
             observeViewModel(viewModel);

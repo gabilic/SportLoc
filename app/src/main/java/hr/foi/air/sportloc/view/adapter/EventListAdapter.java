@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import hr.foi.air.sportloc.databinding.EventListItemBinding;
-import hr.foi.air.sportloc.service.model.EventModel;
+import hr.foi.air.core.EventModel;
 import hr.foi.air.sportloc.view.util.OnEventClickListener;
 import hr.foi.air.sportloc.view.util.OnEventDetailsClickListener;
 

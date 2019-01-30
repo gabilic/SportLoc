@@ -3,7 +3,7 @@ package hr.foi.air.sportloc.service.rest;
 import java.util.List;
 
 import hr.foi.air.sportloc.service.model.EventFilterModel;
-import hr.foi.air.sportloc.service.model.EventModel;
+import hr.foi.air.core.EventModel;
 import hr.foi.air.sportloc.service.model.LocationModel;
 import hr.foi.air.sportloc.service.model.ParticipantModel;
 import hr.foi.air.sportloc.service.model.PrimitiveWrapperModel;

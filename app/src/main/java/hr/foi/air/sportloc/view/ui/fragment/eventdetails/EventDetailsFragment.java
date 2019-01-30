@@ -33,7 +33,7 @@ import hr.foi.air.sportloc.R;
 import hr.foi.air.sportloc.databinding.FragmentEventDetailsBinding;
 import hr.foi.air.sportloc.databinding.FragmentEventDetailsEditBinding;
 import hr.foi.air.sportloc.service.model.ActiveUserModel;
-import hr.foi.air.sportloc.service.model.EventModel;
+import hr.foi.air.core.EventModel;
 import hr.foi.air.sportloc.service.model.ModelEnum;
 import hr.foi.air.sportloc.service.model.ParticipantModel;
 import hr.foi.air.sportloc.view.adapter.LocationArrayAdapter;
