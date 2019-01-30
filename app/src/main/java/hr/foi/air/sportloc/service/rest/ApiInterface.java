@@ -56,4 +56,7 @@ public interface ApiInterface {
 
     @POST("writeComment")
     Call<WebServiceResponse> writeComment(@Body CommentModel comment);
+
+    @GET("getParticipants")
+    Call<List<ParticipantModel>> getParticipants(@Query("id") Integer id);
 }
