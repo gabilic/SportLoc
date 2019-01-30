@@ -6,6 +6,7 @@ public final class Constants {
 
     public static final String RELOADED = "Reloaded";
     public static final String EVENTS = "Events";
+    public static final String EVENT_PARTICIPANTS = "EventParticipants";
     public static final String OWNER = "Owner";
     public static final String CREATE_NEW_EVENT = "hr.foi.air.sportloc.CREATE_NEW_EVENT";
     static final String USER_DATA_STORAGE = "user_data";
@@ -14,6 +15,10 @@ public final class Constants {
     public static final String VOTE="vote";
     public static final String USERID="id";
     public static final String USERVOTE="userVote";
+
+    public static final String APPROVED="Approved";
+    public static final String PENDING="Pending";
+    public static final String BLOCKED="Blocked";
 
     private Constants() {
     }
