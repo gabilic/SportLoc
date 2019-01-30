@@ -27,7 +27,6 @@
 
     <string name="comment_commentator_username">Komentar korisnika <b> </b></string>
 
-
     <string name="event_creation_error">Došlo je do pogreške prilikom izrade događaja!</string>
     <string name="event_details_address">Adresa</string>
     <string name="event_details_capacity">Kapacitet:</string>
@@ -46,6 +45,9 @@
     <string name="event_details_select_start">Odaberite početak</string>
     <string name="event_details_start">Početak</string>
     <string name="event_details_title">Naziv događaja</string>
+    <string name="event_details_approved_users">Trenutni sudionici</string>
+    <string name="event_details_pending_users">Poslani zahtjevi</string>
+    <string name="event_details_blocked_users">Blokirani korisnici</string>
 
     <string name="event_list_details">Više informacija</string>
 
