@@ -113,6 +113,7 @@ public class NavigationDrawerActivity extends AppCompatActivity {
                 result -> IntentManager.startActivity(getApplicationContext(), NavigationDrawerActivity.class, Constants.EVENTS, result))
                 .setShowCitySelection(true)
                 .setShowSportSelection(true)
+                .setShowAllOptions(true)
                 .build();
         searchForm.showSearchActivity(getApplicationContext());
     }

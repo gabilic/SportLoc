@@ -9,9 +9,9 @@ public final class Constants {
     public static final String EVENT_PARTICIPANTS = "EventParticipants";
     public static final String OWNER = "Owner";
     public static final String CREATE_NEW_EVENT = "hr.foi.air.sportloc.CREATE_NEW_EVENT";
-    public static final String APPROVED = "approved";
-    public static final String PENDING = "pending";
-    public static final String BLOCKED = "blocked";
+    public static final String APPROVED = "Approved";
+    public static final String PENDING = "Pending";
+    public static final String BLOCKED = "Blocked";
     static final String USER_DATA_STORAGE = "user_data";
 
     public static final String KEY="key";

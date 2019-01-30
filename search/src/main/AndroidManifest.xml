@@ -2,6 +2,9 @@
     package="hr.foi.air.search">
 
     <application>
-        <activity android:name=".view.SearchActivity" />
+        <activity
+            android:name=".view.SearchActivity"
+            android:parentActivityName=".view.SearchActivity"
+            android:theme="@style/AppTheme" />
     </application>
 </manifest>

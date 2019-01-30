@@ -5,7 +5,6 @@ import android.arch.lifecycle.LiveData;
 import java.util.List;
 
 import hr.foi.air.sportloc.service.caller.WebServiceCaller;
-import hr.foi.air.sportloc.service.model.CommentModel;
 import hr.foi.air.sportloc.service.model.ParticipantModel;
 
 public class EventParticipantViewModel {

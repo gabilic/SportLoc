@@ -50,7 +50,9 @@ public class EventMembersFragment extends android.support.v4.app.Fragment {
         event = getArguments().getParcelable(ModelEnum.EventModel.name());
         View view = inflater.inflate(R.layout.fragment_event_members, container, false);
         ButterKnife.bind(this, view);
-        showParticipants();
+        if (event != null) {
+            showParticipants();
+        }
         return view;
     }
 
@@ -60,69 +62,43 @@ public class EventMembersFragment extends android.support.v4.app.Fragment {
     }
 
     public void showParticipants() {
-
         List<ParticipantModel> list = getArguments().getParcelableArrayList(EVENT_PARTICIPANTS);
         List<ParticipantModel> approvedUsers = new ArrayList<>();
         List<ParticipantModel> pendingUsers = new ArrayList<>();
         List<ParticipantModel> blockedUsers = new ArrayList<>();
-        ParticipantModel participant;
-        for (int i = 0; i < list.size(); i++) {
-            participant = list.get(i);
-            if (!participant.getUsername().equals(ActiveUserModel.getInstance().getActiveUser().getUsername())) {
-                if (participant.getStatus().equals(Constants.APPROVED)) {
+
+        for (ParticipantModel participant : list) {
+            switch (participant.getStatus()) {
+                case Constants.APPROVED:
                     approvedUsers.add(participant);
-                }
-                if (participant.getStatus().equals(Constants.PENDING)) {
+                    break;
+                case Constants.PENDING:
                     pendingUsers.add(participant);
-                }
-                if (participant.getStatus().equals(Constants.BLOCKED)) {
+                    break;
+                case Constants.BLOCKED:
                     blockedUsers.add(participant);
-                }
+                    break;
             }
         }
 
+        //move this logic to databinding
         if (event.getUsername().equals(ActiveUserModel.getInstance().getActiveUser().getUsername())) {
             tvBlocked.setVisibility(View.VISIBLE);
             tvPending.setVisibility(View.VISIBLE);
             lvPending.setVisibility(View.VISIBLE);
             lvBlocked.setVisibility(View.VISIBLE);
 
-            String approvedArray[] = new String[approvedUsers.size()];
-            for (int i = 0; i < approvedUsers.size(); i++) {
-                ParticipantModel approved;
-                approved = approvedUsers.get(i);
-                approvedArray[i] = approved.getUsername();
-            }
-            ArrayAdapter arrayAdapterApproved = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, approvedArray);
+            ArrayAdapter arrayAdapterApproved = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, approvedUsers);
             lvApproved.setAdapter(arrayAdapterApproved);
 
-            String pendingArray[] = new String[pendingUsers.size()];
-            for (int i = 0; i < pendingUsers.size(); i++) {
-                ParticipantModel pending;
-                pending = pendingUsers.get(i);
-                pendingArray[i] = pending.getUsername();
-            }
-            ArrayAdapter arrayAdapterPending = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, pendingArray);
+            ArrayAdapter arrayAdapterPending = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, pendingUsers);
             lvPending.setAdapter(arrayAdapterPending);
 
-            String blockedArray[] = new String[blockedUsers.size()];
-            for (int i = 0; i < blockedUsers.size(); i++) {
-                ParticipantModel blocked;
-                blocked = blockedUsers.get(i);
-                blockedArray[i] = blocked.getUsername();
-            }
-            ArrayAdapter arrayAdapterBlocked = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, blockedArray);
+            ArrayAdapter arrayAdapterBlocked = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, blockedUsers);
             lvBlocked.setAdapter(arrayAdapterBlocked);
-        }
-        else {
-            String approvedArray[] = new String[approvedUsers.size()];
-            for (int i = 0; i < approvedUsers.size(); i++) {
-                ParticipantModel approved;
-                approved = approvedUsers.get(i);
-                approvedArray[i] = approved.getUsername();
-            }
+        } else {
 
-            ArrayAdapter arrayAdapterApproved = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, approvedArray);
+            ArrayAdapter arrayAdapterApproved = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, approvedUsers);
             lvApproved.setAdapter(arrayAdapterApproved);
 
             tvBlocked.setVisibility(View.GONE);

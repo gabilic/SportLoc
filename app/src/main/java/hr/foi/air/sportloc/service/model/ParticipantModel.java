@@ -97,4 +97,9 @@ public class ParticipantModel implements Parcelable {
         dest.writeString(username);
         dest.writeString(status);
     }
+
+    @Override
+    public String toString() {
+        return getUsername();
+    }
 }

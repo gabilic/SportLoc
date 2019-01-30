@@ -24,8 +24,8 @@
             android:layout_height="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:entries="@array/spinner_open"
-            android:visibility='@{searchForm.showOpenSelection ?  View.VISIBLE : View.GONE}'
+            android:entries="@array/spinner_participant"
+            android:visibility='@{searchForm.showParticipantSelection ?  View.VISIBLE : View.GONE}'
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spn_open" />
 
@@ -37,7 +37,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:text="@string/participant"
-            android:visibility='@{searchForm.showOpenSelection ?  View.VISIBLE : View.GONE}'
+            android:visibility='@{searchForm.showParticipantSelection ?  View.VISIBLE : View.GONE}'
             app:layout_constraintEnd_toStartOf="@+id/spn_participant"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_open"
