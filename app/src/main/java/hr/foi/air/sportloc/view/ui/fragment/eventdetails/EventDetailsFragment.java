@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,7 @@ import hr.foi.air.sportloc.service.model.ModelEnum;
 import hr.foi.air.sportloc.service.model.ParticipantModel;
 import hr.foi.air.sportloc.view.adapter.LocationArrayAdapter;
 import hr.foi.air.sportloc.view.adapter.SportArrayAdapter;
+import hr.foi.air.sportloc.view.ui.activity.EventDetailsActivity;
 import hr.foi.air.sportloc.view.util.Constants;
 import hr.foi.air.sportloc.view.util.MessageSender;
 import hr.foi.air.sportloc.viewmodel.EventViewModel;
@@ -72,6 +74,8 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
         target = this;
         if (!editMode && !isNewEvent()) {
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_event_details, container, false);
+            //getFragmentManager().executePendingTransactions();
+            //((EventDetailsActivity)getActivity()).addMembersAdapter();
         } else {
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_event_details_edit, container, false);
             target = new EventDetailsEditFragment(this);
@@ -88,6 +92,7 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
         if (getArguments() != null) {
             newEvent = getArguments().getBoolean(Constants.CREATE_NEW_EVENT);
             editMode = newEvent;
+
         }
         return newEvent;
     }
@@ -264,6 +269,7 @@ public class EventDetailsFragment extends Fragment implements OnMapReadyCallback
             }
             editMode = !editMode;
             getFragmentManager().beginTransaction().detach(this).attach(this).commit();
+            ((EventDetailsActivity)getActivity()).addMembersAdapter();
         }
     }
 

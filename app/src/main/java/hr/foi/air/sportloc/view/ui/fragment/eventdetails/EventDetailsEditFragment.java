@@ -102,6 +102,7 @@ public class EventDetailsEditFragment implements LifecycleOwner {
 
     private void createEvent() {
         newEvent.setUserId(ActiveUserModel.getInstance().getActiveUser().getUserId());
+        newEvent.setUsername(ActiveUserModel.getInstance().getActiveUser().getUsername());
         lifecycleRegistry.markState(Lifecycle.State.STARTED);
         EventViewModel vm = new EventViewModel();
         vm.createEvent(newEvent);
