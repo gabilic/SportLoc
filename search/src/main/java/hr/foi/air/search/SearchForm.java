@@ -6,6 +6,7 @@ import android.content.Intent;
 import java.io.Serializable;
 
 import hr.foi.air.core.DataArrivedHandler;
+import hr.foi.air.core.EventModel;
 import hr.foi.air.search.model.SearchFormModel;
 import hr.foi.air.search.model.WebServiceCaller;
 import hr.foi.air.search.view.SearchActivity;
@@ -92,7 +93,7 @@ public class SearchForm implements Serializable {
         context.startActivity(intent);
     }
 
-    public static void dataArrived(Object[] result) {
+    public static void dataArrived(EventModel[] result) {
         dataArrivedHandler.onDataArrived(result);
     }
 

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import hr.foi.air.sportloc.service.model.LocationModel;
+import hr.foi.air.core.LocationModel;
 
 public class LocationArrayAdapter extends ArrayAdapter<LocationModel> {
 

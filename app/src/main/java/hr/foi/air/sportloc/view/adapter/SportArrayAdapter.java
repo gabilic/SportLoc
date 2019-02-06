@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import hr.foi.air.sportloc.service.model.SportModel;
+import hr.foi.air.core.SportModel;
 
 public class SportArrayAdapter extends ArrayAdapter<SportModel> {
 

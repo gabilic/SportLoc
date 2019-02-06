@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+    <string name="capacity">Kapacitet</string>
+
+    <string name="location">Lokacija</string>
+
+    <string name="open">Otvoren</string>
+
+    <string name="operator">Operator</string>
+    <string name="operator_and">and</string>
+
+    <string name="participant">Sudionik</string>
+
+    <string name="search">Pretraži</string>
+
+    <string-array name="spinner_capacity">
+        <item>Slobodni</item>
+        <item>Puni</item>
+    </string-array>
+    <string-array name="spinner_open">
+        <item>Otvoreni</item>
+        <item>Zatvoreni</item>
+        <item>Svi</item>
+    </string-array>
+    <string-array name="spinner_operator">
+        <item>And</item>
+        <item>OR</item>
+    </string-array>
+
+    <string name="sport">Sport</string>
+</resources>

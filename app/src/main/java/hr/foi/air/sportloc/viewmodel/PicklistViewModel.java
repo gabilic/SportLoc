@@ -4,8 +4,8 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 
 import hr.foi.air.sportloc.service.caller.WebServiceCaller;
-import hr.foi.air.sportloc.service.model.LocationModel;
-import hr.foi.air.sportloc.service.model.SportModel;
+import hr.foi.air.core.LocationModel;
+import hr.foi.air.core.SportModel;
 
 public class PicklistViewModel extends ViewModel {
 

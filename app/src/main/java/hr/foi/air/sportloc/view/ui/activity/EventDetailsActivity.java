@@ -43,8 +43,7 @@ public class EventDetailsActivity extends AppCompatActivity {
             EventParticipantViewModel eventParticipantViewModel = new EventParticipantViewModel();
             eventParticipantViewModel.getParticipants((event).getEventId());
             eventParticipantViewModel.getParticipantsObservable().observe(this, result -> {
-                ArrayList<ParticipantModel> participants = new ArrayList<>();
-                participants.addAll(result);
+                ArrayList<ParticipantModel> participants = new ArrayList<>(result);
                 Bundle bundle = getIntent().getExtras();
                 bundle.putParcelableArrayList(EVENT_PARTICIPANTS, participants);
                 getIntent().putExtras(bundle);

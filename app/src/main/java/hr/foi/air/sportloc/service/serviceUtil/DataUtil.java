@@ -1,7 +1,10 @@
 package hr.foi.air.sportloc.service.serviceUtil;
 
-import hr.foi.air.sportloc.service.model.LocationModel;
-import hr.foi.air.sportloc.service.model.SportModel;
+import hr.foi.air.core.EventModel;
+import hr.foi.air.core.EventSearch;
+import hr.foi.air.filtersearch.FilterSearchImpl;
+import hr.foi.air.core.LocationModel;
+import hr.foi.air.core.SportModel;
 
 public class DataUtil {
 
@@ -9,6 +12,8 @@ public class DataUtil {
 
     private LocationModel[] locations;
     private SportModel[] sports;
+    private EventSearch eventSearch;
+    private EventModel[] events;
 
     private DataUtil() {
     }
@@ -34,5 +39,21 @@ public class DataUtil {
 
     public void setSports(SportModel[] sports) {
         this.sports = sports;
+    }
+
+    public EventSearch getEventSearch() {
+        return eventSearch != null ? eventSearch : new FilterSearchImpl();
+    }
+
+    public void setEventSearch(EventSearch eventSearch) {
+        this.eventSearch = eventSearch;
+    }
+
+    public EventModel[] getEvents() {
+        return events;
+    }
+
+    public void setEvents(EventModel[] events) {
+        this.events = events;
     }
 }

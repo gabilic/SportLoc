@@ -1,27 +1,27 @@
-package hr.foi.air.sportloc.service.model;
+package hr.foi.air.core;
 
 import android.support.annotation.NonNull;
 
 import java.io.Serializable;
 
-public class LocationModel implements Serializable {
+public class SportModel implements Serializable {
 
-    private Integer id;
+    private int id;
     private String name;
 
-    public LocationModel() {
+    public SportModel() {
     }
 
-    public LocationModel(Integer id, String name) {
+    public SportModel(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
