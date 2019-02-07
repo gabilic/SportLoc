@@ -3,6 +3,8 @@ package hr.foi.air.core;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.lang.reflect.Field;
+
 public class EventModel implements Parcelable {
 
     private int eventId;
@@ -13,6 +15,7 @@ public class EventModel implements Parcelable {
     private int current;
     private boolean open;
     private boolean expanded;
+    private boolean isFull;
     private String username;
     private String name;
     private String start;
@@ -34,9 +37,10 @@ public class EventModel implements Parcelable {
         userId = in.readInt();
         open = in.readByte() != 0;
         expanded = in.readByte() != 0;
+        isFull = in.readByte() != 0;
         username = in.readString();
         name = in.readString();
-        start= in.readString();
+        start = in.readString();
         end = in.readString();
         address = in.readString();
         description = in.readString();
@@ -172,6 +176,14 @@ public class EventModel implements Parcelable {
         this.username = username;
     }
 
+    public boolean isFull() {
+        return capacity == current;
+    }
+
+    public void setFull(boolean full) {
+        isFull = full;
+    }
+
     public static final Creator<EventModel> CREATOR = new Creator<EventModel>() {
         @Override
         public EventModel createFromParcel(Parcel in) {
@@ -199,6 +211,7 @@ public class EventModel implements Parcelable {
         dest.writeInt(userId);
         dest.writeByte((byte) (open ? 1 : 0));
         dest.writeByte((byte) (expanded ? 1 : 0));
+        dest.writeByte((byte) (isFull ? 1 : 0));
         dest.writeString(username);
         dest.writeString(name);
         dest.writeString(start);
@@ -207,5 +220,22 @@ public class EventModel implements Parcelable {
         dest.writeString(description);
         dest.writeString(sport);
         dest.writeString(city);
+    }
+
+    public boolean containsText(String query) {
+        boolean result = false;
+
+        for (Field f : getClass().getDeclaredFields()) {
+            try {
+                if (f.get(this) instanceof String && f.get(this) != null && ((String) f.get(this)).contains(query)) {
+                    result = true;
+                    break;
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return result;
     }
 }

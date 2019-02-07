@@ -87,6 +87,7 @@
     <string name="nav_drawer_other">Ostalo</string>
     <string name="nav_drawer_profile">Moj profil</string>
     <string name="nav_drawer_search_filter">Pretraga i filter</string>
+    <string name="nav_drawer_settings">Postavke</string>
 
     <string name="profile_change_settings">Uredi korisničke podatke</string>
     <string name="profile_comment">Komentiraj</string>
@@ -136,5 +137,6 @@
     <string name="write_comment_exists">Već ste ostavili komentar na ovom profilu!</string>
     <string name="write_comment_length">Komentar mora sadržavati minimalno 20 znakova!</string>
     <string name="write_comment_success">Komentar uspješno zapisan</string>
+    <string name="search_settings_selected">Odabrani modul pretraživanja:</string>
 
 </resources>

@@ -9,20 +9,25 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import butterknife.ButterKnife;
-import hr.foi.air.search.SearchForm;
+import hr.foi.air.core.EventSearch;
 import hr.foi.air.sportloc.R;
 import hr.foi.air.sportloc.databinding.ActivityEventListBinding;
 import hr.foi.air.sportloc.databinding.NavHeaderBinding;
 import hr.foi.air.sportloc.service.model.ActiveUserModel;
+import hr.foi.air.sportloc.service.serviceUtil.DataUtil;
 import hr.foi.air.sportloc.view.ui.fragment.EventListFragment;
+import hr.foi.air.sportloc.view.ui.fragment.SettingsFragment;
 import hr.foi.air.sportloc.view.util.Constants;
 import hr.foi.air.sportloc.view.util.IntentManager;
 import hr.foi.air.sportloc.view.util.InternalStorageManager;
 import hr.foi.air.sportloc.view.util.MessageSender;
+import hr.foi.air.sportloc.viewmodel.PicklistViewModel;
 
 public class NavigationDrawerActivity extends AppCompatActivity {
     private ActivityEventListBinding activityEventListBinding;
     private NavHeaderBinding navHeaderBinding;
+
+    boolean dataArrived = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,20 +107,46 @@ public class NavigationDrawerActivity extends AppCompatActivity {
                 IntentManager.startActivity(getApplicationContext(), MainActivity.class);
                 break;
             case R.id.nav_search_filter:
-                openSearch(args);
+                openSearch();
+                break;
+            case R.id.nav_settings:
+                startNewFragment(new SettingsFragment());
                 break;
         }
         return true;
     }
 
-    private void openSearch(Bundle args) {
-        SearchForm searchForm = new SearchForm.SearchFormBuilder(Constants.BASE_URL, ActiveUserModel.getInstance().getActiveUser().getUserId(),
-                result -> IntentManager.startActivity(getApplicationContext(), NavigationDrawerActivity.class, Constants.EVENTS, result))
-                .setShowCitySelection(true)
-                .setShowSportSelection(true)
-                .setShowAllOptions(true)
-                .build();
-        searchForm.showSearchActivity(getApplicationContext());
+    private void openSearch() {
+        EventSearch search = DataUtil.getInstance().getEventSearch();
+        search.setEvents(DataUtil.getInstance().getEvents());
+        search.setDataArrivedHandler(result ->
+                IntentManager.startActivity(getApplicationContext(), NavigationDrawerActivity.class, Constants.EVENTS, result));
+        fetchData(search);
+
+    }
+
+    private void fetchData(EventSearch search) {
+        PicklistViewModel viewModel = new PicklistViewModel();
+        viewModel.getLocations();
+        viewModel.getSports();
+        viewModel.getSportsObservable().observe(this, result -> {
+            search.setSports(result);
+            DataUtil.getInstance().setSports(result);
+            initSearch(search);
+            dataArrived = true;
+        });
+        viewModel.getLocationObservable().observe(this, result -> {
+            search.setLocations(result);
+            DataUtil.getInstance().setLocations(result);
+            initSearch(search);
+            dataArrived = true;
+        });
+    }
+
+    private void initSearch(EventSearch search) {
+        if (dataArrived) {
+            search.startSearch(getSupportFragmentManager(), R.id.cl_fragment_holder);
+        }
     }
 
     private void initializeActivity() {

@@ -27,6 +27,7 @@ import hr.foi.air.sportloc.service.model.ActiveUserModel;
 import hr.foi.air.sportloc.service.model.EventFilterModel;
 import hr.foi.air.core.EventModel;
 import hr.foi.air.sportloc.service.model.ModelEnum;
+import hr.foi.air.sportloc.service.serviceUtil.DataUtil;
 import hr.foi.air.sportloc.view.adapter.EventListAdapter;
 import hr.foi.air.sportloc.view.ui.activity.EventDetailsActivity;
 import hr.foi.air.sportloc.view.util.Constants;
@@ -117,6 +118,7 @@ public class EventListFragment extends Fragment {
         viewModel.getEventsObservable().observe(this, events -> {
             if (events != null) {
                 setupAdapter(events);
+                DataUtil.getInstance().setEvents(events);
             } else {
                 MessageSender.sendError(activity.getApplicationContext(), getResources().getString(R.string.general_connection_error));
             }

@@ -1,1 +1,1 @@
-include ':app', ':search', ':core'
+include ':app', ':core', ':textsearch', ':filtersearch', ':feelingluckysearch'

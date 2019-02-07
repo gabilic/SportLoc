@@ -5,7 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/SportLoc.iml" filepath="$PROJECT_DIR$/SportLoc.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/search/search.iml" filepath="$PROJECT_DIR$/search/search.iml" />
+      <module fileurl="file://$PROJECT_DIR$/feelingluckysearch/feelingluckysearch.iml" filepath="$PROJECT_DIR$/feelingluckysearch/feelingluckysearch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filtersearch/filtersearch.iml" filepath="$PROJECT_DIR$/filtersearch/filtersearch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/textsearch/textsearch.iml" filepath="$PROJECT_DIR$/textsearch/textsearch.iml" />
     </modules>
   </component>
 </project>
