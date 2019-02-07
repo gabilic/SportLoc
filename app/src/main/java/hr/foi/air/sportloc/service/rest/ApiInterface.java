@@ -4,10 +4,10 @@ import java.util.List;
 
 import hr.foi.air.sportloc.service.model.EventFilterModel;
 import hr.foi.air.core.EventModel;
-import hr.foi.air.sportloc.service.model.LocationModel;
+import hr.foi.air.core.LocationModel;
 import hr.foi.air.sportloc.service.model.ParticipantModel;
 import hr.foi.air.sportloc.service.model.PrimitiveWrapperModel;
-import hr.foi.air.sportloc.service.model.SportModel;
+import hr.foi.air.core.SportModel;
 import hr.foi.air.sportloc.service.model.UserModel;
 import hr.foi.air.sportloc.service.model.CommentModel;
 import hr.foi.air.sportloc.service.serviceUtil.WebServiceResponse;

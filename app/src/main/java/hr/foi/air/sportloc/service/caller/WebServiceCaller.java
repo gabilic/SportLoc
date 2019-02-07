@@ -5,19 +5,21 @@ import android.arch.lifecycle.MutableLiveData;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import hr.foi.air.sportloc.service.model.CommentModel;
 import hr.foi.air.sportloc.service.model.EventFilterModel;
 import hr.foi.air.core.EventModel;
-import hr.foi.air.sportloc.service.model.LocationModel;
+import hr.foi.air.core.LocationModel;
 import hr.foi.air.sportloc.service.model.ParticipantModel;
 import hr.foi.air.sportloc.service.model.PrimitiveWrapperModel;
-import hr.foi.air.sportloc.service.model.SportModel;
+import hr.foi.air.core.SportModel;
 import hr.foi.air.sportloc.service.model.UserModel;
 import hr.foi.air.sportloc.service.rest.ApiInterface;
 import hr.foi.air.sportloc.service.serviceUtil.BooleanCallback;
 import hr.foi.air.sportloc.service.serviceUtil.DataUtil;
 import hr.foi.air.sportloc.service.serviceUtil.MessageCallback;
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,10 +33,17 @@ public class WebServiceCaller {
     private static WebServiceCaller instance;
 
     private WebServiceCaller() {
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .readTimeout(60, TimeUnit.SECONDS)
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .build();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
                 .build();
+
         api = retrofit.create(ApiInterface.class);
     }
 
